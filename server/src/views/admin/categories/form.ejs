@@ -1,0 +1,37 @@
+<% locals.activePage = 'categories' %>
+
+<div class="page-header">
+    <h1><%= category ? '✏️ Sửa danh mục' : '➕ Thêm danh mục mới' %></h1>
+    <a href="/admin/danh-muc" class="btn btn-secondary">← Quay lại</a>
+</div>
+
+<div class="card" style="max-width:600px">
+    <form action="<%= category ? `/admin/danh-muc/${category._id}?_method=PUT` : '/admin/danh-muc' %>" method="POST">
+        <div class="form-group">
+            <label class="form-group">Tên danh mục *</label>
+            <input type="text" name="name" class="form-control" required value="<%= category?category.name:'' %>" placeholder="Thức ăn chó">
+        </div>
+        <div class="form-group">
+            <label class="form-group">Mô tả</label>
+            <textarea name="description" class="form-control" rows="3" placeholder="Mô tả danh mục..."><%= category&&category.description?category.description:'' %></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-group">Danh mục cha</label>
+            <select name="parentCategory" class="form-control">
+                <option value="">— Danh mục gốc —</option>
+                <% parentCategories.forEach(p => { %>
+                <option value="<%= p._id %>" <%= category&&category.parentCategory&&category.parentCategory.toString()===p._id.toString()?'selected':'' %>><%= p.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-group">Thứ tự hiển thị</label>
+            <input type="number" name="sortOrder" class="form-control" value="<%= category?category.sortOrder:0 %>" min="0">
+        </div>
+        <div class="form-check" style="margin-bottom:20px">
+            <input type="checkbox" name="isActive" id="isActive" <%= !category||category.isActive?'checked':'' %>>
+            <label for="isActive" style="font-weight:600;font-size:14px">✅ Kích hoạt</label>
+        </div>
+        <button type="submit" class="btn btn-primary">💾 <%= category?'Cập nhật':'Tạo danh mục' %></button>
+    </form>
+</div>

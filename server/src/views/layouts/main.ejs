@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'PurePaw Pet House' %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        body { font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #1C1C1C; background-color: #FFF9F0; min-height: 100vh; }
+        main { display: block; margin: 0; padding: 0; }
+        /* Banner luôn flush với header, không có gap */
+        .pp-banner-outer { margin: 0; padding: 0; display: block; line-height: 0; }
+        .wrap-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ══════════════════════════════════════════════════
+           HEADER — Thiết kế mới: 2 flex-group, logo tuyệt đối
+           ══════════════════════════════════════════════════ */
+        .header {
+            width: 100%;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            border-bottom: 1px solid #f0e8d0;
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+        .header__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            height: 136px;
+            position: relative;
+        }
+
+        /* Top info bar */
+        .header__addr {
+            position: absolute;
+            left: 60px; top: 24px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 14px; color: #666;
+            white-space: nowrap;
+        }
+        .header__addr i { color: #FFB606; font-size: 14px; }
+        .header__hotline {
+            position: absolute;
+            right: 60px; top: 24px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 14px; color: #666;
+            white-space: nowrap;
+        }
+        .header__hotline i { color: #FFB606; font-size: 14px; }
+
+        /* Logo — tuyệt đối chính giữa */
+        .header__logo {
+            position: absolute;
+            left: 50%; top: 0;
+            transform: translateX(-50%);
+            width: 136px; height: 136px;
+            z-index: 10;
+            text-decoration: none;
+        }
+        .header__logo img {
+            width: 100%; height: 100%; object-fit: contain; display: block;
+        }
+        .header__logo-fallback {
+            width: 100%; height: 100%; display: flex; align-items: center;
+            justify-content: center; font-size: 52px;
+        }
+
+        /* Bottom bar — nav + icons */
+        .header__bottom {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 63px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 2 flex groups canh logo */
+        .header__nav-left,
+        .header__nav-right {
+            display: flex;
+            align-items: center;
+            width: calc(50% - 80px);  /* 50% - half logo width */
+        }
+        .header__nav-left { justify-content: flex-end; padding-right: 8px; }
+        .header__nav-right { justify-content: flex-start; padding-left: 8px; }
+
+        /* Spacer giữa 2 groups (= logo width) */
+        .header__nav-spacer {
+            width: 160px; flex-shrink: 0;
+        }
+
+        /* Nav items */
+        .header__nav-item {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700; font-size: 14px; color: #1c1c1c;
+            white-space: nowrap; text-decoration: none;
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .header__nav-item:hover { color: #FFB606; background: #fffbeb; }
+        .header__nav-item--active {
+            border: 2px solid #ffb606;
+            border-radius: 24px;
+            color: #1c1c1c;
+        }
+        .header__nav-item--active:hover { background: transparent; }
+
+        /* Icons pill — bên phải tuyệt đối */
+        .header__icons {
+            position: absolute;
+            right: 50px; bottom: 11px;
+            display: flex; align-items: center;
+            background: #FFB606;
+            border-radius: 24px;
+            padding: 8px 16px;
+            height: 42px;
+            gap: 16px;
+            z-index: 20;
+        }
+        .header__icons a, .header__icons button, .header__icons span {
+            font-size: 17px; color: #1c1c1c;
+            cursor: pointer; text-decoration: none;
+            display: flex; align-items: center;
+            background: none; border: none; padding: 0;
+            transition: opacity 0.2s;
+            position: relative;
+        }
+        .header__icons a:hover, .header__icons button:hover, .header__icons span:hover { opacity: 0.65; }
+        .cart-badge {
+            position: absolute; top: -8px; right: -8px;
+            background: #1C1C1C; color: #FFE002;
+            border-radius: 50%; width: 17px; height: 17px;
+            font-size: 10px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* User dropdown */
+        .header__user-wrap { position: relative; }
+        .header__user-dropdown {
+            display: none;
+            position: absolute; top: 100%; right: 0;
+            padding-top: 14px;  /* bridge gap so mouse stays in hover zone */
+            z-index: 999;
+        }
+        .header__user-dropdown.open { display: block; }
+        .header__user-dropdown-inner {
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+            min-width: 210px; padding: 8px 0;
+            animation: ppFadeIn 0.18s ease;
+        }
+        .header__user-dropdown-inner::before {
+            content: ''; position: absolute; top: 8px; right: 18px;
+            border-left: 6px solid transparent; border-right: 6px solid transparent;
+            border-bottom: 6px solid #fff;
+        }
+        .header__user-dropdown a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 18px; color: #333; font-size: 14px;
+            font-weight: 600; text-decoration: none;
+            transition: background 0.15s;
+        }
+        .header__user-dropdown a:hover { background: #fffbeb; color: #FFB606; }
+        .header__user-dropdown a i { width: 18px; color: #FFB606; }
+        .header__user-dropdown hr { border: none; border-top: 1px solid #f0f0f0; margin: 6px 0; }
+        .header__user-name {
+            padding: 12px 18px 8px; font-size: 12px; color: #999;
+            font-weight: 600; text-transform: uppercase; letter-spacing: .4px;
+        }
+
+        /* Hamburger (mobile) */
+        .header__hamburger {
+            display: none;
+            position: absolute; right: 16px; top: 50%;
+            transform: translateY(-50%);
+            background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 5px; padding: 4px; z-index: 20;
+        }
+        .header__hamburger span { display: block; width: 24px; height: 2px; background: #1c1c1c; border-radius: 2px; transition: all 0.3s; }
+        .header__nav--open { display: flex !important; }
+
+        /* Flash messages */
+        .flash-container { padding: 8px 0; }
+        .flash-msg { padding: 12px 20px; border-radius: 8px; margin-bottom: 8px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .flash-success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+        .flash-error { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+        .flash-info { background: #d1ecf1; color: #0c5460; border-left: 4px solid #17a2b8; }
+
+        /* ── FOOTER ── */
+        .footer { background: #1C1C1C; color: #fff; margin-top: 60px; }
+        .footer-article { padding: 50px 0 30px; }
+        .footer-news { margin-bottom: 30px; }
+        .logo-footer img { max-width: 140px; margin-bottom: 20px; filter: brightness(10); }
+        .name-footer { font-size: 20px; font-weight: 700; color: #FFE002; margin-bottom: 15px; }
+        .info-footer { line-height: 1.8; font-size: 14px; margin-bottom: 20px; color: #ccc; }
+        .title-footer { font-size: 16px; font-weight: 700; color: #FFE002; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #FFE002; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-ul { list-style: none; padding: 0; }
+        .footer-ul li { margin-bottom: 10px; }
+        .footer-ul a { color: #ccc; text-decoration: none; transition: all .3s; display: block; padding: 3px 0; font-size: 14px; }
+        .footer-ul a:hover { color: #FFE002; padding-left: 10px; }
+        .footer-powered { background: rgba(0,0,0,.3); padding: 20px 0; text-align: center; font-size: 13px; color: #aaa; }
+        .social { display: flex; gap: 10px; list-style: none; padding: 0; margin: 20px 0 0; }
+        .social a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: linear-gradient(135deg,#FFE002,#FFB606); border-radius: 50%; transition: all .3s; text-decoration: none; color: #1C1C1C; font-size: 16px; }
+        .social a:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,182,6,.5); }
+
+        /* Scroll to Top */
+        .scrollToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg,#FFE002,#FFB606); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 20px rgba(255,182,6,.4); transition: all .3s; z-index: 999; font-size: 22px; color: #1C1C1C; font-weight: 700; }
+        .scrollToTop:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,182,6,.6); }
+        .scrollToTop.visible { display: flex; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .header__nav-item { font-size: 13px; padding: 8px 10px; }
+        }
+        @media (max-width: 800px) {
+            .header__inner { height: auto; min-height: 70px; }
+            .header__addr, .header__hotline { display: none; }
+            .header__logo { position: relative; left: auto; transform: none; margin: 0 auto; display: block; width: 80px; height: 80px; }
+            .header__hamburger { display: flex; }
+            .header__bottom { display: none; position: static; height: auto; flex-direction: column; align-items: flex-start; padding: 0 20px 16px; border-top: 1px solid #f0e8d0; }
+            .header__bottom.open { display: flex; }
+            .header__nav-left, .header__nav-right { flex-direction: column; width: 100%; align-items: flex-start; padding: 0; }
+            .header__nav-spacer { display: none; }
+            .header__nav-item { font-size: 15px; padding: 10px 4px; width: 100%; }
+            .header__icons { position: static; margin: 12px auto 8px; width: fit-content; }
+            .header__user-dropdown { right: auto; left: 0; }
+        }
+
+        /* ── AUTH POPUP (từ popuploginsignin.html) ── */
+        .auth-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.55); display: none;
+            justify-content: center; align-items: center;
+            z-index: 9000; animation: ppFadeIn 0.3s ease;
+        }
+        .auth-overlay.active { display: flex; }
+        @keyframes ppFadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes ppSlideUp { from { transform:translateY(60px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+        .auth-popup {
+            background: #fff; border-radius: 20px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 60px rgba(0,0,0,.18);
+            overflow: hidden; animation: ppSlideUp 0.4s ease;
+            margin: 20px; border: 1px solid #f0f0f0;
+        }
+        .auth-popup-header {
+            background: linear-gradient(135deg,#FFE002 0%,#FFB606 100%);
+            padding: 30px; text-align: center; position: relative;
+        }
+        .auth-popup-header h2 { color:#1C1C1C; font-size:26px; font-weight:700; margin-bottom:6px; }
+        .auth-popup-header p { color:#3B3B3B; font-size:14px; }
+        .auth-close-btn {
+            position:absolute; top:14px; right:14px;
+            background:rgba(28,28,28,.2); border:none;
+            width:34px; height:34px; border-radius:50%;
+            cursor:pointer; font-size:20px; color:#1C1C1C;
+            display:flex; align-items:center; justify-content:center;
+            transition:all .3s;
+        }
+        .auth-close-btn:hover { background:rgba(28,28,28,.4); transform:rotate(90deg); }
+        .auth-popup-body { padding: 35px 30px; }
+        .auth-tabs { display:flex; gap:10px; margin-bottom:28px; }
+        .auth-tab-btn {
+            flex:1; padding:12px; border:2px solid #e0e0e0; background:transparent;
+            color:#1C1C1C; border-radius:10px; cursor:pointer; font-weight:700;
+            font-size:15px; transition:all .3s; font-family:inherit;
+        }
+        .auth-tab-btn.active { background:#FFE002; border-color:#FFE002; }
+        .auth-tab-btn:hover:not(.active) { border-color:#FFB606; color:#FFB606; }
+        .auth-form-content { display:none; }
+        .auth-form-content.active { display:block; animation:ppFadeIn .3s ease; }
+        .auth-input-group { margin-bottom:18px; }
+        .auth-input-group label { display:block; color:#1C1C1C; margin-bottom:7px; font-weight:600; font-size:14px; }
+        .auth-input-group input {
+            width:100%; padding:13px 16px; background:#f5f5f5;
+            border:2px solid #e0e0e0; border-radius:10px;
+            color:#1C1C1C; font-size:15px; transition:all .3s; font-family:inherit;
+        }
+        .auth-input-group input:focus { outline:none; border-color:#FFE002; background:#fff; }
+        .auth-forgot { text-align:right; margin-bottom:18px; }
+        .auth-forgot a { color:#FFB606; font-size:13px; text-decoration:none; }
+        .auth-submit-btn {
+            width:100%; padding:15px;
+            background:linear-gradient(135deg,#FFE002 0%,#FFB606 100%);
+            border:none; border-radius:10px; color:#1C1C1C;
+            font-weight:700; font-size:16px; cursor:pointer;
+            transition:all .3s; box-shadow:0 4px 15px rgba(255,224,2,.3); font-family:inherit;
+        }
+        .auth-submit-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,182,6,.4); }
+        .auth-divider {
+            display:flex; align-items:center; margin:24px 0; color:#666; font-size:14px;
+        }
+        .auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background:#e0e0e0; }
+        .auth-divider span { padding:0 14px; }
+        .auth-social-login { display:flex; gap:12px; }
+        .auth-social-btn {
+            flex:1; padding:13px; border:2px solid #e0e0e0; background:#fff;
+            border-radius:10px; cursor:pointer; display:flex; align-items:center;
+            justify-content:center; gap:8px; transition:all .3s; color:#1C1C1C;
+            font-weight:600; font-size:14px; font-family:inherit;
+        }
+        .auth-social-btn:hover { border-color:#FFE002; background:#fffbeb; transform:translateY(-2px); }
+        .auth-terms { text-align:center; margin-top:18px; font-size:12px; color:#666; line-height:1.6; }
+        .auth-terms a { color:#FFB606; text-decoration:none; }
+        .auth-switch { text-align:center; margin-top:20px; font-size:14px; color:#666; }
+        .auth-switch a { color:#FFB606; font-weight:700; text-decoration:none; cursor:pointer; }
+        @media(max-width:480px){
+            .auth-popup { margin:10px; }
+            .auth-popup-body { padding:28px 18px; }
+            .auth-social-login { flex-direction:column; }
+        }
+    </style>
+    <%- typeof style !== 'undefined' ? style : '' %>
+</head>
+<body>
+<!-- ── HEADER ── -->
+<header class="header" id="siteHeader">
+    <div class="header__inner">
+        <!-- Top: Address & Hotline -->
+        <div class="header__addr">
+            <i class="fa-solid fa-location-dot"></i>
+            669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM
+        </div>
+        <div class="header__hotline">
+            <i class="fa-solid fa-phone"></i>
+            Hotline: 090 123 4567
+        </div>
+
+        <!-- Logo (absolute center) -->
+        <a class="header__logo" href="/">
+            <img src="/assets/logo.png" alt="PurePaw"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="header__logo-fallback" style="display:none">🐾</div>
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="header__hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- Bottom bar -->
+        <div class="header__bottom">
+            <!-- LEFT GROUP -->
+            <div class="header__nav-left" id="mainNav">
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/'?'header__nav-item--active':'' %>" href="/">TRANG CHỦ</a>
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/gioi-thieu'?'header__nav-item--active':'' %>" href="/gioi-thieu">GIỚI THIỆU</a>
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/grooming'?'header__nav-item--active':'' %>" href="/grooming">DỊCH VỤ</a>
+            </div>
+
+            <!-- Spacer (logo placeholder) -->
+            <div class="header__nav-spacer"></div>
+
+            <!-- RIGHT GROUP -->
+            <div class="header__nav-right">
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/san-pham'?'header__nav-item--active':'' %>" href="/san-pham">SẢN PHẨM</a>
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/tin-tuc'?'header__nav-item--active':'' %>" href="/tin-tuc">TIN TỨC</a>
+                <a class="header__nav-item <%= typeof currentPath!=='undefined'&&currentPath==='/lien-he'?'header__nav-item--active':'' %>" href="/lien-he">LIÊN HỆ</a>
+            </div>
+        </div>
+
+        <!-- Icons Pill (absolute right) -->
+        <div class="header__icons">
+            <!-- Search -->
+            <a href="/san-pham" title="Tìm kiếm sản phẩm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+
+            <!-- User / Dropdown -->
+            <% if (currentUser) { %>
+            <div class="header__user-wrap" id="userWrap">
+                <span id="userBtn" onclick="toggleUserDropdown(event)" style="cursor:pointer" title="Tài khoản">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                <div class="header__user-dropdown" id="userDropdown">
+                    <div class="header__user-dropdown-inner">
+                        <div class="header__user-name"><%= currentUser.fullName || currentUser.email %></div>
+                        <a href="/tai-khoan"><i class="fas fa-id-card"></i> Hồ sơ cá nhân</a>
+                        <a href="/tai-khoan/don-hang"><i class="fas fa-box"></i> Đơn hàng của tôi</a>
+                        <a href="/tai-khoan/lich-hen"><i class="fas fa-calendar-check"></i> Lịch hẹn Spa</a>
+                        <% if (currentUser.role === 'admin') { %>
+                        <hr>
+                        <a href="/admin" style="color:#FFB606"><i class="fas fa-cog"></i> Quản trị Admin</a>
+                        <% } %>
+                        <hr>
+                        <a href="/dang-xuat" style="color:#e74c3c"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+            <span title="Đăng nhập / Đăng ký" onclick="openAuthPopup()" style="cursor:pointer">
+                <i class="fa-solid fa-user"></i>
+            </span>
+            <% } %>
+
+            <!-- Cart -->
+            <a href="/gio-hang" title="Giỏ hàng" style="position:relative">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <% if (currentUser) { %><span class="cart-badge" id="cartCount">0</span><% } %>
+            </a>
+        </div>
+    </div>
+</header>
+
+<% if ((success&&success.length)||(error&&error.length)||(info&&info.length)) { %>
+<div class="wrap-content flash-container">
+    <% if (success && success.length) { %><div class="flash-msg flash-success"><i class="fas fa-check-circle"></i> <%- success[0] %></div><% } %>
+    <% if (error && error.length) { %><div class="flash-msg flash-error"><i class="fas fa-exclamation-circle"></i> <%- error[0] %></div><% } %>
+    <% if (info && info.length) { %><div class="flash-msg flash-info"><i class="fas fa-info-circle"></i> <%- info[0] %></div><% } %>
+</div>
+<% } %>
+
+<!-- Main Content -->
+<main>
+    <%- body %>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+    <div class="footer-article">
+        <div class="wrap-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px;">
+                <div class="footer-news">
+                    <a class="logo-footer" href="/"><img src="/assets/logo.png" alt="PurePaw Pet Shop" onerror="this.style.display='none'"></a>
+                    <div class="name-footer">PUREPAW PET SHOP</div>
+                    <div class="info-footer">
+                        <strong>"Mọi Thứ Tốt Nhất Cho Người Bạn Bốn Chân"</strong><br><br>
+                        <i class="fas fa-map-marker-alt" style="color:#FFB606"></i> 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM<br>
+                        <i class="fas fa-phone" style="color:#FFB606"></i> 090 123 4567<br>
+                        <i class="fas fa-envelope" style="color:#FFB606"></i> support@purepaw.vn<br>
+                        <i class="fas fa-globe" style="color:#FFB606"></i> purepaw.vn
+                    </div>
+                    <ul class="social">
+                        <li><a href="https://www.facebook.com/purepawpetshop" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a></li>
+                        <li><a href="#" title="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <div class="footer-news">
+                    <h4 class="title-footer">DANH MỤC SẢN PHẨM</h4>
+                    <ul class="footer-ul">
+                        <li><a href="/san-pham">Thức ăn cho thú cưng</a></li>
+                        <li><a href="/san-pham">Đồ chơi &amp; Nhà ở</a></li>
+                        <li><a href="/san-pham">Phụ kiện thời trang</a></li>
+                        <li><a href="/grooming">Dịch vụ Grooming Spa</a></li>
+                        <li><a href="/san-pham">Sản phẩm chăm sóc sức khỏe</a></li>
+                        <li><a href="/san-pham">Sản phẩm mới nhất</a></li>
+                    </ul>
+                </div>
+                <div class="footer-news">
+                    <h4 class="title-footer">CHÍNH SÁCH &amp; HỖ TRỢ</h4>
+                    <ul class="footer-ul">
+                        <li><a href="/gioi-thieu">Về chúng tôi</a></li>
+                        <li><a href="/lien-he">Liên hệ</a></li>
+                        <li><a href="/tin-tuc">Tin tức</a></li>
+                        <li><a href="/chinh-sach">Chính sách & Điều khoản</a></li>
+                        <li><a href="/tai-khoan">Tài khoản của tôi</a></li>
+                        <li><a href="/tai-khoan/don-hang">Tra cứu đơn hàng</a></li>
+                    </ul>
+                    <div style="margin-top: 25px; display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 36px;">🕐</div>
+                        <div>
+                            <div style="color: #FFE002; font-weight: 700; margin-bottom: 4px;">Giờ Mở Cửa</div>
+                            <span style="color:#ccc;font-size:13px">08:00 - 21:00 (Thứ 2 - Chủ nhật)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-powered">
+        <div class="wrap-content">
+            Bản quyền © <strong>PUREPAW PET SHOP</strong>. Tất cả quyền được bảo lưu. Thiết kế bởi đội ngũ Pure Paw.
+        </div>
+    </div>
+</footer>
+
+<div class="scrollToTop" id="scrollToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<!-- ── AUTH POPUP (từ popuploginsignin.html) ── -->
+<% if (!currentUser) { %>
+<div class="auth-overlay" id="authOverlay" onclick="closeAuthOnOverlay(event)">
+    <div class="auth-popup">
+        <div class="auth-popup-header">
+            <div style="font-size:42px;margin-bottom:8px">🐾</div>
+            <h2 id="authPopupTitle">Chào mừng trở lại!</h2>
+            <p id="authPopupSub">Đăng nhập để trải nghiệm dịch vụ tốt nhất cho thú cưng</p>
+            <button class="auth-close-btn" onclick="closeAuthPopup()">×</button>
+        </div>
+        <div class="auth-popup-body">
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Đăng Nhập</button>
+                <button class="auth-tab-btn" id="signupTabBtn" onclick="switchAuthTab('signup')">Đăng Ký</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form-content active" id="authLoginForm">
+                <form action="/dang-nhap" method="POST">
+                    <div class="auth-input-group">
+                        <label for="ppLoginEmail">Email</label>
+                        <input type="email" id="ppLoginEmail" name="email" placeholder="Nhập email của bạn" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="ppLoginPwd">Mật khẩu</label>
+                        <input type="password" id="ppLoginPwd" name="password" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <div class="auth-forgot">
+                        <a href="/quen-mat-khau">Quên mật khẩu?</a>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Đăng Nhập</button>
+                </form>
+                <div class="auth-divider"><span>Hoặc đăng nhập với</span></div>
+                <div class="auth-social-login">
+                    <button class="auth-social-btn" onclick="window.location='/auth/google'">
+                        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M19.8 10.2273C19.8 9.51819 19.7364 8.83637 19.6182 8.18182H10.2V12.05H15.6109C15.3727 13.3 14.6455 14.3591 13.5636 15.0682V17.5773H16.8182C18.7091 15.8364 19.8 13.2727 19.8 10.2273Z" fill="#4285F4"/><path d="M10.2 20C12.9 20 15.1682 19.1045 16.8182 17.5773L13.5636 15.0682C12.6455 15.6682 11.5091 16.0227 10.2 16.0227C7.59545 16.0227 5.38182 14.2636 4.56364 11.9H1.20909V14.4909C2.84091 17.7591 6.24545 20 10.2 20Z" fill="#34A853"/><path d="M4.56364 11.9C4.36364 11.3 4.24545 10.6591 4.24545 10C4.24545 9.34091 4.36364 8.7 4.56364 8.1V5.50909H1.20909C0.540909 6.85909 0.2 8.38636 0.2 10C0.2 11.6136 0.540909 13.1409 1.20909 14.4909L4.56364 11.9Z" fill="#FBBC05"/><path d="M10.2 3.97727C11.6318 3.97727 12.9136 4.48182 13.9227 5.43636L16.8091 2.55C15.1636 1.03636 12.8955 0 10.2 0C6.24545 0 2.84091 2.24091 1.20909 5.50909L4.56364 8.1C5.38182 5.73636 7.59545 3.97727 10.2 3.97727Z" fill="#EA4335"/></svg>
+                        Google
+                    </button>
+                    <button class="auth-social-btn" onclick="window.location='/auth/facebook'">
+                        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 14.9912 3.65684 19.1283 8.4375 19.8785V12.8906H5.89844V10H8.4375V7.79688C8.4375 5.29063 9.93047 3.90625 12.2146 3.90625C13.3084 3.90625 14.4531 4.10156 14.4531 4.10156V6.5625H13.1922C11.95 6.5625 11.5625 7.3334 11.5625 8.125V10H14.3359L13.8926 12.8906H11.5625V19.8785C16.3432 19.1283 20 14.9912 20 10Z" fill="#1877F2"/></svg>
+                        Facebook
+                    </button>
+                </div>
+                <div class="auth-switch">Chưa có tài khoản? <a onclick="switchAuthTab('signup')">Đăng ký ngay</a></div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form-content" id="authSignupForm">
+                <form action="/dang-ky" method="POST">
+                    <div class="auth-input-group">
+                        <label for="ppSignupName">Họ và tên</label>
+                        <input type="text" id="ppSignupName" name="fullName" placeholder="Nhập họ tên của bạn" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="ppSignupEmail">Email</label>
+                        <input type="email" id="ppSignupEmail" name="email" placeholder="Nhập email của bạn" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="ppSignupPwd">Mật khẩu</label>
+                        <input type="password" id="ppSignupPwd" name="password" placeholder="Tạo mật khẩu (tối thiểu 6 ký tự)" required minlength="6">
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="ppSignupConfirm">Xác nhận mật khẩu</label>
+                        <input type="password" id="ppSignupConfirm" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Đăng Ký</button>
+                </form>
+                <div class="auth-terms">
+                    Bằng việc đăng ký, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của chúng tôi.
+                </div>
+                <div class="auth-switch">Đã có tài khoản? <a onclick="switchAuthTab('login')">Đăng nhập</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<script>
+    // Auto-hide flash after 5s
+    setTimeout(() => { document.querySelectorAll('.flash-msg').forEach(el => el.style.display='none'); }, 5000);
+
+    // ── AUTH POPUP functions ──
+    function openAuthPopup(tab) {
+        const overlay = document.getElementById('authOverlay');
+        if (!overlay) return;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (tab) switchAuthTab(tab);
+    }
+    function closeAuthPopup() {
+        const overlay = document.getElementById('authOverlay');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    function closeAuthOnOverlay(e) {
+        if (e.target === document.getElementById('authOverlay')) closeAuthPopup();
+    }
+    function switchAuthTab(tab) {
+        const loginBtn    = document.getElementById('loginTabBtn');
+        const signupBtn   = document.getElementById('signupTabBtn');
+        const loginForm   = document.getElementById('authLoginForm');
+        const signupForm  = document.getElementById('authSignupForm');
+        const title       = document.getElementById('authPopupTitle');
+        const sub         = document.getElementById('authPopupSub');
+        if (!loginBtn) return;
+        if (tab === 'login') {
+            loginBtn.classList.add('active');    signupBtn.classList.remove('active');
+            loginForm.classList.add('active');   signupForm.classList.remove('active');
+            if (title) title.textContent = 'Chào mừng trở lại!';
+            if (sub)   sub.textContent   = 'Đăng nhập để trải nghiệm dịch vụ tốt nhất cho thú cưng';
+        } else {
+            signupBtn.classList.add('active');   loginBtn.classList.remove('active');
+            signupForm.classList.add('active');  loginForm.classList.remove('active');
+            if (title) title.textContent = 'Tạo tài khoản mới';
+            if (sub)   sub.textContent   = 'Tham gia cộng đồng PurePaw Pet House hôm nay!';
+        }
+    }
+    // ESC to close popup
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAuthPopup(); });
+
+    // ── Sticky header shadow on scroll ──
+    const siteHeader = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) siteHeader.classList.add('scrolled');
+        else siteHeader.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ── Hamburger mobile toggle ──
+    const hamburger = document.getElementById('hamburger');
+    const headerBottom = document.querySelector('.header__bottom');
+    if (hamburger && headerBottom) {
+        hamburger.addEventListener('click', () => {
+            headerBottom.classList.toggle('open');
+        });
+    }
+
+    // ── User dropdown: click toggle (global function) ──
+    function toggleUserDropdown(e) {
+        e.stopPropagation();
+        var dd = document.getElementById('userDropdown');
+        if (dd) dd.classList.toggle('open');
+    }
+    // Click ngo\u00e0i \u2192 \u0111\u00f3ng
+    document.addEventListener('click', function(e) {
+        var wrap = document.getElementById('userWrap');
+        var dd   = document.getElementById('userDropdown');
+        if (dd && wrap && !wrap.contains(e.target)) {
+            dd.classList.remove('open');
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var dd = document.getElementById('userDropdown');
+            if (dd) dd.classList.remove('open');
+        }
+    });
+
+    // ── Scroll to top ──
+    const scrollBtn = document.getElementById('scrollToTop');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        }, { passive: true });
+    }
+
+    // ── Cart count update ──
+    async function updateCartCount() {
+        try {
+            const r = await fetch('/gio-hang/count');
+            if (r.ok) {
+                const d = await r.json();
+                const badge = document.getElementById('cartCount');
+                if (badge) badge.textContent = d.count || 0;
+            }
+        } catch(_) {}
+    }
+    updateCartCount();
+</script>
+<%- typeof script !== 'undefined' ? script : '' %>
+</body>
+</html>

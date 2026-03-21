@@ -1,0 +1,291 @@
+
+<style>
+/* ── PROFILE PAGE (tận dụng từ userinfo.html) ── */
+.profile-layout {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 340px 1fr;
+    gap: 28px; padding: 35px 20px 60px;
+}
+
+/* Page Header */
+.page-header {
+    background: #fff; padding: 22px 28px; border-radius: 16px;
+    margin: 25px 20px 0; max-width: 1200px; margin-left: auto; margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 15px;
+}
+.page-header h1 { color: #1C1C1C; font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 12px; margin: 0; }
+.logout-btn {
+    background: linear-gradient(135deg,#FFE002,#FFB606); border: none;
+    padding: 10px 22px; border-radius: 10px; color: #1C1C1C; font-weight: 700;
+    cursor: pointer; transition: all .3s; font-size: 14px;
+    display: flex; align-items: center; gap: 8px; text-decoration: none;
+}
+.logout-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255,182,6,.4); }
+
+/* Profile Card (Left Sidebar) */
+.profile-card {
+    background: #fff; border-radius: 20px; padding: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.09); text-align: center;
+    height: fit-content; position: sticky; top: 20px;
+}
+.avatar-container { position: relative; width: 130px; height: 130px; margin: 0 auto 18px; }
+.avatar {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 4px solid #FFE002; box-shadow: 0 5px 20px rgba(255,224,2,.3);
+    background: linear-gradient(135deg,#FFE002,#FFB606); display: flex; align-items: center; justify-content: center;
+    font-size: 50px;
+}
+.profile-name { font-size: 22px; font-weight: 700; color: #1C1C1C; margin-bottom: 4px; }
+.profile-email { color: #888; margin-bottom: 18px; font-size: 14px; }
+.profile-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; padding: 7px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; margin-bottom: 20px;
+}
+.profile-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 10px; }
+.stat-item {
+    background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    padding: 14px; border-radius: 12px; border: 2px solid #FFE002;
+}
+.stat-value { font-size: 22px; font-weight: 700; color: #FFB606; display: block; }
+.stat-label { font-size: 12px; color: #777; margin-top: 4px; }
+
+/* Sidebar Menu */
+.sidebar-menu { list-style: none; margin-top: 22px; text-align: left; }
+.sidebar-menu li { margin-bottom: 5px; }
+.sidebar-menu a {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+    border-radius: 8px; text-decoration: none; color: #555;
+    font-size: 14px; font-weight: 600; transition: all .2s;
+}
+.sidebar-menu a:hover, .sidebar-menu a.active { background: #fffbeb; color: #FFB606; }
+
+/* Info Card */
+.info-card {
+    background: #fff; border-radius: 20px; padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.09); margin-bottom: 22px;
+}
+.info-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 22px; padding-bottom: 14px;
+    border-bottom: 2px solid #f0f0f0;
+}
+.info-card-header h2 { color: #1C1C1C; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.edit-btn {
+    background: linear-gradient(135deg,#FFE002,#FFB606); border: none;
+    padding: 9px 18px; border-radius: 8px; color: #1C1C1C; font-weight: 700;
+    cursor: pointer; transition: all .3s; display: flex; align-items: center; gap: 8px; font-size: 14px;
+}
+.edit-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255,182,6,.4); }
+
+/* Form */
+.info-form { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group.full-width { grid-column: 1 / -1; }
+.form-group label { color: #333; font-weight: 700; margin-bottom: 7px; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+.form-group input, .form-group select, .form-group textarea {
+    padding: 11px 14px; border: 2px solid #e0e0e0; border-radius: 10px;
+    font-size: 14px; transition: all .3s; background: #f8f8f8; color: #1C1C1C;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #FFE002; background: #fff; }
+.form-group input:disabled { background: #f5f5f5; cursor: not-allowed; color: #999; }
+.form-actions { grid-column: 1/-1; display: flex; gap: 14px; justify-content: flex-end; margin-top: 8px; }
+.btn-primary {
+    background: linear-gradient(135deg,#FFE002,#FFB606); border: none;
+    padding: 12px 28px; border-radius: 10px; color: #1C1C1C; font-weight: 700;
+    cursor: pointer; transition: all .3s; font-size: 15px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,182,6,.4); }
+.btn-secondary {
+    background: transparent; border: 2px solid #ddd;
+    padding: 12px 28px; border-radius: 10px; color: #666; font-weight: 600;
+    cursor: pointer; transition: all .3s; font-size: 15px;
+}
+.btn-secondary:hover { border-color: #1C1C1C; color: #1C1C1C; }
+
+/* Order rows */
+.order-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px; border: 2px solid #f0f0f0; border-radius: 12px;
+    margin-bottom: 10px; transition: all .2s;
+}
+.order-row:hover { border-color: #FFE002; background: #fffbeb; }
+.status-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+
+@media (max-width: 900px) { .profile-layout { grid-template-columns: 1fr; } .info-form { grid-template-columns: 1fr; } .profile-card { position: static; } }
+@media (max-width: 600px) { .page-header { flex-direction: column; } .form-actions { flex-direction: column; } }
+</style>
+
+<!-- Page Header -->
+<div class="page-header" style="max-width:1200px;margin:25px auto 0;">
+    <h1>
+        <span>👤</span>
+        Tài Khoản Của Tôi
+    </h1>
+    <a href="/dang-xuat" class="logout-btn">
+        <span>🚪</span> Đăng Xuất
+    </a>
+</div>
+
+<div class="profile-layout">
+    <!-- Left Sidebar: Profile Card -->
+    <aside class="profile-card">
+        <div class="avatar-container">
+            <div class="avatar">😊</div>
+        </div>
+        <h3 class="profile-name"><%= user ? user.fullName : 'Người dùng' %></h3>
+        <p class="profile-email"><%= user ? user.email : '' %></p>
+        <div class="profile-badge">⭐ Thành viên PurePaw</div>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-value"><%= typeof orders !== 'undefined' && orders ? orders.length : 0 %></span>
+                <span class="stat-label">Đơn hàng</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value"><%= typeof bookings !== 'undefined' && bookings ? bookings.length : 0 %></span>
+                <span class="stat-label">Lịch hẹn</span>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/tai-khoan" class="<%= activeTab==='profile'?'active':'' %>">👤 Hồ sơ cá nhân</a></li>
+            <li><a href="/tai-khoan/don-hang" class="<%= activeTab==='orders'?'active':'' %>">📦 Đơn hàng của tôi</a></li>
+            <li><a href="/tai-khoan/lich-hen" class="<%= activeTab==='bookings'?'active':'' %>">📅 Lịch hẹn Spa</a></li>
+        </ul>
+    </aside>
+
+    <!-- Right Content -->
+    <div>
+        <% if (activeTab === 'profile') { %>
+        <!-- Profile Info -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <h2><span>📋</span> Thông Tin Cá Nhân</h2>
+            </div>
+            <form action="/tai-khoan" method="POST" class="info-form">
+                <div class="form-group">
+                    <label>Họ và tên <span style="color:red">*</span></label>
+                    <input type="text" name="fullName" value="<%= user ? user.fullName : '' %>" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" name="phone" value="<%= user && user.phone ? user.phone : '' %>">
+                </div>
+                <div class="form-group full-width">
+                    <label>Email <span style="color:#aaa;font-weight:400">(không thể thay đổi)</span></label>
+                    <input type="email" value="<%= user ? user.email : '' %>" disabled>
+                </div>
+                <div class="form-group full-width" style="margin-top:8px">
+                    <label style="font-size:16px;color:#1C1C1C">📍 Địa chỉ giao hàng</label>
+                </div>
+                <div class="form-group">
+                    <label>Số nhà, đường</label>
+                    <input type="text" name="street" value="<%= user&&user.address&&user.address.street?user.address.street:'' %>">
+                </div>
+                <div class="form-group">
+                    <label>Phường/Xã</label>
+                    <input type="text" name="ward" value="<%= user&&user.address&&user.address.ward?user.address.ward:'' %>">
+                </div>
+                <div class="form-group">
+                    <label>Quận/Huyện</label>
+                    <input type="text" name="district" value="<%= user&&user.address&&user.address.district?user.address.district:'' %>">
+                </div>
+                <div class="form-group">
+                    <label>Tỉnh/Thành phố</label>
+                    <input type="text" name="city" value="<%= user&&user.address&&user.address.city?user.address.city:'' %>">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">💾 Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Change Password -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <h2><span>🔒</span> Đổi Mật Khẩu</h2>
+            </div>
+            <form action="/tai-khoan/doi-mat-khau" method="POST" class="info-form">
+                <div class="form-group full-width">
+                    <label>Mật khẩu hiện tại</label>
+                    <input type="password" name="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu mới</label>
+                    <input type="password" name="newPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label>Xác nhận mật khẩu mới</label>
+                    <input type="password" name="confirmNewPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" style="padding:12px 28px;background:#1C1C1C;color:#FFE002;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:15px">🔒 Đổi mật khẩu</button>
+                </div>
+            </form>
+        </div>
+
+        <% } else if (activeTab === 'orders') { %>
+        <!-- Orders Tab -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <h2><span>📦</span> Đơn Hàng Của Tôi (<%= orders ? orders.length : 0 %>)</h2>
+            </div>
+            <% if (orders && orders.length) { %>
+                <% orders.forEach(o => { %>
+                <div class="order-row">
+                    <div>
+                        <strong style="font-size:15px"><%= o.orderCode %></strong>
+                        <p style="color:#666;font-size:13px;margin-top:4px"><%= new Date(o.createdAt).toLocaleDateString('vi-VN') %> · <%= o.items.length %> sản phẩm</p>
+                    </div>
+                    <div style="text-align:right">
+                        <span style="font-weight:700;color:#FFB606"><%= o.totalAmount.toLocaleString('vi-VN') %>₫</span><br>
+                        <span class="status-badge" style="background:<%= {pending:'#fff3cd',confirmed:'#d1ecf1',delivered:'#d4edda',cancelled:'#f8d7da'}[o.status]||'#e2e3e5' %>;color:<%= {pending:'#856404',confirmed:'#0c5460',delivered:'#155724',cancelled:'#721c24'}[o.status]||'#383d41' %>">
+                            <%= {pending:'Chờ xác nhận',confirmed:'Đã xác nhận',processing:'Đang xử lý',shipping:'Đang giao',delivered:'Đã giao',cancelled:'Đã hủy'}[o.status]||o.status %>
+                        </span>
+                    </div>
+                </div>
+                <% }) %>
+            <% } else { %>
+            <div style="text-align:center;padding:50px 20px;color:#999">
+                <div style="font-size:55px;margin-bottom:15px">📦</div>
+                <p style="font-size:16px;margin-bottom:12px">Bạn chưa có đơn hàng nào</p>
+                <a href="/san-pham" style="padding:12px 28px;background:linear-gradient(135deg,#FFE002,#FFB606);border-radius:10px;text-decoration:none;color:#1C1C1C;font-weight:700">Mua sắm ngay →</a>
+            </div>
+            <% } %>
+        </div>
+
+        <% } else if (activeTab === 'bookings') { %>
+        <!-- Bookings Tab -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <h2><span>📅</span> Lịch Hẹn Grooming (<%= bookings ? bookings.length : 0 %>)</h2>
+            </div>
+            <% if (bookings && bookings.length) { %>
+                <% bookings.forEach(b => { %>
+                <div class="order-row">
+                    <div>
+                        <strong><%= b.bookingCode %></strong>
+                        <p style="color:#555;font-size:13px;margin-top:4px">🐾 <%= b.pet.name %> · <%= b.service %></p>
+                        <p style="color:#666;font-size:13px;margin-top:2px">📅 <%= new Date(b.bookingDate).toLocaleDateString('vi-VN') %> &nbsp;🕐 <%= b.timeSlot %></p>
+                    </div>
+                    <div style="text-align:right">
+                        <span style="font-weight:700;color:#FFB606"><%= b.price.toLocaleString('vi-VN') %>₫</span><br>
+                        <span class="status-badge" style="background:<%= {pending:'#fff3cd',confirmed:'#d1ecf1',completed:'#d4edda',cancelled:'#f8d7da'}[b.status]||'#e2e3e5' %>;color:<%= {pending:'#856404',confirmed:'#0c5460',completed:'#155724',cancelled:'#721c24'}[b.status]||'#383d41' %>">
+                            <%= {pending:'Chờ xác nhận',confirmed:'Đã xác nhận',in_progress:'Đang thực hiện',completed:'Hoàn tất',cancelled:'Đã hủy'}[b.status]||b.status %>
+                        </span>
+                    </div>
+                </div>
+                <% }) %>
+            <% } else { %>
+            <div style="text-align:center;padding:50px 20px;color:#999">
+                <div style="font-size:55px;margin-bottom:15px">📅</div>
+                <p style="font-size:16px;margin-bottom:12px">Bạn chưa có lịch hẹn nào</p>
+                <a href="/grooming" style="padding:12px 28px;background:linear-gradient(135deg,#FFE002,#FFB606);border-radius:10px;text-decoration:none;color:#1C1C1C;font-weight:700">Đặt lịch ngay →</a>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+</div>

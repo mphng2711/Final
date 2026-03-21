@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán - VSA PET CLINIC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="wrap-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div class="info-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh</span>
+                    </div>
+                    <div class="info-header">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Hotline: <a href="tel:0837645555">083 764 5555</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="menu">
+        <div class="wrap-content">
+            <ul class="ulmn">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                <li><a href="/dich-vu">Dịch vụ</a></li>
+                <li><a href="/san-pham">Sản phẩm</a></li>
+            </ul>
+
+            <div class="col-logo">
+                <a class="logo-header" href="/">
+                    <img src="" alt="VSA PET CLINIC" style="height: 80px; background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%); padding: 10px; border-radius: 10px;">
+                </a>
+            </div>
+
+            <ul class="ulmn">
+                <li><a href="/album">Album</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+                <li>
+                    <div class="search-res">
+                        <p class="icon-search">
+                            <i class="fas fa-search"></i>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="menu-res">
+        <div class="menu-bar-res">
+            <div id="hamburger">
+                <span></span>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <strong style="font-size: 18px; color: #1C1C1C;">VSA PET CLINIC</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadCrumbs">
+        <div class="wrap-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/"><span>Trang chủ</span></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/cart"><span>Giỏ hàng</span></a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="/payment"><span>Thanh toán</span></a>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section>
+        <div class="wrap-content" style="margin: 30px auto;">
+            <div class="payment-container">
+                <!-- Left Column: Payment Methods & Info -->
+                <div class="payment-left">
+                    <!-- Customer Information Form -->
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Thông tin giao hàng</h3>
+                        <form id="customer-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullname">Họ và tên <span class="required">*</span></label>
+                                    <input type="text" id="fullname" class="form-control" placeholder="Nhập họ và tên" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại <span class="required">*</span></label>
+                                    <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Nhập email (để nhận hóa đơn)">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">Tỉnh/Thành phố <span class="required">*</span></label>
+                                    <select id="city" class="form-control" required>
+                                        <option value="">Chọn Tỉnh/Thành phố</option>
+                                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="district">Quận/Huyện <span class="required">*</span></label>
+                                    <select id="district" class="form-control" required>
+                                        <option value="">Chọn Quận/Huyện</option>
+                                        <option value="Quận 1">Quận 1</option>
+                                        <option value="Quận 10">Quận 10</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ cụ thể <span class="required">*</span></label>
+                                <input type="text" id="address" class="form-control" placeholder="Số nhà, tên đường, phường/xã" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="note">Ghi chú đơn hàng</label>
+                                <textarea id="note" class="form-control" rows="3" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-wallet" style="margin-right: 10px;"></i>Phương thức thanh toán</h3>
+                        
+                        <div class="payment-methods">
+                            <!-- Banking Method -->
+                            <label class="payment-method-item active" onclick="selectPaymentMethod('banking')">
+                                <input type="radio" name="payment" value="banking" checked>
+                                <img src="https://img.icons8.com/color/48/bank-building.png" class="method-icon" alt="Banking">
+                                <div class="method-info">
+                                    <span class="method-name">Chuyển khoản Ngân hàng (VietQR)</span>
+                                    <span class="method-desc">Quét mã QR, tự động xác nhận</span>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #FFB606; font-size: 20px;"></i>
+                            </label>
+
+                            <!-- Momo Method -->
+                            <label class="payment-method-item" onclick="selectPaymentMethod('momo')">
+                                <input type="radio" name="payment" value="momo">
+                                <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" class="method-icon" alt="Momo">
+                                <div class="method-info">
+                                    <span class="method-name">Ví điện tử MoMo</span>
+                                    <span class="method-desc">Thanh toán nhanh qua ứng dụng MoMo</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Display Area -->
+                    <div id="qr-area" class="qr-container">
+                        <h4>Quét mã để thanh toán</h4>
+                        <div class="qr-image-wrapper">
+                            <img id="qr-img" src="" alt="QR Code" class="qr-image">
+                        </div>
+                        <p class="qr-timer">Vui lòng thanh toán trong: <span id="countdown">10:00</span></p>
+                        
+                        <div class="bank-info">
+                            <div class="bank-row">
+                                <span class="bank-label">Ngân hàng:</span>
+                                <span class="bank-value">VietinBank <button class="copy-btn" onclick="copyText('VietinBank')"><i class="far fa-copy"></i></button></span>
+                            </div>
+                            <div class="bank-row">
+                                <span class="bank-label">Số tài khoản:</span>
+                                <span class="bank-value" id="account-number">100872677547 <button class="copy-btn" onclick="copyText('100872677547')"><i class="far fa-copy"></i></button></span>
+                            </div>
+                            <div class="bank-row">
+                                <span class="bank-label">Chủ tài khoản:</span>
+                                <span class="bank-value">NGUYEN DINH TIEN <button class="copy-btn" onclick="copyText('NGUYEN DINH TIEN')"><i class="far fa-copy"></i></button></span>
+                            </div>
+                            <div class="bank-row">
+                                <span class="bank-label">Số tiền:</span>
+                                <span class="bank-value" style="color: #d32f2f;" id="payment-amount">0đ</span>
+                            </div>
+                            <div class="bank-row">
+                                <span class="bank-label">Nội dung:</span>
+                                <span class="bank-value" id="payment-content">VSA123456 <button class="copy-btn" onclick="copyText('VSA123456')"><i class="far fa-copy"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <div class="payment-right">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-shopping-bag" style="margin-right: 10px;"></i>Đơn hàng của bạn</h3>
+                        
+                        <div class="order-items">
+                            <div class="summary-row">
+                                <span>Tạm tính:</span>
+                                <span id="subtotal">0đ</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Phí vận chuyển:</span>
+                                <span>Miễn phí</span>
+                            </div>
+                            
+                            <!-- Voucher Section -->
+                            <div class="voucher-section">
+                                <div class="voucher-box">
+                                    <input type="text" id="voucher-input" placeholder="Nhập mã giảm giá">
+                                    <button type="button" onclick="applyVoucher()">Áp dụng</button>
+                                </div>
+                                <p id="voucher-message" class="voucher-message"></p>
+                            </div>
+
+                            <div class="summary-row" id="discount-row" style="display: none; color: #28a745;">
+                                <span>Giảm giá:</span>
+                                <span id="discount-amount">-0đ</span>
+                            </div>
+
+                            <div class="summary-total">
+                                <span>Tổng cộng:</span>
+                                <span id="total-amount">0đ</span>
+                            </div>
+                        </div>
+
+                        <button id="btn-pay" class="btn-checkout" onclick="processPayment()">
+                            <i class="fas fa-lock"></i> Thanh toán ngay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-article">
+            <div class="wrap-content">
+                <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="logo-footer">
+                            <a href="/">
+                                <img src="" alt="VSA PET CLINIC">
+                            </a>
+                        </div>
+                        <div class="name-footer">VSA PET CLINIC</div>
+                        <div class="info-footer">
+                            Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh<br>
+                            Hotline: 083 764 5555<br>
+                            Email: contact@vsapet.com
+                        </div>
+                        <ul class="social">
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-comment"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 200px;">
+                        <div class="title-footer">LIÊN KẾT NHANH</div>
+                        <ul class="footer-ul">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                            <li><a href="/dich-vu">Dịch vụ</a></li>
+                            <li><a href="/san-pham">Sản phẩm</a></li>
+                            <li><a href="/tin-tuc">Tin tức</a></li>
+                            <li><a href="/lien-he">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="title-footer">BẢN ĐỒ</div>
+                        <div class="footer-news">
+                            <!-- Placeholder for Map -->
+                            <div style="background: #333; height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span>Google Maps API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-powered">
+            <div class="wrap-content">
+                <p class="copyright">Copyright © 2024 VSA PET CLINIC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Load TypeScript Service (simulated via JS for browser) -->
+    <script src="payment.js"></script>
+</body>
+</html>

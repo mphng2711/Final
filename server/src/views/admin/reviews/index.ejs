@@ -1,0 +1,124 @@
+<% locals.activePage = 'reviews' %>
+
+<div class="page-header">
+  <h1>⭐ Quản lý đánh giá (<%= total %>)</h1>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">LOẠI</label>
+    <select name="type" class="form-control">
+      <option value="">Tất cả</option>
+      <option value="product" <%= query.type==='product'?'selected':'' %>>Sản phẩm</option>
+      <option value="service" <%= query.type==='service'?'selected':'' %>>Dịch vụ</option>
+    </select></div>
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TRẠNG THÁI</label>
+    <select name="status" class="form-control">
+      <option value="">Tất cả</option>
+      <option value="approved" <%= query.status==='approved'?'selected':'' %>>Đã duyệt</option>
+      <option value="pending" <%= query.status==='pending'?'selected':'' %>>Chờ duyệt</option>
+    </select></div>
+    <button type="submit" class="btn btn-primary">🔍</button>
+    <a href="/admin/danh-gia" class="btn btn-secondary">Xóa lọc</a>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>Người dùng</th><th>Đối tượng</th><th>Đánh giá</th><th>Nội dung</th><th>Trạng thái</th><th>Ngày</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    <% if (reviews.length) { %>
+    <% reviews.forEach(r => { %>
+    <tr>
+      <td>
+        <strong style="font-size:14px"><%= r.user ? r.user.fullName : 'N/A' %></strong><br>
+        <span style="font-size:12px;color:#999"><%= r.user ? r.user.email : '' %></span>
+      </td>
+      <td style="font-size:13px">
+        <span class="badge badge-info"><%= r.reviewType === 'product' ? '🛍 SP' : '✂️ DV' %></span><br>
+        <% if (r.product) { %>
+        <a href="/san-pham/<%= r.product.slug %>" target="_blank" style="font-size:12px;color:#FFB606">
+          <%= r.product.name ? r.product.name.substring(0,30) : 'SP' %>
+        </a>
+        <% } %>
+      </td>
+      <td style="text-align:center">
+        <span style="font-size:18px">
+          <% for(let i=1;i<=5;i++) { %><%= i <= r.rating ? '⭐' : '☆' %><% } %>
+        </span><br>
+        <strong style="color:#FFB606"><%= r.rating %>/5</strong>
+      </td>
+      <td style="max-width:220px">
+        <% if (r.title) { %><strong style="font-size:13px"><%= r.title %></strong><br><% } %>
+        <span style="font-size:13px;color:#555"><%= r.comment.length > 80 ? r.comment.substring(0,80)+'...' : r.comment %></span>
+        <% if (r.adminReply) { %>
+        <div style="margin-top:6px;padding:6px 10px;background:#f0fff4;border-left:3px solid #28a745;border-radius:4px;font-size:12px;color:#555">
+          💬 <em><%= r.adminReply.substring(0,60) %><%= r.adminReply.length > 60 ? '...' : '' %></em>
+        </div>
+        <% } %>
+      </td>
+      <td>
+        <span class="badge <%= r.isApproved ? 'badge-success' : 'badge-warning' %>">
+          <%= r.isApproved ? '✅ Đã duyệt' : '⏳ Chờ duyệt' %>
+        </span>
+      </td>
+      <td style="font-size:12px;color:#999"><%= new Date(r.createdAt).toLocaleDateString('vi-VN') %></td>
+      <td>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <form action="/admin/danh-gia/<%= r._id %>/duyet?_method=PATCH" method="POST" style="display:inline">
+            <button type="submit" class="btn btn-sm <%= r.isApproved ? 'btn-secondary' : 'btn-primary' %>" style="width:100%">
+              <%= r.isApproved ? '⛔ Ẩn' : '✅ Duyệt' %>
+            </button>
+          </form>
+          <button type="button" class="btn btn-secondary btn-sm btn-reply"
+                  data-id="<%= r._id %>" data-reply="<%= r.adminReply ? r.adminReply.substring(0,200) : '' %>">
+            💬 Phản hồi
+          </button>
+          <form action="/admin/danh-gia/<%= r._id %>?_method=DELETE" method="POST"
+                onsubmit="return confirm('Xóa đánh giá này?')" style="display:inline">
+            <button type="submit" class="btn btn-danger btn-sm" style="width:100%">🗑 Xóa</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <% }) %>
+    <% } else { %>
+    <tr><td colspan="7" style="text-align:center;padding:35px;color:#999">Không có đánh giá nào</td></tr>
+    <% } %>
+    </tbody>
+  </table>
+  <% if (totalPages > 1) { %>
+  <div class="pagination">
+    <% if (page > 1) { %><a href="?page=<%= page-1 %>">← Trước</a><% } %>
+    <% for(let i=1;i<=totalPages;i++){%><% if(i===page){%><span class="current"><%= i %></span><%}else{%><a href="?page=<%= i %>"><%= i %></a><%}%><% } %>
+    <% if (page < totalPages) { %><a href="?page=<%= page+1 %>">Tiếp →</a><% } %>
+  </div>
+  <% } %>
+</div>
+
+<!-- Reply Modal -->
+<div id="replyModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:12px;padding:25px;width:460px;max-width:90%">
+    <h3 style="margin-bottom:18px;font-size:18px">💬 Phản hồi đánh giá</h3>
+    <form id="replyForm" method="POST">
+      <textarea name="adminReply" id="replyText" class="form-control" rows="4"
+                placeholder="Nhập phản hồi của bạn..." style="margin-bottom:14px"></textarea>
+      <div style="display:flex;gap:10px">
+        <button type="submit" class="btn btn-primary" style="flex:1">💾 Lưu phản hồi</button>
+        <button type="button" class="btn btn-secondary" onclick="closeReply()">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.btn-reply').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('replyForm').action = '/admin/danh-gia/' + btn.dataset.id + '/phan-hoi';
+    document.getElementById('replyText').value = btn.dataset.reply || '';
+    document.getElementById('replyModal').style.display = 'flex';
+  });
+});
+function closeReply() { document.getElementById('replyModal').style.display = 'none'; }
+window.onclick = e => { if (e.target === document.getElementById('replyModal')) closeReply(); }
+</script>

@@ -1,0 +1,260 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Category Management</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            body {
+                background: #f5f6f8;
+            }
+
+            /* Topbar */
+            .topbar {
+                height: 50px;
+                background: hsl(50, 94%, 45%);
+                color: #fff;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-weight: bold;
+                margin-right: auto;
+                display: flex;
+                align-items: center;
+            }
+
+            .search-box {
+                padding: 6px 10px;
+                border-radius: 4px;
+                border: none;
+            }
+
+            /* Layout */
+            .container {
+                display: flex;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                width: 230px;
+                background: #e9ecef;
+                min-height: calc(100vh - 50px);
+            }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+            .sidebar li {
+                padding: 14px 20px;
+                cursor: pointer;
+            }
+
+            .sidebar li:hover,
+            .sidebar .active {
+                background: #fff;
+                font-weight: bold;
+            }
+
+            /* Content */
+            .content {
+                flex: 1;
+                padding: 25px;
+                background: #fff;
+            }
+
+            /* Header */
+            .content-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            /* Buttons */
+            .btn {
+                padding: 6px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .btn-primary {
+                background: #4e73df;
+                color: #fff;
+            }
+
+            .btn-warning {
+                background: #f6c23e;
+                color: #000;
+            }
+
+            .btn-danger {
+                background: #e74a3b;
+                color: #fff;
+            }
+
+            /* Table */
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .table th,
+            .table td {
+                padding: 12px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            .table thead {
+                background: #f8f9fc;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background: #f9f9f9;
+            }
+
+            .table tbody tr.highlight {
+                background: #eef6ff;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <!-- Topbar -->
+        <header class="topbar">            
+            <div class="logo">
+                PURE PAW PET HOUSE
+            </div>
+            <input type="text" placeholder="Tìm kiếm" class="search-box">
+        </header>
+
+        <div class="container">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <ul>
+                    <li>
+                        <img src="IMAGES/WebLogo.png" style="height: 120px; vertical-align: middle; margin-left: 25px;">
+                    </li>
+                    <li>Dashboard</li>
+                    <li>Order Management</li>
+                    <li class="active">Product Management</li>
+                    <li>Category Management</li>
+                </ul>
+            </aside>
+
+            <!-- Main content -->
+            <main class="content">
+
+                <div class="content-header">
+                    <h2>Products Management</h2>
+                    <button class="btn btn-primary">Add products</button>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Prices</th>
+                            <th>Product ID</th>
+                            <th>Images</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Súp dinh dưỡng cho chó LaPaw Gourmet 170g</td>
+                            <td>120.000đ</td>
+                            <td>LP-001</td>
+                            <td><img src="IMAGES/Product1.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pate cho chó mọi lứa tuổi laPaw vị bò và rau củ 375g</td>
+                            <td>150.000đ</td>
+                            <td>LP-002</td>
+                            <td><img src="IMAGES/Product2.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pate cho chó mọi lứa tuổi Lapaw vị gà và rau củ 375g</td>
+                            <td>180.000đ</td>
+                            <td>LP-003</td>
+                            <td><img src="IMAGES/Product3.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LaPaw Hạt dinh dưỡng chuyên biệt dành cho chó kiểm soát rỉ mắt túi 1,5KG</td>
+                            <td>250.000đ</td>
+                            <td>LP-004</td>
+                            <td><img src="IMAGES/Product4.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LaPaw Hạt dinh dưỡng chuyên biệt dành cho chó kiểm soát cân nặng túi 1,5KG</td>
+                            <td>300.000đ</td>
+                            <td>LP-005</td>
+                            <td><img src="IMAGES/Product5.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LaPaw Hạt dinh dưỡng chuyên biệt dành cho chó hỗ trợ đường tiêu hóa túi 1,5KG</td>
+                            <td>300.000đ</td>
+                            <td>LP-006</td>
+                            <td><img src="IMAGES/Product6.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hạt cho chó trưởng thành laPaw Gourmet chuẩn Âu hộp 1,5kg</td>
+                            <td>320.000đ</td>
+                            <td>LP-007</td>
+                            <td><img src="IMAGES/Product7.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hạt cho chó con laPaw Gourmet chuẩn Âu hộp 1,5kg</td>
+                            <td>350.000đ</td>
+                            <td>LP-008</td>
+                            <td><img src="IMAGES/Product8.jpg" width="50" height="50"></td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </body>
+</html>

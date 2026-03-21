@@ -1,0 +1,56 @@
+
+
+<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:linear-gradient(135deg,#fffbeb 0%,#f5f7fa 100%)">
+<div style="background:#fff;border-radius:20px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.1);overflow:hidden">
+    <div style="background:linear-gradient(135deg,#FFE002,#FFB606);padding:30px;text-align:center">
+        <div style="font-size:45px;margin-bottom:8px;">🐾</div>
+        <h1 style="font-size:26px;color:#1C1C1C;font-weight:700;">Đăng ký</h1>
+        <p style="color:#3B3B3B;font-size:14px;">Tạo tài khoản tại PurePaw Pet House</p>
+    </div>
+    <div style="padding:35px 30px">
+        <form action="/dang-ky" method="POST">
+            <div style="margin-bottom:18px">
+                <label style="display:block;font-weight:600;margin-bottom:7px;font-size:14px">👤 Họ và tên *</label>
+                <input type="text" name="fullName" required placeholder="Nguyễn Văn A"
+                    style="width:100%;padding:12px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px"
+                    onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+            </div>
+            <div style="margin-bottom:18px">
+                <label style="display:block;font-weight:600;margin-bottom:7px;font-size:14px">📧 Email *</label>
+                <input type="email" name="email" required placeholder="email@example.com"
+                    style="width:100%;padding:12px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px"
+                    onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+            </div>
+            <div style="margin-bottom:18px">
+                <label style="display:block;font-weight:600;margin-bottom:7px;font-size:14px">📞 Số điện thoại</label>
+                <input type="tel" name="phone" placeholder="0912345678"
+                    style="width:100%;padding:12px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px"
+                    onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:18px">
+                <div>
+                    <label style="display:block;font-weight:600;margin-bottom:7px;font-size:14px">🔒 Mật khẩu *</label>
+                    <input type="password" name="password" required placeholder="≥ 6 ký tự"
+                        style="width:100%;padding:12px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px"
+                        onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+                </div>
+                <div>
+                    <label style="display:block;font-weight:600;margin-bottom:7px;font-size:14px">🔒 Xác nhận *</label>
+                    <input type="password" name="confirmPassword" required placeholder="Nhập lại"
+                        style="width:100%;padding:12px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px"
+                        onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+                </div>
+            </div>
+            <button type="submit" style="width:100%;padding:14px;background:linear-gradient(135deg,#FFE002,#FFB606);border:none;border-radius:10px;color:#1C1C1C;font-weight:700;font-size:16px;cursor:pointer">
+                Tạo tài khoản
+            </button>
+        </form>
+        <p style="text-align:center;margin-top:20px;font-size:14px;color:#666">
+            Đã có tài khoản? <a href="/dang-nhap" style="color:#FFB606;font-weight:700">Đăng nhập</a>
+        </p>
+        <p style="text-align:center;margin-top:10px;font-size:12px;color:#999">
+            Bằng cách đăng ký, bạn đồng ý với <a href="#" style="color:#FFB606">Điều khoản dịch vụ</a> của chúng tôi.
+        </p>
+    </div>
+</div>
+</div>

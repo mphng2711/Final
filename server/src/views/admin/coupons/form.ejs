@@ -1,0 +1,103 @@
+<% locals.activePage = 'coupons' %>
+
+<div class="page-header">
+  <h1><%= coupon ? '✏️ Sửa mã giảm giá' : '➕ Tạo mã giảm giá mới' %></h1>
+</div>
+
+<div class="card" style="max-width:760px">
+  <form action="<%= coupon ? '/admin/coupon/'+coupon._id+'?_method=PUT' : '/admin/coupon' %>" method="POST">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label class="form-label">Mã coupon * <small style="color:#999">(viết hoa, không dấu)</small></label>
+        <input type="text" name="code" class="form-control" required
+               value="<%= coupon ? coupon.code : '' %>" placeholder="VD: SUMMER30"
+               <%= coupon ? 'readonly style="background:#f5f5f5"' : '' %>
+               oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Áp dụng cho</label>
+        <select name="applicableTo" class="form-control">
+          <option value="all" <%= !coupon || coupon.applicableTo==='all' ? 'selected':'' %>>Tất cả đơn hàng</option>
+          <option value="product" <%= coupon && coupon.applicableTo==='product'?'selected':'' %>>Đơn mua hàng</option>
+          <option value="booking" <%= coupon && coupon.applicableTo==='booking'?'selected':'' %>>Đặt lịch spa</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Mô tả (tuỳ chọn)</label>
+      <input type="text" name="description" class="form-control"
+             value="<%= coupon && coupon.description ? coupon.description : '' %>"
+             placeholder="Mô tả ngắn về mã giảm giá...">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label class="form-label">Loại giảm giá *</label>
+        <select name="discountType" class="form-control" id="discountType" onchange="toggleDiscountType()">
+          <option value="percentage" <%= !coupon || coupon.discountType==='percentage'?'selected':'' %>>Phần trăm (%)</option>
+          <option value="fixed_amount" <%= coupon && coupon.discountType==='fixed_amount'?'selected':'' %>>Số tiền cố định (₫)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="discountValueLabel">Giá trị giảm (%) *</label>
+        <input type="number" name="discountValue" class="form-control" required
+               value="<%= coupon ? coupon.discountValue : '' %>" min="0" step="0.01"
+               placeholder="VD: 30 (30%) hoặc 50000 (50.000₫)">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label class="form-label">Đơn hàng tối thiểu (₫)</label>
+        <input type="number" name="minOrderAmount" class="form-control" min="0"
+               value="<%= coupon && coupon.minOrderAmount ? coupon.minOrderAmount : 0 %>">
+      </div>
+      <div class="form-group" id="maxDiscountWrap">
+        <label class="form-label">Giảm tối đa (₫)</label>
+        <input type="number" name="maxDiscountAmount" class="form-control" min="0"
+               value="<%= coupon && coupon.maxDiscountAmount ? coupon.maxDiscountAmount : '' %>"
+               placeholder="Để trống = không giới hạn">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Số lần sử dụng tối đa *</label>
+        <input type="number" name="usageLimit" class="form-control" required min="1"
+               value="<%= coupon ? coupon.usageLimit : 100 %>">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label class="form-label">Giới hạn / User</label>
+        <input type="number" name="usageLimitPerUser" class="form-control" min="1"
+               value="<%= coupon ? coupon.usageLimitPerUser : 1 %>">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ngày bắt đầu *</label>
+        <input type="date" name="startDate" class="form-control" required
+               value="<%= coupon ? new Date(coupon.startDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ngày kết thúc *</label>
+        <input type="date" name="endDate" class="form-control" required
+               value="<%= coupon ? new Date(coupon.endDate).toISOString().split('T')[0] : '' %>">
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+      <input type="checkbox" name="isActive" id="isActive"
+             <%= !coupon || coupon.isActive ? 'checked':'' %> style="width:18px;height:18px">
+      <label for="isActive" style="font-weight:600">Kích hoạt ngay</label>
+    </div>
+    <div style="display:flex;gap:12px">
+      <button type="submit" class="btn btn-primary"><%= coupon ? '💾 Cập nhật' : '✅ Tạo mã' %></button>
+      <a href="/admin/coupon" class="btn btn-secondary">← Quay lại</a>
+    </div>
+  </form>
+</div>
+
+<script>
+function toggleDiscountType() {
+  const type = document.getElementById('discountType').value;
+  document.getElementById('discountValueLabel').textContent =
+    type === 'percentage' ? 'Giá trị giảm (%) *' : 'Số tiền giảm (₫) *';
+  document.getElementById('maxDiscountWrap').style.display =
+    type === 'percentage' ? 'block' : 'none';
+}
+toggleDiscountType();
+</script>

@@ -1,0 +1,78 @@
+<% locals.activePage = 'categories' %>
+
+<div class="page-header">
+    <h1>🏷️ Quản lý danh mục (<%= categories.length %>)</h1>
+    <a href="/admin/danh-muc/them-moi" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm danh mục</a>
+</div>
+
+<%# Cảnh báo sản phẩm mồ côi (category không tồn tại) %>
+<% if (orphanCount > 0) { %>
+<div style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div>
+        <strong style="color:#856404">⚠️ Phát hiện <%= orphanCount %> sản phẩm có danh mục không tồn tại!</strong>
+        <p style="margin:4px 0 0;font-size:13px;color:#856404">Những sản phẩm này cần được chuyển sang danh mục hợp lệ.</p>
+    </div>
+    <form action="/admin/danh-muc/fix-orphans" method="POST" style="display:flex;gap:8px;align-items:center">
+        <select name="targetCategoryId" class="form-control" required style="min-width:200px;padding:8px 12px;border:1px solid #ffc107;border-radius:8px">
+            <option value="">-- Chuyển về danh mục --</option>
+            <% categories.filter(c => c.isActive).forEach(c => { %>
+            <option value="<%= c._id %>"><%= c.name %></option>
+            <% }) %>
+        </select>
+        <button type="submit" class="btn btn-primary" style="background:#856404;border-color:#856404;white-space:nowrap"
+                onclick="return confirm('Chuyển tất cả sản phẩm mồ côi về danh mục này?')">
+            🔧 Sửa ngay
+        </button>
+    </form>
+</div>
+<% } %>
+
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Tên danh mục</th>
+                <th>Danh mục cha</th>
+                <th style="text-align:center">Sản phẩm</th>
+                <th>Thứ tự</th>
+                <th>Trạng thái</th>
+                <th>Ngày tạo</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% if (categories.length) { %>
+        <% categories.forEach(c => { %>
+        <tr>
+            <td><strong><%= c.name %></strong><br><span style="font-size:12px;color:#999"><%= c.slug %></span></td>
+            <td style="font-size:13px;color:#666"><%= c.parentCategory ? c.parentCategory.name : '— (gốc)' %></td>
+            <td style="text-align:center">
+                <span style="background:<%= (countMap[c._id.toString()]||0)>0?'#e3f8e1':'#f5f5f5' %>;color:<%= (countMap[c._id.toString()]||0)>0?'#2d7a27':'#999' %>;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:600">
+                    <%= countMap[c._id.toString()] || 0 %>
+                </span>
+            </td>
+            <td style="text-align:center"><%= c.sortOrder %></td>
+            <td><span class="badge <%= c.isActive?'badge-success':'badge-secondary' %>"><%= c.isActive?'Hoạt động':'Ẩn' %></span></td>
+            <td style="font-size:13px;color:#666"><%= new Date(c.createdAt).toLocaleDateString('vi-VN') %></td>
+            <td>
+                <div style="display:flex;gap:6px;align-items:center">
+                    <a href="/admin/danh-muc/<%= c._id %>/sua" class="btn btn-secondary btn-sm">✏️ Sửa</a>
+                    <% if ((countMap[c._id.toString()]||0) === 0) { %>
+                    <form action="/admin/danh-muc/<%= c._id %>?_method=DELETE" method="POST"
+                          onsubmit="return confirm('Xóa danh mục này?')">
+                        <button type="submit" class="btn btn-danger btn-sm" title="Xóa (không có sản phẩm)">🗑</button>
+                    </form>
+                    <% } else { %>
+                    <button class="btn btn-sm" style="background:#e9ecef;color:#999;cursor:not-allowed"
+                            title="Không thể xóa: đang có <%= countMap[c._id.toString()] %> sản phẩm">🔒</button>
+                    <% } %>
+                </div>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr><td colspan="7" style="text-align:center;padding:35px;color:#999">Chưa có danh mục nào. <a href="/admin/danh-muc/them-moi" style="color:#FFB606">Thêm ngay →</a></td></tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

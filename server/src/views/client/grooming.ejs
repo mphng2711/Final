@@ -1,0 +1,455 @@
+
+<style>
+/* ══ GROOMING SPA — clone service.html ══ */
+:root {
+    --yellow: #FFD600; --yellow-dark: #C9A800; --yellow-light: #FFF8CC;
+    --black: #181818; --gray-900: #2A2A2A; --gray-700: #444; --gray-500: #777;
+    --gray-200: #E8E8E8; --gray-100: #F5F5F0; --white: #ffffff;
+}
+
+/* Hero */
+.grooming-hero {
+    background: var(--black); padding: 90px 32px 80px;
+    text-align: center; position: relative; overflow: hidden; margin-bottom: 0;
+}
+.grooming-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(255,214,0,.13) 0%, transparent 70%);
+    pointer-events: none;
+}
+.hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,214,0,.12); border: 1px solid rgba(255,214,0,.25);
+    color: var(--yellow); font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 999px; margin-bottom: 28px;
+}
+.grooming-hero h1 {
+    font-family: 'Segoe UI', sans-serif; font-size: clamp(2.2rem,5vw,3.8rem);
+    color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+}
+.grooming-hero h1 em { color: var(--yellow); font-style: italic; }
+.grooming-hero p { color: #999; font-size: 1rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+/* Services Grid */
+.grooming-section { max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
+.section-header { margin-bottom: 52px; }
+.section-line { width: 40px; height: 3px; background: var(--yellow); border-radius: 2px; margin-bottom: 14px; }
+.section-header h2 {
+    font-size: clamp(1.6rem,3vw,2.3rem); color: var(--black);
+    font-weight: 700; margin-bottom: 10px;
+}
+.section-header p { color: var(--gray-500); font-size: .95rem; max-width: 520px; line-height: 1.7; }
+
+.services-grid-g { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.svc-card {
+    background: var(--white); border-radius: 22px; overflow: hidden;
+    border: 2px solid transparent; box-shadow: 0 2px 14px rgba(0,0,0,.06);
+    transition: border-color .25s, transform .28s, box-shadow .28s; cursor: pointer;
+}
+.svc-card:hover { border-color: var(--yellow); transform: translateY(-6px); box-shadow: 0 16px 44px rgba(255,214,0,.18); }
+.svc-card-img { width: 100%; height: 210px; overflow: hidden; background: var(--gray-100); }
+.svc-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; display: block; }
+.svc-card:hover .svc-card-img img { transform: scale(1.06); }
+.svc-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: var(--gray-100); }
+.svc-card-body { padding: 24px 26px 26px; }
+.svc-card-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--yellow-dark); margin-bottom: 8px; display: block; }
+.svc-card-title { font-size: 1.05rem; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.svc-card-desc { font-size: .88rem; color: var(--gray-500); line-height: 1.65; margin-bottom: 20px; }
+.svc-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; border-top: 1px solid var(--gray-200); }
+.link-more { font-size: .85rem; font-weight: 500; color: var(--gray-500); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color .2s; }
+.link-more:hover { color: var(--black); }
+.btn-book {
+    background: var(--yellow); color: var(--black); padding: 9px 20px;
+    border: none; border-radius: 999px; font-size: .85rem; font-weight: 600;
+    cursor: pointer; transition: all .2s; font-family: inherit;
+}
+.btn-book:hover { background: #FFE535; transform: scale(1.04); }
+
+/* Packages */
+.packages-wrap {
+    background: var(--black); padding: 80px 24px;
+    position: relative; overflow: hidden;
+}
+.packages-wrap::after {
+    content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(255,214,0,.05); bottom: -200px; right: -100px; pointer-events: none;
+}
+.packages-inner { max-width: 1000px; margin: 0 auto; }
+.pkg-header { text-align: center; margin-bottom: 56px; }
+.pkg-header .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--yellow); font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+}
+.pkg-header h2 { font-size: clamp(1.8rem,3.5vw,2.5rem); color: var(--white); font-weight: 700; margin-bottom: 14px; }
+.pkg-header p { color: #888; font-size: .95rem; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+.pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.pkg-card { border-radius: 28px; overflow: hidden; transition: transform .3s, box-shadow .3s; }
+.pkg-card:hover { transform: translateY(-6px); }
+.pkg-card.basic { background: #FFFEF5; border: 2px solid #FFD600; }
+.pkg-card.basic:hover { box-shadow: 0 20px 56px rgba(255,214,0,.3); border-color: #C9A800; }
+.pkg-card.premium { background: #181818; border: 2px solid var(--yellow); }
+.pkg-card.premium:hover { box-shadow: 0 20px 60px rgba(255,214,0,.3); }
+
+.pkg-head { padding: 36px 36px 28px; position: relative; }
+.pkg-card.basic .pkg-head { border-bottom: 1px solid #F0E566; }
+.pkg-card.premium .pkg-head { border-bottom: 1px solid #2A2A2A; }
+.pkg-badge { position: absolute; top: 28px; right: 28px; background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+.pkg-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+.pkg-card.basic .pkg-name { color: #181818; }
+.pkg-card.premium .pkg-name { color: #fff; }
+.pkg-sub { font-size: .82rem; margin-bottom: 22px; }
+.pkg-card.basic .pkg-sub { color: #666; }
+.pkg-card.premium .pkg-sub { color: #aaa; }
+.pkg-price-row { display: flex; align-items: baseline; gap: 4px; }
+.pkg-price { font-size: 2.4rem; font-weight: 700; letter-spacing: -1px; }
+.pkg-card.basic .pkg-price { color: #181818; }
+.pkg-card.premium .pkg-price { color: var(--yellow); }
+.pkg-unit { font-size: .85rem; font-weight: 500; }
+.pkg-card.basic .pkg-unit { color: #666; }
+.pkg-card.premium .pkg-unit { color: #aaa; }
+.pkg-features { padding: 26px 36px; }
+.pkg-features ul { list-style: none; }
+.pkg-features li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; font-size: .9rem; line-height: 1.5; border-bottom: 1px solid; }
+.pkg-card.basic .pkg-features li { color: #333; border-color: #EEE099; }
+.pkg-card.premium .pkg-features li { color: #ccc; border-color: #2A2A2A; }
+.pkg-features li:last-child { border-bottom: none; }
+.check-icon { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+.pkg-card.basic .check-icon { background: #FFE535; color: #181818; }
+.pkg-card.premium .check-icon { background: #2A2800; color: #C9A800; }
+.pkg-cta { padding: 10px 36px 36px; }
+.pkg-btn { width: 100%; padding: 16px; border-radius: 14px; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all .25s; font-family: inherit; border: none; }
+.pkg-card.basic .pkg-btn { background: #FFD600; color: #181818; }
+.pkg-card.basic .pkg-btn:hover { background: #FFE535; transform: scale(1.02); }
+.pkg-card.premium .pkg-btn { background: var(--yellow); color: var(--black); }
+.pkg-card.premium .pkg-btn:hover { background: #FFE535; transform: scale(1.02); }
+
+/* Booking Modal */
+.booking-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 24px; }
+.booking-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+.booking-box {
+    background: #fff; max-width: 480px; width: 100%; margin: auto;
+    border-radius: 28px; padding: 40px; position: relative;
+    animation: modalIn .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.booking-close { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 50%; background: var(--gray-100); border: none; cursor: pointer; font-size: 16px; color: var(--gray-500); transition: all .2s; }
+.booking-close:hover { background: var(--gray-200); }
+.booking-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow-light); color: var(--yellow-dark); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+.booking-box h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 24px; }
+.booking-form { display: flex; flex-direction: column; gap: 14px; }
+.bfield { display: flex; flex-direction: column; gap: 6px; }
+.bfield label { font-size: .8rem; font-weight: 600; color: var(--gray-700); letter-spacing: .5px; }
+.bfield input, .bfield select, .bfield textarea {
+    padding: 11px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px;
+    font-size: .9rem; font-family: inherit; color: var(--black); transition: border-color .2s;
+    background: #fff; outline: none;
+}
+.bfield input:focus, .bfield select:focus, .bfield textarea:focus { border-color: var(--yellow); }
+.bfield-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-submit-booking { background: var(--yellow); color: var(--black); padding: 14px; border: none; border-radius: 14px; font-size: .95rem; font-weight: 600; cursor: pointer; margin-top: 6px; font-family: inherit; transition: all .2s; }
+.btn-submit-booking:hover { background: #FFE535; transform: scale(1.01); }
+
+@media (max-width: 1024px) { .services-grid-g { grid-template-columns: repeat(2,1fr); } .pkg-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+    .services-grid-g { grid-template-columns: 1fr; }
+    .grooming-section { padding: 56px 20px; }
+    .packages-wrap { padding: 56px 20px; }
+}
+</style>
+
+<!-- Hero -->
+<div class="grooming-hero">
+    <div class="hero-eyebrow">✦ Pure Paw Grooming Spa</div>
+    <h1>Chăm sóc thú cưng<br>với <em>tất cả yêu thương</em></h1>
+    <p>Đội ngũ groomer chuyên nghiệp, sản phẩm cao cấp — để thú cưng của bạn luôn sạch đẹp và hạnh phúc.</p>
+</div>
+
+<!-- Services -->
+<div class="grooming-section">
+    <div class="section-header">
+        <div class="section-line"></div>
+        <h2>Dịch vụ chuyên nghiệp</h2>
+        <p>Chúng tôi cung cấp đầy đủ các dịch vụ chăm sóc toàn diện cho thú cưng của bạn.</p>
+    </div>
+
+    <div class="services-grid-g">
+        <div class="svc-card" onclick="openBooking('Tắm gội cao cấp')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 3.png" alt="Tắm gội"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>🛁</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Làm đẹp</span>
+                <h3 class="svc-card-title">Tắm gội cao cấp</h3>
+                <p class="svc-card-desc">Tắm gội với sản phẩm cao cấp phù hợp từng loại da lông, sấy khô và chải chuốt tỉ mỉ theo quy trình chuẩn quốc tế.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Tắm gội cao cấp')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="svc-card" onclick="openBooking('Cắt tỉa lông')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 1.png" alt="Cắt lông"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>✂️</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Tạo kiểu</span>
+                <h3 class="svc-card-title">Cắt tỉa lông tạo kiểu</h3>
+                <p class="svc-card-desc">Cắt tỉa lông chuyên nghiệp theo nhiều kiểu dáng, phù hợp từng giống chó mèo. Thú cưng xinh đẹp, tự tin hơn mỗi ngày.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Cắt tỉa lông')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="svc-card" onclick="openBooking('Spa thư giãn')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 2.png" alt="Spa"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>💆</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Thư giãn</span>
+                <h3 class="svc-card-title">Spa thư giãn toàn thân</h3>
+                <p class="svc-card-desc">Massage thư giãn, spa tinh dầu thảo mộc giúp thú cưng giảm căng thẳng và tăng cường sức đề kháng tự nhiên.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Spa thư giãn')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="svc-card" onclick="openBooking('Cắt móng & vệ sinh tai')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 5.png" alt="Cắt móng"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>🐾</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Chăm sóc</span>
+                <h3 class="svc-card-title">Cắt móng & Vệ sinh tai</h3>
+                <p class="svc-card-desc">Dịch vụ cắt tỉa móng an toàn và vệ sinh tai chuyên nghiệp, giúp thú cưng thoải mái và tránh các vấn đề sức khỏe.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Cắt móng & vệ sinh tai')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="svc-card" onclick="openBooking('Huấn luyện cơ bản')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 4.png" alt="Huấn luyện"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>🎓</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Huấn luyện</span>
+                <h3 class="svc-card-title">Huấn luyện cơ bản</h3>
+                <p class="svc-card-desc">Chương trình huấn luyện giúp thú cưng ngoan ngoãn, tuân thủ lệnh cơ bản và có kỹ năng cần thiết trong cuộc sống.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Huấn luyện cơ bản')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="svc-card" onclick="openBooking('Dắt dạo & Nhà trẻ')">
+            <div class="svc-card-img">
+                <img src="/assets/grooming_services/image 6.png" alt="Nhà trẻ"
+                     onerror="this.parentNode.innerHTML='<div class=svc-card-img-placeholder>🏡</div>'">
+            </div>
+            <div class="svc-card-body">
+                <span class="svc-card-tag">Trông giữ</span>
+                <h3 class="svc-card-title">Dắt dạo & Nhà trẻ</h3>
+                <p class="svc-card-desc">Chăm sóc ban ngày trong môi trường an toàn và vui vẻ, với các hoạt động giải trí và giao lưu cùng các bạn thú cưng.</p>
+                <div class="svc-card-footer">
+                    <a href="#" class="link-more">Tìm hiểu thêm →</a>
+                    <button class="btn-book" onclick="event.stopPropagation();openBooking('Dắt dạo & Nhà trẻ')">Đặt lịch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Packages -->
+<div class="packages-wrap">
+    <div class="packages-inner">
+        <div class="pkg-header">
+            <div class="eyebrow">✦ Gói dịch vụ</div>
+            <h2>Grooming toàn diện</h2>
+            <p>Chọn gói phù hợp với nhu cầu. Mỗi gói được thiết kế để mang lại trải nghiệm chăm sóc tốt nhất.</p>
+        </div>
+
+        <div class="pkg-grid">
+            <!-- Basic -->
+            <div class="pkg-card basic">
+                <div class="pkg-head">
+                    <div class="pkg-name">Gói Basic</div>
+                    <div class="pkg-sub">Chăm sóc cơ bản, chất lượng đảm bảo</div>
+                    <div class="pkg-price-row">
+                        <span class="pkg-price">499.000</span>
+                        <span class="pkg-unit">đ</span>
+                    </div>
+                    <div style="font-size:.8rem;color:#888;margin-top:6px">⏱ 60 – 90 phút</div>
+                </div>
+                <div class="pkg-features">
+                    <ul>
+                        <li><span class="check-icon">✓</span>Tắm gội với sản phẩm cao cấp</li>
+                        <li><span class="check-icon">✓</span>Sấy khô và chải lông</li>
+                        <li><span class="check-icon">✓</span>Cắt tỉa móng</li>
+                        <li><span class="check-icon">✓</span>Vệ sinh tai</li>
+                        <li><span class="check-icon">✓</span>Cắt tỉa lông cơ bản</li>
+                        <li><span class="check-icon">✓</span>Nước hoa thú cưng</li>
+                        <li><span class="check-icon">✓</span>Kiểm tra sức khỏe cơ bản</li>
+                    </ul>
+                </div>
+                <div class="pkg-cta">
+                    <button class="pkg-btn" onclick="openBooking('Gói Basic')">Đặt lịch ngay</button>
+                </div>
+            </div>
+
+            <!-- Premium -->
+            <div class="pkg-card premium">
+                <div class="pkg-head">
+                    <span class="pkg-badge">⭐ Phổ biến nhất</span>
+                    <div class="pkg-name">Gói Advanced</div>
+                    <div class="pkg-sub">Spa toàn diện — thư giãn tuyệt đối</div>
+                    <div class="pkg-price-row">
+                        <span class="pkg-price">899.000</span>
+                        <span class="pkg-unit">đ</span>
+                    </div>
+                    <div style="font-size:.8rem;color:#aaa;margin-top:6px">⏱ 120 – 150 phút</div>
+                </div>
+                <div class="pkg-features">
+                    <ul>
+                        <li><span class="check-icon">✓</span>Tất cả trong gói Basic</li>
+                        <li><span class="check-icon">✓</span>Tạo kiểu lông theo yêu cầu</li>
+                        <li><span class="check-icon">✓</span>Spa thư giãn với tinh dầu</li>
+                        <li><span class="check-icon">✓</span>Massage thư giãn toàn thân</li>
+                        <li><span class="check-icon">✓</span>Vệ sinh răng miệng chuyên sâu</li>
+                        <li><span class="check-icon">✓</span>Nhuộm lông an toàn (tùy chọn)</li>
+                        <li><span class="check-icon">✓</span>Chụp ảnh lưu niệm</li>
+                        <li><span class="check-icon">✓</span>Tặng băng đô / nơ xinh</li>
+                        <li><span class="check-icon">✓</span>Tư vấn chăm sóc tại nhà</li>
+                    </ul>
+                </div>
+                <div class="pkg-cta">
+                    <button class="pkg-btn" onclick="openBooking('Gói Advanced')">Đặt lịch ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Modal — POST thật tới /grooming/dat-lich -->
+<div class="booking-overlay" id="bookingOverlay"
+     data-logged="<%= currentUser ? '1' : '0' %>"
+     onclick="if(event.target===this)closeBooking()">
+    <div class="booking-box">
+        <button class="booking-close" onclick="closeBooking()">✕</button>
+        <div class="booking-tag">✦ <span id="bookingServiceName">Dịch vụ</span></div>
+        <h2>Đặt lịch ngay</h2>
+
+        <form class="booking-form" method="POST" action="/grooming/dat-lich" id="bookingForm">
+            <!-- serviceId hidden — được set bởi JS khi click nút đặt lịch -->
+            <input type="hidden" name="serviceId" id="bookingServiceId">
+
+            <!-- Thông tin thú cưng -->
+            <div class="bfield">
+                <label>Tên thú cưng *</label>
+                <input type="text" name="petName" placeholder="Tên bé (VD: Mochi, Bông...)" required>
+            </div>
+
+            <div class="bfield-row">
+                <div class="bfield">
+                    <label>Loài thú cưng *</label>
+                    <select name="petSpecies" required>
+                        <option value="">Chọn loài...</option>
+                        <option value="dog">🐶 Chó</option>
+                        <option value="cat">🐱 Mèo</option>
+                        <option value="other">🐰 Khác</option>
+                    </select>
+                </div>
+                <div class="bfield">
+                    <label>Giống (tùy chọn)</label>
+                    <input type="text" name="petBreed" placeholder="VD: Poodle, Munchkin...">
+                </div>
+            </div>
+
+            <div class="bfield">
+                <label>Cân nặng (kg, tùy chọn)</label>
+                <input type="number" name="petWeight" placeholder="VD: 3.5" min="0.1" max="100" step="0.1">
+            </div>
+
+            <!-- Thời gian -->
+            <div class="bfield-row">
+                <div class="bfield">
+                    <label>Ngày hẹn *</label>
+                    <input type="date" name="bookingDate" id="bookingDate" required
+                           min="<%= new Date(Date.now()+86400000).toISOString().split('T')[0] %>">
+                </div>
+                <div class="bfield">
+                    <label>Khung giờ *</label>
+                    <select name="timeSlot" required>
+                        <option value="">Chọn giờ...</option>
+                        <% timeSlots.forEach(slot => { %>
+                        <option value="<%= slot %>"><%= slot %></option>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Ghi chú -->
+            <div class="bfield">
+                <label>Ghi chú đặc biệt</label>
+                <textarea name="note" placeholder="Tình trạng sức khỏe, yêu cầu đặc biệt..." rows="2" style="resize:vertical"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-booking">
+                🐾 Xác nhận đặt lịch
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Bản đồ serviceId tương ứng mỗi nút đặt lịch
+var _serviceMap = {
+    'Tắm & Sấy khô':                       'bath',
+    'Cắt tỉa lông':                         'grooming',
+    'Combo Spa (Tắm + Cắt + Vệ sinh tai)':  'combo',
+    'Kiểm tra sức khỏe tổng quát':          'health_check',
+    'Gói Basic':                            'combo',
+    'Gói Advanced':                         'combo',
+};
+
+function openBooking(serviceName, serviceId) {
+    // Kiểm tra đăng nhập qua data-attribute trên element
+    var isLogged = document.getElementById('bookingOverlay').dataset.logged === '1';
+    if (!isLogged) {
+        alert('Vui lòng đăng nhập để đặt lịch!');
+        window.location.href = '/dang-nhap?next=/grooming';
+        return;
+    }
+    var sid = serviceId || _serviceMap[serviceName] || 'bath';
+    document.getElementById('bookingServiceName').textContent = serviceName || 'Dịch vụ';
+    document.getElementById('bookingServiceId').value = sid;
+    document.getElementById('bookingOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBooking() {
+    document.getElementById('bookingOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeBooking();
+});
+</script>
+
+
+

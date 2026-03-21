@@ -1,0 +1,91 @@
+<% locals.activePage = 'bookings' %>
+
+<div class="page-header">
+    <h1>📅 Quản lý lịch hẹn Spa (<%= total %>)</h1>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+    <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">NGÀY HẸN</label>
+        <input type="date" name="date" class="form-control" value="<%= query.date||'' %>"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TRẠNG THÁI</label>
+        <select name="status" class="form-control">
+            <option value="">Tất cả</option>
+            <% statuses.forEach(s => { %><option value="<%= s %>" <%= query.status===s?'selected':'' %>><%= statusLabels[s] %></option><% }) %>
+        </select></div>
+        <button type="submit" class="btn btn-primary">🔍</button>
+        <a href="/admin/lich-hen" class="btn btn-secondary">Xóa lọc</a>
+    </form>
+</div>
+
+<div class="card">
+    <table>
+        <thead><tr><th>Mã</th><th>Khách hàng</th><th>Thú cưng</th><th>Dịch vụ</th><th>Ngày hẹn</th><th>Khung giờ</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+        <tbody>
+        <% if (bookings.length) { %>
+        <% bookings.forEach(b => { %>
+        <tr>
+            <td style="font-weight:600;color:#FFB606;font-size:13px"><%= b.bookingCode %></td>
+            <td><strong style="font-size:14px"><%= b.user?b.user.fullName:'N/A' %></strong><br><span style="font-size:12px;color:#999"><%= b.user?b.user.phone:'' %></span></td>
+            <td>🐾 <%= b.pet.name %> (<%= {dog:'Chó',cat:'Mèo',other:'Khác'}[b.pet.species] %>)</td>
+            <td style="font-size:13px"><%= b.service %></td>
+            <td style="font-size:13px"><%= new Date(b.bookingDate).toLocaleDateString('vi-VN') %></td>
+            <td style="font-size:13px"><%= b.timeSlot %></td>
+            <td><span class="badge <%= {pending:'badge-warning',confirmed:'badge-info',in_progress:'badge-info',completed:'badge-success',cancelled:'badge-danger'}[b.status]||'badge-secondary' %>"><%= statusLabels[b.status]||b.status %></span></td>
+            <td>
+                <button onclick="openModal('<%= b._id %>', '<%= b.status %>')" class="btn btn-secondary btn-sm">🔄 Trạng thái</button>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr><td colspan="8" style="text-align:center;padding:35px;color:#999">Không có lịch hẹn nào</td></tr>
+        <% } %>
+        </tbody>
+    </table>
+    <% if (totalPages > 1) { %>
+    <div class="pagination">
+        <% if (page > 1) { %><a href="?page=<%= page-1 %>">← Trước</a><% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %><% if(i===page){%><span class="current"><%= i %></span><%}else{%><a href="?page=<%= i %>"><%= i %></a><%}%><% } %>
+        <% if (page < totalPages) { %><a href="?page=<%= page+1 %>">Tiếp →</a><% } %>
+    </div>
+    <% } %>
+</div>
+
+<!-- Status Modal -->
+<div id="statusModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center">
+    <div style="background:#fff;border-radius:12px;padding:25px;width:400px;max-width:90%">
+        <h3 style="margin-bottom:18px;font-size:18px">🔄 Cập nhật trạng thái lịch hẹn</h3>
+        <form id="statusForm" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="form-group">
+                <label class="form-group">Trạng thái mới</label>
+                <select name="status" id="statusSelect" class="form-control" style="margin-bottom:12px">
+                    <% statuses.forEach(s => { %><option value="<%= s %>"><%= statusLabels[s] %></option><% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-group">Ghi chú admin</label>
+                <textarea name="adminNote" class="form-control" rows="2" placeholder="Ghi chú nội bộ..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-group">Lý do hủy (nếu hủy)</label>
+                <textarea name="cancelReason" class="form-control" rows="2"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px">
+                <button type="submit" class="btn btn-primary" style="flex:1">💾 Cập nhật</button>
+                <button type="button" onclick="closeModal()" class="btn btn-secondary">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function openModal(id, currentStatus) {
+    document.getElementById('statusForm').action = '/admin/lich-hen/' + id + '/trang-thai';
+    document.getElementById('statusSelect').value = currentStatus;
+    const modal = document.getElementById('statusModal');
+    modal.style.display = 'flex';
+}
+function closeModal() { document.getElementById('statusModal').style.display = 'none'; }
+window.onclick = e => { if (e.target === document.getElementById('statusModal')) closeModal(); }
+</script>

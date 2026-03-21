@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết đơn hàng - VSA PET CLINIC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="orderdetail.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="wrap-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div class="info-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh</span>
+                    </div>
+                    <div class="info-header">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Hotline: <a href="tel:0837645555">083 764 5555</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="menu">
+        <div class="wrap-content">
+            <ul class="ulmn">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                <li><a href="/dich-vu">Dịch vụ</a></li>
+                <li><a href="/san-pham">Sản phẩm</a></li>
+            </ul>
+
+            <div class="col-logo">
+                <a class="logo-header" href="/">
+                    <img src="" alt="VSA PET CLINIC" style="height: 80px; background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%); padding: 10px; border-radius: 10px;">
+                </a>
+            </div>
+
+            <ul class="ulmn">
+                <li><a href="/album">Album</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+                <li>
+                    <div class="search-res">
+                        <p class="icon-search">
+                            <i class="fas fa-search"></i>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="menu-res">
+        <div class="menu-bar-res">
+            <div id="hamburger">
+                <span></span>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <strong style="font-size: 18px; color: #1C1C1C;">VSA PET CLINIC</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadCrumbs">
+        <div class="wrap-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/"><span>Trang chủ</span></a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="/order"><span>Chi tiết đơn hàng</span></a>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section>
+        <div class="wrap-content" style="margin: 30px auto;">
+            <!-- Page Title -->
+            <div class="title-detail">
+                <h1><i class="fas fa-file-invoice" style="margin-right: 10px;"></i>Chi tiết đơn hàng</h1>
+            </div>
+
+            <!-- Order Detail Container -->
+            <div class="order-container">
+                <div class="order-header">
+                    <div class="order-id">Đơn hàng #<span id="order-id">Loading...</span></div>
+                    <div id="order-status-badge" class="order-status status-pending">Loading...</div>
+                </div>
+
+                <div class="order-info-grid">
+                    <div class="info-box">
+                        <h3><i class="fas fa-user"></i> Thông tin khách hàng</h3>
+                        <div class="info-content" id="customer-info">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h3><i class="fas fa-truck"></i> Thông tin giao hàng</h3>
+                        <div class="info-content" id="shipping-info">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 30px;">
+                    <h3><i class="fas fa-shopping-bag"></i> Danh sách sản phẩm</h3>
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-items">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>Tạm tính:</span>
+                            <span id="subtotal">0₫</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span id="shipping-fee">0₫</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span id="total-price">0₫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="/san-pham" class="btn-back"><i class="fas fa-arrow-left"></i> Quay lại mua sắm</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-article">
+            <div class="wrap-content">
+                <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="logo-footer">
+                            <a href="/">
+                                <img src="" alt="VSA PET CLINIC">
+                            </a>
+                        </div>
+                        <div class="name-footer">VSA PET CLINIC</div>
+                        <div class="info-footer">
+                            Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh<br>
+                            Hotline: 083 764 5555<br>
+                            Email: contact@vsapet.com
+                        </div>
+                        <ul class="social">
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-comment"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 200px;">
+                        <div class="title-footer">LIÊN KẾT NHANH</div>
+                        <ul class="footer-ul">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                            <li><a href="/dich-vu">Dịch vụ</a></li>
+                            <li><a href="/san-pham">Sản phẩm</a></li>
+                            <li><a href="/tin-tuc">Tin tức</a></li>
+                            <li><a href="/lien-he">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="title-footer">BẢN ĐỒ</div>
+                        <div class="footer-news">
+                            <!-- Placeholder for Map -->
+                            <div style="background: #333; height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span>Google Maps API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-powered">
+            <div class="wrap-content">
+                <p class="copyright">Copyright © 2024 VSA PET CLINIC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="orderdetail.js"></script>
+</body>
+</html>

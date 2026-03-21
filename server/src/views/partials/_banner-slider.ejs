@@ -1,0 +1,196 @@
+<%
+var _sliderMs = (typeof sliderInterval !== 'undefined') ? sliderInterval : 4500;
+var _sid = 'ppS' + Date.now().toString(36);
+%>
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   PurePaw Banner Slider
+   - Chiều rộng khớp header (từ địa chỉ tới hotline)
+   - Ảnh hiển thị đầy đủ, không cắt, bo góc tự nhiên
+   ═══════════════════════════════════════════════════════ */
+
+/* Outer: căn giữa, chiều rộng = header nội dung */
+.pp-banner-outer {
+    /* 60px mỗi bên = mép địa chỉ & hotline ở header */
+    width:      calc(100% - 120px);
+    max-width:  1320px;
+    margin:     16px auto 24px;
+    border-radius: 14px;
+    overflow:   hidden;
+    position:   relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    background: #f5f0e8;
+    line-height: 0; /* remove inline-block gap */
+}
+
+/* Track: flex container, chiều rộng = n × slide */
+.pp-banner-track {
+    display:    flex;
+    transition: transform .85s cubic-bezier(.645,.045,.355,1);
+    /* height NOT set — determined by images naturally */
+}
+
+/* Mỗi slide — width set bởi JS */
+.pp-banner-slide {
+    flex-shrink: 0;
+}
+
+/* Ảnh: đầy đủ, không cắt */
+.pp-banner-slide img {
+    width:   100%;
+    height:  auto;   /* giữ nguyên tỷ lệ gốc, không crop */
+    display: block;
+    transition: transform 7s ease;
+}
+.pp-banner-slide.pp-active img { transform: scale(1.015); }
+
+/* Dots */
+.pp-banner-dots {
+    position:  absolute;
+    bottom:    10px;
+    left:      50%;
+    transform: translateX(-50%);
+    display:   flex;
+    gap:       6px;
+    z-index:   10;
+}
+.pp-banner-dot {
+    width:         6px;
+    height:        6px;
+    border-radius: 4px;
+    background:    rgba(0,0,0,.22);
+    border:        none;
+    cursor:        pointer;
+    transition:    all .3s;
+    padding:       0;
+    box-shadow:    0 1px 3px rgba(0,0,0,.15);
+}
+.pp-banner-dot.on {
+    background: #FFB606;
+    width:      22px;
+}
+</style>
+
+<div class="pp-banner-outer" id="<%- _sid %>" data-ms="<%- _sliderMs %>">
+  <div class="pp-banner-track" id="<%- _sid %>_track">
+    <div class="pp-banner-slide pp-active">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/1.png"  alt="PurePaw Banner 1"  loading="eager">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/2.png"  alt="PurePaw Banner 2"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/3.png"  alt="PurePaw Banner 3"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/4.png"  alt="PurePaw Banner 4"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/5.png"  alt="PurePaw Banner 5"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/6.png"  alt="PurePaw Banner 6"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/7.png"  alt="PurePaw Banner 7"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/8.png"  alt="PurePaw Banner 8"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/9.png"  alt="PurePaw Banner 9"  loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/10.png" alt="PurePaw Banner 10" loading="lazy">
+    </div>
+    <div class="pp-banner-slide">
+      <img src="/assets/Pet%20Shop%20Landscape%20Banner/11.png" alt="PurePaw Banner 11" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="pp-banner-dots" id="<%- _sid %>_dots">
+    <button class="pp-banner-dot on"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+    <button class="pp-banner-dot"></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TOTAL = 11;
+  var wrap  = document.getElementById('<%- _sid %>');
+  var track = document.getElementById('<%- _sid %>_track');
+  var dotsEl= document.getElementById('<%- _sid %>_dots');
+  if (!wrap || !track || !dotsEl) return;
+
+  var slides = track.querySelectorAll('.pp-banner-slide');
+  var dots   = dotsEl.querySelectorAll('.pp-banner-dot');
+  var delay  = parseInt(wrap.getAttribute('data-ms')) || 4500;
+  var cur    = 0;
+  var timer  = null;
+  var sw     = 0;
+
+  /* ── Đo chiều rộng thực của container ── */
+  function measure() {
+    sw = wrap.clientWidth;
+    slides.forEach(function(s) { s.style.width = sw + 'px'; });
+    track.style.transition = 'none';
+    track.style.transform  = 'translateX(-' + (cur * sw) + 'px)';
+  }
+
+  /* ── Render với animation ── */
+  function render() {
+    track.style.transition = 'transform .85s cubic-bezier(.645,.045,.355,1)';
+    track.style.transform  = 'translateX(-' + (cur * sw) + 'px)';
+    dots.forEach(function(d,i)  { d.classList.toggle('on', i===cur); });
+    slides.forEach(function(s,i){ s.classList.toggle('pp-active', i===cur); });
+  }
+
+  function next() { cur = (cur+1) % TOTAL; render(); }
+  function startAuto() { clearInterval(timer); timer = setInterval(next, delay); }
+  function stopAuto()  { clearInterval(timer); }
+
+  /* Clicks dots */
+  dots.forEach(function(d,i){
+    d.addEventListener('click', function(){ cur=i; render(); startAuto(); });
+  });
+
+  /* Swipe */
+  var tx = 0;
+  wrap.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+  wrap.addEventListener('touchend', function(e){
+    var dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40){ cur = dx>0 ? (cur+1)%TOTAL : (cur-1+TOTAL)%TOTAL; render(); startAuto(); }
+  }, {passive:true});
+
+  /* Pause hover */
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+
+  /* Resize */
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt); rt = setTimeout(measure, 150);
+  }, {passive:true});
+
+  /* Init — đợi ảnh đầu load để có đúng height */
+  var firstImg = slides[0] ? slides[0].querySelector('img') : null;
+  function init() { measure(); render(); startAuto(); }
+  if (firstImg && !firstImg.complete) {
+    firstImg.addEventListener('load', init);
+    firstImg.addEventListener('error', init);
+  } else {
+    init();
+  }
+})();
+</script>

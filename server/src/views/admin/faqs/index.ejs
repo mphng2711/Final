@@ -1,0 +1,51 @@
+<% locals.activePage = 'faqs' %>
+
+<div class="page-header" style="display:flex;justify-content:space-between;align-items:center">
+  <h1>❓ Quản lý FAQ (<%= faqs.length %>)</h1>
+  <a href="/admin/faq/them-moi" class="btn btn-primary">+ Thêm câu hỏi</a>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">DANH MỤC</label>
+    <select name="category" class="form-control">
+      <option value="">Tất cả</option>
+      <% categories.forEach(c => { %>
+      <option value="<%= c %>" <%= query.category===c?'selected':'' %>><%= categoryLabels[c] %></option>
+      <% }) %>
+    </select></div>
+    <button type="submit" class="btn btn-primary">🔍</button>
+    <a href="/admin/faq" class="btn btn-secondary">Xóa lọc</a>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>#</th><th>Câu hỏi</th><th>Danh mục</th><th>Thứ tự</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    <% if (faqs.length) { %>
+    <% faqs.forEach((f, i) => { %>
+    <tr>
+      <td style="color:#999;font-size:13px"><%= i + 1 %></td>
+      <td>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px"><%= f.question.length > 80 ? f.question.substring(0,80)+'...' : f.question %></p>
+        <p style="color:#999;font-size:12px"><%= f.answer.length > 80 ? f.answer.substring(0,80)+'...' : f.answer %></p>
+      </td>
+      <td><span class="badge badge-info"><%= categoryLabels[f.category] || f.category %></span></td>
+      <td style="text-align:center;font-weight:600"><%= f.sortOrder %></td>
+      <td><span class="badge <%= f.isActive ? 'badge-success' : 'badge-secondary' %>"><%= f.isActive ? '✅ Hiển thị' : '⛔ Ẩn' %></span></td>
+      <td style="display:flex;gap:8px">
+        <a href="/admin/faq/<%= f._id %>/sua" class="btn btn-secondary btn-sm">✏️ Sửa</a>
+        <form action="/admin/faq/<%= f._id %>?_method=DELETE" method="POST"
+              onsubmit="return confirm('Xóa câu hỏi này?')" style="display:inline">
+          <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+    <% } else { %>
+    <tr><td colspan="6" style="text-align:center;padding:35px;color:#999">Chưa có câu hỏi nào</td></tr>
+    <% } %>
+    </tbody>
+  </table>
+</div>

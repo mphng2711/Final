@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Dịch Vụ Thú Cưng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup-container {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideUp 0.4s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-header h2 {
+            color: #1C1C1C;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .popup-header p {
+            color: #3B3B3B;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(28, 28, 28, 0.2);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(28, 28, 28, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .popup-body {
+            padding: 40px 30px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            background: transparent;
+            color: #1C1C1C;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #FFE002;
+            color: #1C1C1C;
+            border-color: #FFE002;
+        }
+
+        .tab-btn:hover:not(.active) {
+            border-color: #FFB606;
+            color: #FFB606;
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #1C1C1C;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            color: #1C1C1C;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #FFE002;
+            background: #ffffff;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #FFB606;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #FFE002;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            border: none;
+            border-radius: 10px;
+            color: #1C1C1C;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 224, 2, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 182, 6, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: #1C1C1C;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .social-btn:hover {
+            border-color: #FFE002;
+            background: #fffbeb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 224, 2, 0.2);
+        }
+
+        .social-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: #FFB606;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            color: #FFE002;
+        }
+
+        .paw-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .popup-container {
+                margin: 10px;
+            }
+
+            .popup-body {
+                padding: 30px 20px;
+            }
+
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="authOverlay" onclick="closePopupOnOverlay(event)">
+        <div class="popup-container">
+            <div class="popup-header">
+                <div class="paw-icon">🐾</div>
+                <h2>Chào mừng trở lại!</h2>
+                <p>Đăng nhập để trải nghiệm dịch vụ tốt nhất cho thú cưng</p>
+                <button class="close-btn" onclick="closePopup()">×</button>
+            </div>
+
+            <div class="popup-body">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchTab('login')">Đăng Nhập</button>
+                    <button class="tab-btn" onclick="switchTab('signup')">Đăng Ký</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="form-content active">
+                    <form onsubmit="handleLogin(event)">
+                        <div class="input-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" placeholder="Nhập email của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="loginPassword">Mật khẩu</label>
+                            <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#" onclick="handleForgotPassword(event)">Quên mật khẩu?</a>
+                        </div>
+                        <button type="submit" class="submit-btn">Đăng Nhập</button>
+                    </form>
+
+                    <div class="divider">
+                        <span>Hoặc đăng nhập với</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button class="social-btn" onclick="loginWithGoogle()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M19.8 10.2273C19.8 9.51819 19.7364 8.83637 19.6182 8.18182H10.2V12.05H15.6109C15.3727 13.3 14.6455 14.3591 13.5636 15.0682V17.5773H16.8182C18.7091 15.8364 19.8 13.2727 19.8 10.2273Z" fill="#4285F4"/>
+                                <path d="M10.2 20C12.9 20 15.1682 19.1045 16.8182 17.5773L13.5636 15.0682C12.6455 15.6682 11.5091 16.0227 10.2 16.0227C7.59545 16.0227 5.38182 14.2636 4.56364 11.9H1.20909V14.4909C2.84091 17.7591 6.24545 20 10.2 20Z" fill="#34A853"/>
+                                <path d="M4.56364 11.9C4.36364 11.3 4.24545 10.6591 4.24545 10C4.24545 9.34091 4.36364 8.7 4.56364 8.1V5.50909H1.20909C0.540909 6.85909 0.2 8.38636 0.2 10C0.2 11.6136 0.540909 13.1409 1.20909 14.4909L4.56364 11.9Z" fill="#FBBC05"/>
+                                <path d="M10.2 3.97727C11.6318 3.97727 12.9136 4.48182 13.9227 5.43636L16.8091 2.55C15.1636 1.03636 12.8955 0 10.2 0C6.24545 0 2.84091 2.24091 1.20909 5.50909L4.56364 8.1C5.38182 5.73636 7.59545 3.97727 10.2 3.97727Z" fill="#EA4335"/>
+                            </svg>
+                            Google
+                        </button>
+                        <button class="social-btn" onclick="loginWithFacebook()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 14.9912 3.65684 19.1283 8.4375 19.8785V12.8906H5.89844V10H8.4375V7.79688C8.4375 5.29063 9.93047 3.90625 12.2146 3.90625C13.3084 3.90625 14.4531 4.10156 14.4531 4.10156V6.5625H13.1922C11.95 6.5625 11.5625 7.3334 11.5625 8.125V10H14.3359L13.8926 12.8906H11.5625V19.8785C16.3432 19.1283 20 14.9912 20 10Z" fill="#1877F2"/>
+                            </svg>
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signupForm" class="form-content">
+                    <form onsubmit="handleSignup(event)">
+                        <div class="input-group">
+                            <label for="signupName">Họ và tên</label>
+                            <input type="text" id="signupName" placeholder="Nhập họ tên của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" placeholder="Nhập email của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupPassword">Mật khẩu</label>
+                            <input type="password" id="signupPassword" placeholder="Tạo mật khẩu (tối thiểu 8 ký tự)" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupConfirmPassword">Xác nhận mật khẩu</label>
+                            <input type="password" id="signupConfirmPassword" placeholder="Nhập lại mật khẩu" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Đăng Ký</button>
+                    </form>
+
+                    <div class="divider">
+                        <span>Hoặc đăng ký với</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button class="social-btn" onclick="loginWithGoogle()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M19.8 10.2273C19.8 9.51819 19.7364 8.83637 19.6182 8.18182H10.2V12.05H15.6109C15.3727 13.3 14.6455 14.3591 13.5636 15.0682V17.5773H16.8182C18.7091 15.8364 19.8 13.2727 19.8 10.2273Z" fill="#4285F4"/>
+                                <path d="M10.2 20C12.9 20 15.1682 19.1045 16.8182 17.5773L13.5636 15.0682C12.6455 15.6682 11.5091 16.0227 10.2 16.0227C7.59545 16.0227 5.38182 14.2636 4.56364 11.9H1.20909V14.4909C2.84091 17.7591 6.24545 20 10.2 20Z" fill="#34A853"/>
+                                <path d="M4.56364 11.9C4.36364 11.3 4.24545 10.6591 4.24545 10C4.24545 9.34091 4.36364 8.7 4.56364 8.1V5.50909H1.20909C0.540909 6.85909 0.2 8.38636 0.2 10C0.2 11.6136 0.540909 13.1409 1.20909 14.4909L4.56364 11.9Z" fill="#FBBC05"/>
+                                <path d="M10.2 3.97727C11.6318 3.97727 12.9136 4.48182 13.9227 5.43636L16.8091 2.55C15.1636 1.03636 12.8955 0 10.2 0C6.24545 0 2.84091 2.24091 1.20909 5.50909L4.56364 8.1C5.38182 5.73636 7.59545 3.97727 10.2 3.97727Z" fill="#EA4335"/>
+                            </svg>
+                            Google
+                        </button>
+                        <button class="social-btn" onclick="loginWithFacebook()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 14.9912 3.65684 19.1283 8.4375 19.8785V12.8906H5.89844V10H8.4375V7.79688C8.4375 5.29063 9.93047 3.90625 12.2146 3.90625C13.3084 3.90625 14.4531 4.10156 14.4531 4.10156V6.5625H13.1922C11.95 6.5625 11.5625 7.3334 11.5625 8.125V10H14.3359L13.8926 12.8906H11.5625V19.8785C16.3432 19.1283 20 14.9912 20 10Z" fill="#1877F2"/>
+                            </svg>
+                            Facebook
+                        </button>
+                    </div>
+
+                    <div class="terms">
+                        Bằng việc đăng ký, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của chúng tôi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById('authOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            document.getElementById('authOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closePopupOnOverlay(event) {
+            if (event.target === document.getElementById('authOverlay')) {
+                closePopup();
+            }
+        }
+
+        function switchTab(tab) {
+            const loginTab = document.querySelector('.tab-btn:first-child');
+            const signupTab = document.querySelector('.tab-btn:last-child');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            } else {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Đăng nhập với:', { email, password });
+            alert('Đăng nhập thành công!\n(Đây là demo - trong thực tế sẽ kết nối với backend)');
+            closePopup();
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            console.log('Đăng ký với:', { name, email, password });
+            alert('Đăng ký thành công!\n(Đây là demo - trong thực tế sẽ kết nối với backend)');
+            closePopup();
+        }
+
+        function loginWithGoogle() {
+            // Trong thực tế, đây sẽ là OAuth redirect
+            window.open('https://accounts.google.com/o/oauth2/v2/auth', '_blank');
+            console.log('Đăng nhập với Google');
+        }
+
+        function loginWithFacebook() {
+            // Trong thực tế, đây sẽ là Facebook Login
+            window.open('https://www.facebook.com/v12.0/dialog/oauth', '_blank');
+            console.log('Đăng nhập với Facebook');
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            alert('Chức năng quên mật khẩu!\n(Trong thực tế sẽ gửi email reset password)');
+        }
+
+        // Popup sẽ được mở khi gọi hàm openPopup() từ nút hoặc sự kiện khác
+        // Ví dụ: <button onclick="openPopup()">Đăng nhập</button>
+
+        // Close popup with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>

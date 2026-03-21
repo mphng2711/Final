@@ -1,0 +1,270 @@
+
+<style>
+/* ── ORDER DETAIL PAGE ── */
+.od-wrap {
+    max-width: 900px; margin: 40px auto; padding: 0 20px 60px;
+}
+.od-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #666; text-decoration: none; font-size: 14px; font-weight: 600;
+    margin-bottom: 22px; transition: color .2s;
+}
+.od-back:hover { color: #FFB606; }
+
+.od-header {
+    background: #fff; border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-bottom: 22px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 15px;
+}
+.od-header h1 { font-size: 22px; color: #1C1C1C; margin: 0 0 6px; }
+.od-header p { color: #888; font-size: 14px; margin: 0; }
+.od-status {
+    padding: 8px 20px; border-radius: 24px;
+    font-weight: 700; font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Timeline */
+.od-timeline {
+    background: #fff; border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-bottom: 22px;
+}
+.od-timeline h3 { font-size: 16px; color: #1C1C1C; margin-bottom: 20px; font-weight: 700; }
+.timeline-steps {
+    display: flex; justify-content: space-between;
+    position: relative; gap: 0;
+}
+.timeline-steps::before {
+    content: ''; position: absolute; top: 16px; left: 0; right: 0;
+    height: 3px; background: #f0f0f0; z-index: 0;
+}
+.timeline-step {
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1; position: relative; z-index: 1;
+}
+.timeline-dot {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #f0f0f0; border: 3px solid #e0e0e0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-bottom: 8px; transition: all .3s;
+}
+.timeline-step.done .timeline-dot { background: #FFB606; border-color: #FFB606; }
+.timeline-step.active .timeline-dot { background: #fff; border-color: #FFB606; box-shadow: 0 0 0 4px rgba(255,182,6,.2); }
+.timeline-label { font-size: 12px; color: #999; text-align: center; font-weight: 600; }
+.timeline-step.done .timeline-label, .timeline-step.active .timeline-label { color: #1C1C1C; }
+
+/* Card sections */
+.od-card {
+    background: #fff; border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-bottom: 22px;
+}
+.od-card h3 {
+    font-size: 16px; font-weight: 700; color: #1C1C1C;
+    margin-bottom: 18px; padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex; align-items: center; gap: 8px;
+}
+
+/* Product rows */
+.od-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid #f5f5f5;
+}
+.od-item:last-child { border-bottom: none; }
+.od-item img {
+    width: 72px; height: 72px; object-fit: cover;
+    border-radius: 10px; border: 2px solid #f0e8d0; flex-shrink: 0;
+}
+.od-item-img-placeholder {
+    width: 72px; height: 72px; background: linear-gradient(135deg,#fffbeb,#FFE002);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 28px; flex-shrink: 0;
+}
+.od-item-info { flex: 1; }
+.od-item-name { font-weight: 600; font-size: 15px; color: #1C1C1C; margin-bottom: 4px; }
+.od-item-meta { font-size: 13px; color: #888; }
+.od-item-price { font-weight: 700; color: #FFB606; font-size: 15px; white-space: nowrap; }
+
+/* Summary rows */
+.od-summary-row {
+    display: flex; justify-content: space-between;
+    padding: 9px 0; font-size: 14px; color: #555;
+    border-bottom: 1px solid #f5f5f5;
+}
+.od-summary-row:last-child { border-bottom: none; font-size: 18px; font-weight: 700; color: #1C1C1C; }
+.od-summary-row span:last-child { font-weight: 600; color: #1C1C1C; }
+.od-summary-row.total span:last-child { color: #FFB606; }
+
+/* Info grid */
+.od-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.od-info-item label { font-size: 12px; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 4px; }
+.od-info-item p { font-size: 14px; color: #1C1C1C; font-weight: 600; margin: 0; }
+
+.od-cancel-btn {
+    display: inline-block; margin-top: 10px;
+    padding: 11px 24px; background: #fff;
+    border: 2px solid #e74c3c; color: #e74c3c;
+    border-radius: 10px; font-weight: 700; font-size: 14px;
+    cursor: pointer; text-decoration: none; transition: all .2s;
+}
+.od-cancel-btn:hover { background: #e74c3c; color: #fff; }
+
+@media (max-width: 600px) {
+    .od-header { flex-direction: column; }
+    .timeline-label { font-size: 10px; }
+    .od-info-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="od-wrap">
+    <a href="/tai-khoan/don-hang" class="od-back">← Quay lại danh sách đơn hàng</a>
+
+    <!-- Header -->
+    <div class="od-header">
+        <div>
+            <h1>Đơn hàng #<%= order.orderCode %></h1>
+            <p>Đặt ngày <%= new Date(order.createdAt).toLocaleDateString('vi-VN', {year:'numeric',month:'long',day:'numeric'}) %></p>
+        </div>
+        <%
+            const statusMap = {
+                pending:     {label:'Chờ xác nhận', bg:'#fff3cd', color:'#856404'},
+                confirmed:   {label:'Đã xác nhận',  bg:'#d1ecf1', color:'#0c5460'},
+                processing:  {label:'Đang xử lý',   bg:'#e2e3e5', color:'#383d41'},
+                shipping:    {label:'Đang giao',     bg:'#cce5ff', color:'#004085'},
+                delivered:   {label:'Đã giao',       bg:'#d4edda', color:'#155724'},
+                cancelled:   {label:'Đã hủy',        bg:'#f8d7da', color:'#721c24'},
+            };
+            const st = statusMap[order.status] || {label: order.status, bg:'#e2e3e5', color:'#383d41'};
+        %>
+        <span class="od-status" style="background:<%= st.bg %>;color:<%= st.color %>"><%= st.label %></span>
+    </div>
+
+    <!-- Timeline -->
+    <%
+        const steps = ['pending','confirmed','processing','shipping','delivered'];
+        const currentIdx = steps.indexOf(order.status);
+    %>
+    <% if (order.status !== 'cancelled') { %>
+    <div class="od-timeline">
+        <h3>📍 Trạng thái đơn hàng</h3>
+        <div class="timeline-steps">
+            <% const stepLabels = ['Đặt hàng','Xác nhận','Xử lý','Đang giao','Hoàn thành']; %>
+            <% const stepIcons  = ['🛒','✅','⚙️','🚚','🎉']; %>
+            <% steps.forEach((s, i) => { %>
+            <div class="timeline-step <%= i < currentIdx ? 'done' : (i === currentIdx ? 'active' : '') %>">
+                <div class="timeline-dot"><%= stepIcons[i] %></div>
+                <span class="timeline-label"><%= stepLabels[i] %></span>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <% } %>
+
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start">
+        <div>
+            <!-- Product list -->
+            <div class="od-card">
+                <h3>🛍️ Sản phẩm (<%= order.items.length %>)</h3>
+                <% order.items.forEach(item => { %>
+                <div class="od-item">
+                    <% if (item.product && item.product.images && item.product.images.length) { %>
+                    <img src="<%= item.product.images[0] %>" alt="<%= item.product.name %>"
+                         onerror="this.src='/assets/Image.png'">
+                    <% } else { %>
+                    <div class="od-item-img-placeholder">🐾</div>
+                    <% } %>
+                    <div class="od-item-info">
+                        <p class="od-item-name"><%= item.product ? item.product.name : item.productName || 'Sản phẩm' %></p>
+                        <p class="od-item-meta">x<%= item.quantity %> &nbsp;·&nbsp; <%= item.price.toLocaleString('vi-VN') %>₫/sp</p>
+                    </div>
+                    <span class="od-item-price"><%= (item.price * item.quantity).toLocaleString('vi-VN') %>₫</span>
+                </div>
+                <% }) %>
+            </div>
+
+            <!-- Shipping info -->
+            <div class="od-card">
+                <h3>📍 Thông tin giao hàng</h3>
+                <div class="od-info-grid">
+                    <div class="od-info-item">
+                        <label>Người nhận</label>
+                        <p><%= order.shippingAddress ? order.shippingAddress.fullName : '—' %></p>
+                    </div>
+                    <div class="od-info-item">
+                        <label>Số điện thoại</label>
+                        <p><%= order.shippingAddress ? order.shippingAddress.phone : '—' %></p>
+                    </div>
+                    <div class="od-info-item" style="grid-column:1/-1">
+                        <label>Địa chỉ giao hàng</label>
+                        <p>
+                            <%= order.shippingAddress && order.shippingAddress.street ? order.shippingAddress.street + ', ' : '' %>
+                            <%= order.shippingAddress && order.shippingAddress.ward   ? order.shippingAddress.ward   + ', ' : '' %>
+                            <%= order.shippingAddress && order.shippingAddress.district ? order.shippingAddress.district + ', ' : '' %>
+                            <%= order.shippingAddress && order.shippingAddress.city ? order.shippingAddress.city : '' %>
+                        </p>
+                    </div>
+                    <% if (order.note) { %>
+                    <div class="od-info-item" style="grid-column:1/-1">
+                        <label>Ghi chú</label>
+                        <p><%= order.note %></p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- Cancel button if pending -->
+            <% if (order.status === 'pending') { %>
+            <form action="/tai-khoan/don-hang/<%= order._id %>/huy" method="POST"
+                  onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng này?')">
+                <button type="submit" class="od-cancel-btn">❌ Hủy đơn hàng</button>
+            </form>
+            <% } %>
+        </div>
+
+        <!-- Summary -->
+        <div class="od-card" style="position:sticky;top:20px">
+            <h3>🧾 Tổng kết đơn hàng</h3>
+
+            <div class="od-summary-row">
+                <span>Tạm tính</span>
+                <span><%= order.subtotal ? order.subtotal.toLocaleString('vi-VN') : order.totalAmount.toLocaleString('vi-VN') %>₫</span>
+            </div>
+            <div class="od-summary-row">
+                <span>Phí vận chuyển</span>
+                <span><%= order.shippingFee === 0 ? 'Miễn phí 🎉' : (order.shippingFee||0).toLocaleString('vi-VN')+'₫' %></span>
+            </div>
+            <% if (order.discountAmount && order.discountAmount > 0) { %>
+            <div class="od-summary-row" style="color:#28a745">
+                <span>Giảm giá</span>
+                <span>-<%= order.discountAmount.toLocaleString('vi-VN') %>₫</span>
+            </div>
+            <% } %>
+            <div class="od-summary-row total">
+                <span>Tổng cộng</span>
+                <span><%= order.totalAmount.toLocaleString('vi-VN') %>₫</span>
+            </div>
+
+            <div style="margin-top:18px;padding-top:14px;border-top:2px solid #f0f0f0">
+                <div class="od-info-item" style="margin-bottom:10px">
+                    <label>Phương thức thanh toán</label>
+                    <p><%=
+                        {cod:'💵 Thanh toán khi nhận hàng (COD)',
+                         bank_transfer:'🏦 Chuyển khoản ngân hàng',
+                         momo:'📱 Ví MoMo',
+                         zalopay:'💙 ZaloPay'}[order.paymentMethod] || order.paymentMethod
+                    %></p>
+                </div>
+                <div class="od-info-item">
+                    <label>Trạng thái thanh toán</label>
+                    <p style="color:<%= order.paymentStatus==='paid'?'#28a745':'#e67e22' %>">
+                        <%= order.paymentStatus === 'paid' ? '✅ Đã thanh toán' : '⏳ Chưa thanh toán' %>
+                    </p>
+                </div>
+            </div>
+
+            <a href="/tai-khoan/don-hang" style="display:block;text-align:center;margin-top:18px;padding:11px;background:#1C1C1C;color:#FFE002;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px">← Đơn hàng của tôi</a>
+            <a href="/san-pham" style="display:block;text-align:center;margin-top:10px;padding:11px;background:linear-gradient(135deg,#FFE002,#FFB606);color:#1C1C1C;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px">🛍️ Tiếp tục mua sắm</a>
+        </div>
+    </div>
+</div>

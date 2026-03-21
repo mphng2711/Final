@@ -1,0 +1,60 @@
+<% locals.activePage = 'blogs' %>
+
+<div class="page-header">
+  <h1><%= blog ? '✏️ Sửa bài viết' : '➕ Thêm bài viết mới' %></h1>
+</div>
+
+<div class="card">
+  <form action="<%= blog ? '/admin/bai-viet/'+blog._id+'?_method=PUT' : '/admin/bai-viet' %>" method="POST">
+    <div class="form-group">
+      <label class="form-label">Tiêu đề *</label>
+      <input type="text" name="title" class="form-control" required
+             value="<%= blog ? blog.title : '' %>" placeholder="Tiêu đề bài viết...">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label class="form-label">Danh mục *</label>
+        <select name="category" class="form-control" required>
+          <% categories.forEach(c => { %>
+          <option value="<%= c %>" <%= blog && blog.category===c ? 'selected':'' %>><%= categoryLabels[c] %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ảnh đại diện (URL)</label>
+        <input type="text" name="thumbnail" class="form-control"
+               value="<%= blog ? blog.thumbnail : '' %>" placeholder="/assets/blog-placeholder.png">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Đoạn trích ngắn</label>
+      <textarea name="excerpt" class="form-control" rows="2"
+                placeholder="Tóm tắt bài viết (hiển thị ở danh sách)..."><%= blog ? blog.excerpt || '' : '' %></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nội dung *</label>
+      <textarea name="content" class="form-control" rows="16" required
+                placeholder="Nội dung bài viết (hỗ trợ HTML)..."><%= blog ? blog.content : '' %></textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end">
+      <div class="form-group">
+        <label class="form-label">Tags (phân cách bằng dấu phẩy)</label>
+        <input type="text" name="tags" class="form-control"
+               value="<%= blog && blog.tags ? blog.tags.join(', ') : '' %>"
+               placeholder="thú-cưng, chó, mèo, dinh-dưỡng...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Trạng thái</label>
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+          <input type="checkbox" name="isPublished" id="isPublished"
+                 <%= blog && blog.isPublished ? 'checked' : '' %> style="width:18px;height:18px">
+          <label for="isPublished" style="font-weight:600">Đăng bài ngay</label>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:10px">
+      <button type="submit" class="btn btn-primary"><%= blog ? '💾 Cập nhật' : '✅ Tạo bài viết' %></button>
+      <a href="/admin/bai-viet" class="btn btn-secondary">← Quay lại</a>
+    </div>
+  </form>
+</div>

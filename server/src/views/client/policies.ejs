@@ -1,0 +1,238 @@
+
+<style>
+/* ── POLICIES PAGE ── */
+.policies-hero {
+    background: linear-gradient(135deg,#fffbeb,#fff3cd);
+    padding: 55px 0 45px; text-align: center;
+    border-bottom: 2px solid #FFE002;
+    margin-bottom: 0;
+}
+.policies-hero h1 { font-size: 38px; font-weight: 900; color: #1C1C1C; margin-bottom: 12px; }
+.policies-hero p { color: #666; font-size: 16px; max-width: 560px; margin: 0 auto; }
+
+.policies-wrap {
+    max-width: 960px; margin: 40px auto 70px;
+    padding: 0 20px;
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 32px; align-items: start;
+}
+
+/* Sticky sidebar nav */
+.policies-nav {
+    position: sticky; top: 24px;
+    background: #fff; border-radius: 16px;
+    padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+.policies-nav h4 { font-size: 13px; color: #999; text-transform: uppercase; letter-spacing: .6px; font-weight: 700; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+.policies-nav a {
+    display: block; padding: 9px 12px; margin-bottom: 4px;
+    border-radius: 8px; text-decoration: none; color: #555;
+    font-size: 14px; font-weight: 600; transition: all .2s;
+}
+.policies-nav a:hover { background: #fffbeb; color: #FFB606; }
+.policies-nav a.active { background: linear-gradient(135deg,#FFE002,#FFB606); color: #1C1C1C; }
+
+/* Content sections */
+.policy-section {
+    background: #fff; border-radius: 16px; padding: 32px 36px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-bottom: 22px;
+    scroll-margin-top: 30px;
+}
+.policy-section h2 {
+    font-size: 22px; font-weight: 800; color: #1C1C1C;
+    margin-bottom: 18px; padding-bottom: 14px;
+    border-bottom: 3px solid #FFE002;
+    display: flex; align-items: center; gap: 10px;
+}
+.policy-section h3 { font-size: 16px; color: #1C1C1C; margin: 20px 0 10px; font-weight: 700; }
+.policy-section p { color: #555; line-height: 1.85; margin-bottom: 14px; font-size: 15px; }
+.policy-section ul { color: #555; padding-left: 22px; margin-bottom: 14px; line-height: 1.85; font-size: 15px; }
+.policy-section ul li { margin-bottom: 6px; }
+.policy-section strong { color: #1C1C1C; }
+
+.policy-highlight {
+    background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    border-left: 4px solid #FFB606; border-radius: 0 10px 10px 0;
+    padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #555;
+}
+.policy-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+.policy-table th {
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; padding: 12px 14px; text-align: left; font-weight: 700;
+}
+.policy-table td { padding: 11px 14px; border-bottom: 1px solid #f0f0f0; color: #555; vertical-align: top; }
+.policy-table tr:hover td { background: #fffbeb; }
+
+@media (max-width: 720px) {
+    .policies-wrap { grid-template-columns: 1fr; }
+    .policies-nav { position: static; }
+    .policy-section { padding: 22px 18px; }
+}
+</style>
+
+<!-- Hero -->
+<div class="policies-hero">
+    <div class="wrap-content">
+        <h1>📋 Chính Sách & Điều Khoản</h1>
+        <p>Các chính sách minh bạch giúp bạn mua sắm an tâm và tin tưởng tại PurePaw Pet Shop</p>
+    </div>
+</div>
+
+<div class="policies-wrap">
+    <!-- Sidebar navigation -->
+    <nav class="policies-nav">
+        <h4>Nội dung</h4>
+        <a href="#mua-hang" class="active">🛒 Chính sách mua hàng</a>
+        <a href="#doi-tra">🔄 Đổi trả & Hoàn tiền</a>
+        <a href="#van-chuyen">🚚 Vận chuyển</a>
+        <a href="#bao-mat">🔒 Bảo mật thông tin</a>
+        <a href="#dieu-khoan">📝 Điều khoản sử dụng</a>
+    </nav>
+
+    <!-- Sections -->
+    <div>
+        <!-- 1. Chính sách mua hàng -->
+        <div class="policy-section" id="mua-hang">
+            <h2>🛒 Chính sách mua hàng</h2>
+            <h3>Điều kiện mua hàng</h3>
+            <p>Khách hàng cần đăng ký tài khoản để thực hiện đặt hàng tại PurePaw. Mỗi đơn hàng phải có giá trị tối thiểu <strong>50.000₫</strong>.</p>
+            <h3>Xác nhận đơn hàng</h3>
+            <p>Sau khi đặt hàng thành công, hệ thống sẽ gửi email xác nhận. Đội ngũ PurePaw sẽ liên hệ điện thoại trong vòng <strong>2 giờ</strong> (trong giờ hành chính 8:00–21:00) để xác nhận đơn hàng.</p>
+            <div class="policy-highlight">
+                <strong>⏰ Lưu ý:</strong> Đơn hàng đặt ngoài giờ hành chính sẽ được xử lý vào ngày làm việc tiếp theo.
+            </div>
+            <h3>Thanh toán</h3>
+            <ul>
+                <li><strong>COD:</strong> Thanh toán tiền mặt khi nhận hàng</li>
+                <li><strong>Chuyển khoản:</strong> Ngân hàng Vietcombank / Techcombank</li>
+                <li><strong>Ví điện tử:</strong> MoMo, ZaloPay</li>
+            </ul>
+        </div>
+
+        <!-- 2. Đổi trả -->
+        <div class="policy-section" id="doi-tra">
+            <h2>🔄 Chính sách đổi trả & hoàn tiền</h2>
+            <h3>Điều kiện đổi/trả</h3>
+            <p>PurePaw chấp nhận đổi/trả hàng trong vòng <strong>7 ngày</strong> kể từ ngày nhận hàng, với điều kiện:</p>
+            <ul>
+                <li>Sản phẩm còn nguyên seal, chưa sử dụng, còn đầy đủ bao bì</li>
+                <li>Có hóa đơn mua hàng hoặc mã đơn hàng</li>
+                <li>Sản phẩm bị lỗi do nhà sản xuất hoặc giao nhầm hàng</li>
+            </ul>
+
+            <table class="policy-table">
+                <thead>
+                    <tr><th>Trường hợp</th><th>Xử lý</th><th>Thời gian</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Hàng lỗi / giao nhầm</td><td>Đổi mới hoặc hoàn 100%</td><td>3–5 ngày làm việc</td></tr>
+                    <tr><td>Khách đổi ý (chưa dùng)</td><td>Đổi sản phẩm khác (bù/trả chênh lệch)</td><td>3–7 ngày</td></tr>
+                    <tr><td>Hàng hết hạn khi nhận</td><td>Hoàn tiền 100%</td><td>1–3 ngày làm việc</td></tr>
+                </tbody>
+            </table>
+
+            <div class="policy-highlight">
+                <strong>❌ Không áp dụng:</strong> Thức ăn đã mở hộp, sản phẩm chăm sóc sức khỏe đã sử dụng, hàng mua giảm giá trên 50%.
+            </div>
+
+            <h3>Quy trình đổi/trả</h3>
+            <p>Liên hệ hotline <strong>090 123 4567</strong> hoặc email <strong>support@purepaw.vn</strong> để được hỗ trợ đổi/trả hàng.</p>
+        </div>
+
+        <!-- 3. Vận chuyển -->
+        <div class="policy-section" id="van-chuyen">
+            <h2>🚚 Chính sách vận chuyển</h2>
+            <h3>Phí vận chuyển</h3>
+            <table class="policy-table">
+                <thead>
+                    <tr><th>Khu vực</th><th>Mức đơn hàng</th><th>Phí ship</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Nội thành TP.HCM</td><td>Dưới 300.000₫</td><td>25.000₫</td></tr>
+                    <tr><td>Nội thành TP.HCM</td><td>Từ 300.000₫</td><td><strong>Miễn phí 🎉</strong></td></tr>
+                    <tr><td>Tỉnh thành khác</td><td>Dưới 500.000₫</td><td>35.000₫ – 60.000₫</td></tr>
+                    <tr><td>Tỉnh thành khác</td><td>Từ 500.000₫</td><td><strong>Miễn phí 🎉</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>Thời gian giao hàng</h3>
+            <ul>
+                <li><strong>Nội thành TP.HCM:</strong> 1–2 ngày làm việc</li>
+                <li><strong>Tỉnh thành lân cận:</strong> 2–3 ngày làm việc</li>
+                <li><strong>Các tỉnh xa:</strong> 3–5 ngày làm việc</li>
+            </ul>
+            <div class="policy-highlight">
+                <strong>📞 Theo dõi đơn hàng:</strong> Vào mục <a href="/tai-khoan/don-hang" style="color:#FFB606;font-weight:700">Đơn hàng của tôi</a> để xem trạng thái giao hàng.
+            </div>
+        </div>
+
+        <!-- 4. Bảo mật -->
+        <div class="policy-section" id="bao-mat">
+            <h2>🔒 Chính sách bảo mật thông tin</h2>
+            <p>PurePaw cam kết bảo vệ thông tin cá nhân của khách hàng theo đúng quy định pháp luật Việt Nam.</p>
+
+            <h3>Thông tin thu thập</h3>
+            <ul>
+                <li>Họ tên, email, số điện thoại khi đăng ký</li>
+                <li>Địa chỉ giao hàng khi đặt hàng</li>
+                <li>Lịch sử mua hàng và hành vi duyệt web</li>
+            </ul>
+
+            <h3>Mục đích sử dụng</h3>
+            <ul>
+                <li>Xử lý đơn hàng và liên lạc với khách hàng</li>
+                <li>Gửi thông báo khuyến mãi (có thể tắt bất kỳ lúc nào)</li>
+                <li>Cải thiện chất lượng dịch vụ</li>
+            </ul>
+
+            <h3>Cam kết bảo mật</h3>
+            <p>PurePaw <strong>tuyệt đối không</strong> chia sẻ thông tin khách hàng với bên thứ ba vì mục đích thương mại. Mật khẩu được mã hóa bằng bcrypt và không bao giờ lưu dạng plaintext.</p>
+        </div>
+
+        <!-- 5. Điều khoản -->
+        <div class="policy-section" id="dieu-khoan">
+            <h2>📝 Điều khoản sử dụng</h2>
+            <h3>Chấp nhận điều khoản</h3>
+            <p>Khi sử dụng website PurePaw, bạn đồng ý tuân thủ các điều khoản sử dụng này. PurePaw có quyền cập nhật điều khoản bất kỳ lúc nào mà không cần thông báo trước.</p>
+
+            <h3>Quyền và trách nhiệm của khách hàng</h3>
+            <ul>
+                <li>Cung cấp thông tin chính xác khi đăng ký và đặt hàng</li>
+                <li>Không sử dụng tài khoản người khác</li>
+                <li>Không thực hiện hành vi gian lận, giả mạo</li>
+                <li>Chịu trách nhiệm bảo mật mật khẩu tài khoản</li>
+            </ul>
+
+            <h3>Giới hạn trách nhiệm</h3>
+            <p>PurePaw không chịu trách nhiệm về các thiệt hại gián tiếp phát sinh từ việc sử dụng sản phẩm không đúng hướng dẫn. Chúng tôi luôn cố gắng đảm bảo website hoạt động 24/7 nhưng không cam kết không có sự cố kỹ thuật.</p>
+
+            <h3>Liên hệ</h3>
+            <p>Mọi thắc mắc về chính sách vui lòng liên hệ:</p>
+            <ul>
+                <li>📞 Hotline: <strong>090 123 4567</strong> (8:00–21:00 hàng ngày)</li>
+                <li>📧 Email: <strong>support@purepaw.vn</strong></li>
+                <li>📍 Địa chỉ: 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM</li>
+            </ul>
+
+            <div class="policy-highlight">
+                Cập nhật lần cuối: <strong>Tháng 3, 2026</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Highlight active nav item on scroll
+const sections = document.querySelectorAll('.policy-section');
+const navLinks  = document.querySelectorAll('.policies-nav a');
+const observer  = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            navLinks.forEach(a => a.classList.remove('active'));
+            const link = document.querySelector('.policies-nav a[href="#' + e.target.id + '"]');
+            if (link) link.classList.add('active');
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>

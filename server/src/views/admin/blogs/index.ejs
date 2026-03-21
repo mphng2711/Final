@@ -1,0 +1,63 @@
+<% locals.activePage = 'blogs' %>
+
+<div class="page-header" style="display:flex;justify-content:space-between;align-items:center">
+  <h1>📝 Quản lý bài viết (<%= total %>)</h1>
+  <a href="/admin/bai-viet/them-moi" class="btn btn-primary">+ Thêm bài viết</a>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">DANH MỤC</label>
+    <select name="category" class="form-control">
+      <option value="">Tất cả</option>
+      <% categories.forEach(c => { %><option value="<%= c %>" <%= query.category===c?'selected':'' %>><%= categoryLabels[c] %></option><% }) %>
+    </select></div>
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TRẠNG THÁI</label>
+    <select name="status" class="form-control">
+      <option value="">Tất cả</option>
+      <option value="published" <%= query.status==='published'?'selected':'' %>>Đã đăng</option>
+      <option value="draft" <%= query.status==='draft'?'selected':'' %>>Bản nháp</option>
+    </select></div>
+    <button type="submit" class="btn btn-primary">🔍</button>
+    <a href="/admin/bai-viet" class="btn btn-secondary">Xóa lọc</a>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>Tiêu đề</th><th>Danh mục</th><th>Trạng thái</th><th>Lượt xem</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    <% if (blogs.length) { %>
+    <% blogs.forEach(b => { %>
+    <tr>
+      <td>
+        <strong style="font-size:14px"><%= b.title.length > 60 ? b.title.substring(0,60)+'...' : b.title %></strong>
+        <br><span style="font-size:12px;color:#999">/tin-tuc/<%= b.slug %></span>
+      </td>
+      <td><span class="badge badge-info"><%= categoryLabels[b.category] || b.category %></span></td>
+      <td><span class="badge <%= b.isPublished ? 'badge-success' : 'badge-warning' %>"><%= b.isPublished ? '✅ Đã đăng' : '📝 Nháp' %></span></td>
+      <td><%= b.viewCount %></td>
+      <td style="font-size:13px"><%= new Date(b.createdAt).toLocaleDateString('vi-VN') %></td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap">
+        <a href="/tin-tuc/<%= b.slug %>" target="_blank" class="btn btn-secondary btn-sm">👁</a>
+        <a href="/admin/bai-viet/<%= b._id %>/sua" class="btn btn-secondary btn-sm">✏️</a>
+        <form action="/admin/bai-viet/<%= b._id %>?_method=DELETE" method="POST"
+              onsubmit="return confirm('Xóa bài viết này?')" style="display:inline">
+          <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+    <% } else { %>
+    <tr><td colspan="6" style="text-align:center;padding:35px;color:#999">Không có bài viết nào</td></tr>
+    <% } %>
+    </tbody>
+  </table>
+  <% if (totalPages > 1) { %>
+  <div class="pagination">
+    <% if (page > 1) { %><a href="?page=<%= page-1 %>">← Trước</a><% } %>
+    <% for(let i=1;i<=totalPages;i++){%><% if(i===page){%><span class="current"><%= i %></span><%}else{%><a href="?page=<%= i %>"><%= i %></a><%}%><% } %>
+    <% if (page < totalPages) { %><a href="?page=<%= page+1 %>">Tiếp →</a><% } %>
+  </div>
+  <% } %>
+</div>

@@ -1,0 +1,161 @@
+
+<style>
+/* ══ BLOGS / TIN TỨC — theme đồng bộ PurePaw ══ */
+.news-hero {
+    background: linear-gradient(135deg, rgba(255,224,2,.12) 0%, rgba(255,182,6,.12) 100%);
+    padding: 70px 0; text-align: center; margin-bottom: 0;
+}
+.news-hero h1 {
+    font-size: 48px; font-weight: 900; color: #1C1C1C; margin-bottom: 14px;
+    position: relative; display: inline-block;
+}
+.news-hero h1::after {
+    content: ''; position: absolute;
+    bottom: -12px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 5px;
+    background: linear-gradient(135deg, #FFE002, #FFB606); border-radius: 3px;
+}
+.news-hero p { font-size: 17px; color: #555; margin-top: 28px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+.news-container { max-width: 1200px; margin: 0 auto; padding: 50px 20px 70px; }
+
+/* Category Filters */
+.cat-filters {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 40px;
+}
+.cat-filter-btn {
+    padding: 9px 20px; border-radius: 25px; text-decoration: none;
+    font-size: 14px; font-weight: 600; transition: all .25s;
+    border: 2px solid #e0e0e0; color: #555; background: #fff;
+}
+.cat-filter-btn:hover { border-color: #FFB606; color: #FFB606; transform: translateY(-2px); }
+.cat-filter-btn.active { border-color: #FFB606; background: linear-gradient(135deg,#FFE002,#FFB606); color: #1C1C1C; box-shadow: 0 4px 14px rgba(255,182,6,.25); }
+
+/* Blog Grid */
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px; margin-bottom: 50px;
+}
+.blog-card {
+    background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,.07); transition: all .3s;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    border: 2px solid transparent;
+}
+.blog-card:hover { transform: translateY(-7px); box-shadow: 0 16px 44px rgba(0,0,0,.13); border-color: #FFE002; }
+.blog-img-wrap { width: 100%; height: 224px; overflow: hidden; position: relative; background: linear-gradient(135deg,#fffbeb,#fff9e6); }
+.blog-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; display: block; }
+.blog-card:hover .blog-img-wrap img { transform: scale(1.06); }
+.blog-cat-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: linear-gradient(135deg, #FFE002, #FFB606);
+    color: #1C1C1C; padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 700;
+}
+.blog-body { padding: 22px 22px 18px; flex: 1; display: flex; flex-direction: column; }
+.blog-title { font-size: 17px; font-weight: 700; color: #1C1C1C; margin-bottom: 10px; line-height: 1.5; }
+.blog-title:hover { color: #FFB606; }
+.blog-excerpt { color: #666; font-size: 14px; line-height: 1.7; flex: 1; margin-bottom: 16px; }
+.blog-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;
+}
+.blog-meta-info { display: flex; gap: 14px; font-size: 12px; color: #aaa; flex-wrap: wrap; }
+.blog-meta-info span { display: flex; align-items: center; gap: 4px; }
+.blog-read-more {
+    font-size: 13px; font-weight: 700; color: #FFB606;
+    text-decoration: none; display: flex; align-items: center; gap: 4px;
+    transition: gap .2s;
+}
+.blog-read-more:hover { gap: 8px; }
+
+/* Empty State */
+.empty-state { text-align: center; padding: 80px 20px; }
+.empty-state .icon { font-size: 70px; margin-bottom: 20px; }
+.empty-state p { font-size: 18px; color: #999; }
+
+/* Pagination */
+.pagination { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.pagination a, .pagination span {
+    padding: 9px 18px; border: 2px solid #e0e0e0;
+    border-radius: 10px; text-decoration: none; color: #555;
+    font-weight: 700; transition: all .2s; font-size: 14px;
+}
+.pagination a:hover, .pagination .current {
+    border-color: #FFB606; background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; box-shadow: 0 4px 14px rgba(255,182,6,.25);
+}
+
+@media (max-width: 768px) {
+    .news-hero h1 { font-size: 34px; }
+    .blogs-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .news-container { padding: 36px 16px 50px; }
+}
+</style>
+
+<!-- Hero -->
+<div class="news-hero">
+    <h1>📰 Tin tức & Mẹo hay</h1>
+    <p>Kiến thức chăm sóc thú cưng, mẹo dinh dưỡng và cập nhật mới nhất từ PurePaw Pet Shop</p>
+</div>
+
+<div class="news-container">
+    <!-- Category Filters -->
+    <div class="cat-filters">
+        <a href="/tin-tuc" class="cat-filter-btn <%= !query.category ? 'active' : '' %>">🐾 Tất cả</a>
+        <% Object.entries(categoryLabels).forEach(([key, label]) => { %>
+        <a href="/tin-tuc?category=<%= key %>" class="cat-filter-btn <%= query.category === key ? 'active' : '' %>"><%= label %></a>
+        <% }) %>
+    </div>
+
+    <% if (blogs && blogs.length) { %>
+    <div class="blogs-grid">
+        <% blogs.forEach(blog => { %>
+        <a href="/tin-tuc/<%= blog.slug %>" class="blog-card">
+            <div class="blog-img-wrap">
+                <img src="<%= blog.thumbnail || '/assets/Image.png' %>"
+                     alt="<%= blog.title %>"
+                     onerror="this.onerror=null;this.src='/assets/Image.png'"
+                     loading="lazy">
+                <span class="blog-cat-badge"><%= categoryLabels[blog.category] || blog.category || 'Tin tức' %></span>
+            </div>
+            <div class="blog-body">
+                <h2 class="blog-title"><%= blog.title %></h2>
+                <% if (blog.excerpt) { %>
+                <p class="blog-excerpt"><%= blog.excerpt.substring(0, 130) %><%= blog.excerpt.length > 130 ? '...' : '' %></p>
+                <% } %>
+                <div class="blog-footer">
+                    <div class="blog-meta-info">
+                        <span>📅 <%= new Date(blog.publishedAt).toLocaleDateString('vi-VN') %></span>
+                        <span>👁 <%= blog.viewCount || 0 %> lượt xem</span>
+                    </div>
+                    <span class="blog-read-more">Đọc thêm →</span>
+                </div>
+            </div>
+        </a>
+        <% }) %>
+    </div>
+
+    <% if (totalPages > 1) { %>
+    <div class="pagination">
+        <% if (page > 1) { %><a href="?page=<%= page-1 %><%= query.category ? '&category='+query.category : '' %>">← Trước</a><% } %>
+        <% for(let i=1; i<=totalPages; i++) { %>
+            <% if(i===page) { %><span class="current"><%= i %></span>
+            <% } else { %><a href="?page=<%= i %><%= query.category ? '&category='+query.category : '' %>"><%= i %></a><% } %>
+        <% } %>
+        <% if (page < totalPages) { %><a href="?page=<%= page+1 %><%= query.category ? '&category='+query.category : '' %>">Tiếp →</a><% } %>
+    </div>
+    <% } %>
+
+    <% } else { %>
+    <div class="empty-state">
+        <div class="icon">📭</div>
+        <p>Chưa có bài viết nào trong danh mục này</p>
+        <a href="/tin-tuc" style="display:inline-block;margin-top:20px;padding:12px 28px;background:linear-gradient(135deg,#FFE002,#FFB606);color:#1C1C1C;border-radius:12px;font-weight:700;text-decoration:none">Xem tất cả bài viết</a>
+    </div>
+    <% } %>
+</div>

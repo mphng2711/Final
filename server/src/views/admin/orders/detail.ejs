@@ -1,0 +1,86 @@
+<% locals.activePage = 'orders' %>
+
+<div class="page-header">
+    <h1>📄 Chi tiết đơn hàng: <%= order.orderCode %></h1>
+    <a href="/admin/don-hang" class="btn btn-secondary">← Quay lại</a>
+</div>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">
+    <div>
+        <!-- Items -->
+        <div class="card">
+            <h3 style="margin-bottom:15px;font-size:16px">📦 Sản phẩm đặt hàng</h3>
+            <table>
+                <thead><tr><th>Sản phẩm</th><th>Phân loại</th><th>SL</th><th>Giá</th><th>Thành tiền</th></tr></thead>
+                <tbody>
+                <% order.items.forEach(item => { %>
+                <tr>
+                    <td><strong style="font-size:14px"><%= item.productName %></strong></td>
+                    <td style="font-size:13px;color:#666"><%= item.variantName %></td>
+                    <td><%= item.quantity %></td>
+                    <td style="font-size:13px"><%= item.price.toLocaleString('vi-VN') %>₫</td>
+                    <td style="font-weight:700;color:#FFB606"><%= item.subtotal.toLocaleString('vi-VN') %>₫</td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+            <div style="border-top:2px solid #f0f0f0;margin-top:15px;padding-top:15px">
+                <div style="display:flex;justify-content:flex-end;flex-direction:column;align-items:flex-end;gap:8px">
+                    <p style="font-size:14px;color:#666">Tạm tính: <strong><%= order.subtotal.toLocaleString('vi-VN') %>₫</strong></p>
+                    <% if (order.discountAmount > 0) { %><p style="font-size:14px;color:#28a745">Giảm giá: -<strong><%= order.discountAmount.toLocaleString('vi-VN') %>₫</strong></p><% } %>
+                    <p style="font-size:14px;color:#666">Phí giao hàng: <strong><%= order.shippingFee.toLocaleString('vi-VN') %>₫</strong></p>
+                    <p style="font-size:18px;color:#FFB606;font-weight:800">Tổng cộng: <%= order.totalAmount.toLocaleString('vi-VN') %>₫</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Info -->
+        <div class="card">
+            <h3 style="margin-bottom:15px;font-size:16px">📍 Địa chỉ giao hàng</h3>
+            <p><strong><%= order.shippingAddress.fullName %></strong></p>
+            <p style="color:#666;font-size:14px"><%= order.shippingAddress.phone %></p>
+            <p style="color:#666;font-size:14px"><%= order.shippingAddress.street %>, <%= order.shippingAddress.ward %>, <%= order.shippingAddress.district %>, <%= order.shippingAddress.city %></p>
+            <% if (order.note) { %>
+            <p style="margin-top:10px;padding:10px;background:#f9f9f9;border-radius:6px;font-size:14px;color:#555">📝 Ghi chú: <%= order.note %></p>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Status Update -->
+    <div>
+        <div class="card">
+            <h3 style="margin-bottom:12px;font-size:16px">Khách hàng</h3>
+            <p style="font-weight:600"><%= order.user ? order.user.fullName : 'N/A' %></p>
+            <p style="color:#666;font-size:13px"><%= order.user ? order.user.email : '' %></p>
+            <p style="color:#666;font-size:13px"><%= order.user ? order.user.phone : '' %></p>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom:15px;font-size:16px">🔄 Cập nhật trạng thái</h3>
+            <p style="margin-bottom:12px;font-size:14px;color:#555">
+                Trạng thái hiện tại: 
+                <span class="badge <%= {pending:'badge-warning',confirmed:'badge-info',delivered:'badge-success',cancelled:'badge-danger'}[order.status]||'badge-secondary' %>">
+                    <%= statusLabels[order.status]||order.status %>
+                </span>
+            </p>
+            <form action="/admin/don-hang/<%= order._id %>/trang-thai?_method=PUT" method="POST">
+                <div class="form-group">
+                    <select name="status" class="form-control" style="margin-bottom:10px">
+                        <% statuses.forEach(s => { %>
+                        <option value="<%= s %>" <%= order.status===s?'selected':'' %>><%= statusLabels[s] %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="cancelReason" class="form-control" rows="2" placeholder="Lý do hủy (nếu hủy)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">💾 Cập nhật</button>
+            </form>
+        </div>
+
+        <div class="card" style="font-size:13px;color:#666">
+            <p>🕐 Đặt hàng: <strong><%= new Date(order.createdAt).toLocaleString('vi-VN') %></strong></p>
+            <p style="margin-top:6px">🔄 Cập nhật: <strong><%= new Date(order.updatedAt).toLocaleString('vi-VN') %></strong></p>
+        </div>
+    </div>
+</div>

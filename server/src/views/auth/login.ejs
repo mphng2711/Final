@@ -1,0 +1,46 @@
+
+<% locals.title = 'Đăng nhập - PurePaw' %>
+
+<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:linear-gradient(135deg,#fffbeb 0%,#f5f7fa 100%)">
+<div style="background:#fff;border-radius:20px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.1);overflow:hidden">
+    <div style="background:linear-gradient(135deg,#FFE002,#FFB606);padding:30px;text-align:center">
+        <div style="font-size:45px;margin-bottom:8px;">🐾</div>
+        <h1 style="font-size:26px;color:#1C1C1C;font-weight:700;">Đăng nhập</h1>
+        <p style="color:#3B3B3B;font-size:14px;">Chào mừng trở lại PurePaw Pet House</p>
+    </div>
+    <div style="padding:35px 30px">
+        <form action="/dang-nhap" method="POST" id="loginForm">
+            <div style="margin-bottom:20px">
+                <label style="display:block;font-weight:600;margin-bottom:8px;font-size:14px">📧 Email</label>
+                <input type="email" name="email" required placeholder="email@example.com"
+                    style="width:100%;padding:13px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;transition:border .3s"
+                    onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+            </div>
+            <div style="margin-bottom:20px">
+                <label style="display:block;font-weight:600;margin-bottom:8px;font-size:14px">🔒 Mật khẩu</label>
+                <div style="position:relative">
+                    <input type="password" name="password" required placeholder="Nhập mật khẩu" id="pwdInput"
+                        style="width:100%;padding:13px 46px 13px 16px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;transition:border .3s"
+                        onfocus="this.style.borderColor='#FFE002'" onblur="this.style.borderColor='#e0e0e0'">
+                    <button type="button" onclick="togglePwd('pwdInput','eyeIcon')" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px" id="eyeIcon">👁</button>
+                </div>
+            </div>
+            <div style="text-align:right;margin-bottom:20px">
+                <a href="#" style="color:#FFB606;font-size:13px;text-decoration:none">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" style="width:100%;padding:14px;background:linear-gradient(135deg,#FFE002,#FFB606);border:none;border-radius:10px;color:#1C1C1C;font-weight:700;font-size:16px;cursor:pointer;transition:all .3s">
+                Đăng nhập
+            </button>
+        </form>
+        <p style="text-align:center;margin-top:25px;font-size:14px;color:#666">
+            Chưa có tài khoản? <a href="/dang-ky" style="color:#FFB606;font-weight:700">Đăng ký ngay</a>
+        </p>
+    </div>
+</div>
+</div>
+<script>
+function togglePwd(inputId, iconId) {
+    const i = document.getElementById(inputId);
+    i.type = i.type === 'password' ? 'text' : 'password';
+}
+</script>

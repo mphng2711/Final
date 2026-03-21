@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanh Toán - PURE PAW PET SHOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap&family=Lato:wght@400;600" rel="stylesheet">
+
+<!-- Inline SVG sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ic-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.35 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.13 6.13l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+  <symbol id="ic-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/><circle cx="4.5" cy="8" r="2"/></symbol>
+  <symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="ic-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+  <symbol id="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="ic-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="ic-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
+  <symbol id="ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+</svg>
+
+<style>
+:root {
+  --gold: #F5B800;
+  --gold-light: #FFD84D;
+  --gold-dark: #C99000;
+  --cream: #FFFDF5;
+  --warm: #FFF8EC;
+  --ink: #1A1209;
+  --ink-soft: #3D3020;
+  --muted: #8C7A5E;
+  --border: rgba(245,184,0,0.22);
+  --shadow-gold: rgba(245,184,0,0.18);
+  --blue: #2C6FAC;
+  --green: #16A34A;
+  --momo-pink: #AE2070;
+  --momo-bg: #FFF0F6;
+  --bank-blue: #004B9E;
+  --bank-bg: #EEF4FF;
+  --cash-green: #065F46;
+  --cash-bg: #ECFDF5;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--ink);padding:10px 0}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
+.topbar-item{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.6);font-size:12.5px}
+.topbar-item a{color:var(--gold);font-weight:600;text-decoration:none}
+
+/* ── NAV ── */
+.nav{background:var(--cream);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.nav-links a:hover{background:var(--warm);color:var(--ink)}
+.nav-links a.active{background:var(--gold);color:var(--ink)}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo-paw{width:38px;height:38px;background:var(--gold);border-radius:50% 50% 50% 12px;display:flex;align-items:center;justify-content:center}
+
+/* ── PAGE HERO ── */
+.page-hero{background:var(--ink);padding:52px 30px 60px;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(245,184,0,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(245,184,0,.08) 0%,transparent 60%)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:white;position:relative;margin-bottom:10px}
+.page-hero h1 span{color:var(--gold)}
+.page-hero p{color:rgba(255,255,255,.5);font-size:15px;position:relative}
+
+/* ── STEPS BAR ── */
+.steps-wrap{background:var(--warm);border-bottom:1px solid var(--border)}
+.steps{max-width:700px;margin:0 auto;padding:20px 30px;display:flex;align-items:center;justify-content:center;gap:0}
+.step{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600}
+.step-num{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--muted);background:white;flex-shrink:0;transition:all .3s}
+.step.done .step-num{background:var(--green);border-color:var(--green);color:white}
+.step.active .step-num{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.step-label{color:var(--muted)}
+.step.active .step-label{color:var(--ink);font-weight:700}
+.step.done .step-label{color:var(--green)}
+.step-line{flex:1;height:2px;background:var(--border);min-width:40px;max-width:80px}
+.step-line.done{background:var(--green)}
+
+/* ── MAIN LAYOUT ── */
+.checkout-wrap{max-width:1060px;margin:0 auto;padding:44px 24px 80px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+
+/* ── LEFT: Payment Method ── */
+.panel{background:white;border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.panel-head{padding:22px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.panel-head-icon{width:38px;height:38px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.panel-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700}
+.panel-body{padding:24px 28px}
+
+/* Method cards */
+.method-list{display:flex;flex-direction:column;gap:12px}
+.method-card{border:2px solid var(--border);border-radius:14px;cursor:pointer;transition:all .25s;overflow:hidden;background:white}
+.method-card:hover{border-color:rgba(245,184,0,.5);box-shadow:0 4px 18px var(--shadow-gold)}
+.method-card.active{border-color:var(--gold);box-shadow:0 4px 18px var(--shadow-gold)}
+.method-top{display:flex;align-items:center;gap:14px;padding:18px 20px}
+.method-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.method-card.active .method-radio{border-color:var(--gold);background:var(--gold)}
+.method-radio-dot{width:8px;height:8px;border-radius:50%;background:var(--ink);display:none}
+.method-card.active .method-radio-dot{display:block}
+.method-logo{width:48px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:900;font-size:11px;letter-spacing:.04em}
+.method-logo.cash-logo{background:var(--cash-bg);color:var(--cash-green)}
+.method-logo.bank-logo{background:var(--bank-bg);color:var(--bank-blue)}
+.method-logo.momo-logo{background:var(--momo-bg);color:var(--momo-pink)}
+.method-info{flex:1}
+.method-name{font-weight:700;font-size:15px;color:var(--ink)}
+.method-desc{font-size:12.5px;color:var(--muted);margin-top:3px}
+.method-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.badge-fast{background:#DCFCE7;color:#166534}
+.badge-pop{background:var(--momo-bg);color:var(--momo-pink)}
+
+/* ── Payment detail panels ── */
+.payment-detail{display:none;border-top:1px solid var(--border);background:var(--warm);padding:20px 20px 22px;animation:fadeIn .3s ease}
+.method-card.active .payment-detail{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Cash */
+.cash-detail{display:flex;align-items:flex-start;gap:14px}
+.cash-detail-icon{width:44px;height:44px;background:var(--cash-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:24px}
+.cash-detail p{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+.cash-detail strong{color:var(--ink)}
+
+/* Bank / VietQR */
+.vietqr-wrap{display:flex;gap:20px;align-items:flex-start}
+.qr-box{width:160px;height:160px;background:white;border:2px solid var(--border);border-radius:12px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.qr-box img{width:100%;height:100%;object-fit:cover}
+.qr-box .qr-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:11px;color:var(--muted);text-align:center;padding:12px}
+.bank-details{flex:1;display:flex;flex-direction:column;gap:0}
+.bank-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
+.bank-row:last-child{border-bottom:none}
+.bank-label{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.bank-val{font-size:13.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+.copy-btn{width:28px;height:28px;border:1px solid var(--border);border-radius:7px;background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s;flex-shrink:0}
+.copy-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.vietqr-note{margin-top:12px;background:rgba(44,111,172,.08);border:1px solid rgba(44,111,172,.18);border-radius:10px;padding:10px 14px;font-size:12.5px;color:var(--blue);line-height:1.6;display:flex;align-items:flex-start;gap:8px}
+.vietqr-poweredby{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;color:var(--muted)}
+.vietqr-badge{background:linear-gradient(135deg,#004B9E,#0070E0);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:5px;letter-spacing:.04em}
+
+/* MoMo */
+.momo-wrap{display:flex;gap:20px;align-items:flex-start}
+.momo-qr-box{width:160px;height:160px;background:white;border:2px solid rgba(174,32,112,.2);border-radius:12px;flex-shrink:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.momo-qr-head{background:var(--momo-pink);color:white;font-size:11px;font-weight:700;padding:6px 12px;width:100%;text-align:center;letter-spacing:.04em}
+.momo-qr-img{flex:1;width:100%;display:flex;align-items:center;justify-content:center;padding:8px}
+.momo-qr-img img{width:100%;height:100%;object-fit:contain}
+.momo-details{flex:1}
+.momo-phone-row{background:white;border:1px solid rgba(174,32,112,.2);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.momo-phone-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.momo-phone-val{font-size:1.3rem;font-weight:900;color:var(--momo-pink);display:flex;align-items:center;justify-content:space-between}
+.momo-steps{display:flex;flex-direction:column;gap:8px}
+.momo-step{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+.momo-step-num{width:22px;height:22px;border-radius:50%;background:var(--momo-pink);color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.momo-deeplink{display:flex;gap:10px;margin-top:14px}
+.btn-momo-open{flex:1;background:var(--momo-pink);color:white;border:none;border-radius:10px;padding:12px 18px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn-momo-open:hover{background:#8B1558;transform:translateY(-1px);box-shadow:0 4px 16px rgba(174,32,112,.3)}
+
+/* ── RIGHT: Order Summary ── */
+.summary-panel{position:sticky;top:90px}
+.summary-head{padding:22px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.order-rows{padding:20px 24px;display:flex;flex-direction:column;gap:0}
+.order-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.order-row:last-child{border-bottom:none}
+.order-label{font-size:13px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:8px}
+.order-val{font-size:14px;font-weight:600;color:var(--ink);text-align:right;max-width:55%}
+.order-total-box{margin:0 24px 20px;background:var(--ink);border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.total-label{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.total-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gold)}
+.discount-note{margin:0 24px 16px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:10px;padding:10px 14px;font-size:12.5px;color:#166534;display:flex;align-items:center;gap:8px}
+.action-area{padding:0 24px 24px;display:flex;flex-direction:column;gap:10px}
+.btn-confirm{background:var(--ink);color:white;border:none;border-radius:12px;padding:16px;width:100%;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-confirm:hover{background:var(--gold-dark);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-gold)}
+.btn-back{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:12px;padding:13px;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-back:hover{border-color:var(--gold);color:var(--ink);background:var(--warm)}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--muted);padding-top:4px}
+
+/* ── SUCCESS MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,18,9,.75);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.success-modal{background:white;border-radius:24px;padding:52px 44px;max-width:480px;width:90%;text-align:center;animation:modalPop .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalPop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.success-circle{width:88px;height:88px;background:linear-gradient(135deg,#16A34A,#22C55E);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 12px 36px rgba(22,163,74,.3)}
+.success-modal h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin-bottom:10px}
+.success-modal p{color:var(--muted);line-height:1.8;margin-bottom:28px;font-size:14.5px}
+.booking-ref{background:var(--warm);border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin-bottom:28px;font-size:13px;color:var(--muted)}
+.booking-ref strong{color:var(--ink);font-size:1.2rem;font-family:'Playfair Display',serif;display:block;margin-top:4px}
+.success-actions{display:flex;flex-direction:column;gap:10px}
+.btn-home{background:var(--ink);color:white;border:none;border-radius:12px;padding:14px;width:100%;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-home:hover{background:var(--gold-dark);color:var(--ink)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:white;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:500;opacity:0;transition:all .3s;z-index:9999;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .checkout-wrap{grid-template-columns:1fr}
+  .summary-panel{position:static}
+  .page-hero h1{font-size:2rem}
+  .nav-inner{flex-wrap:wrap;height:auto;padding:12px 18px;gap:8px}
+}
+@media(max-width:520px){
+  .vietqr-wrap,.momo-wrap{flex-direction:column}
+  .qr-box,.momo-qr-box{width:100%;height:180px}
+  .steps{gap:4px}
+  .step-label{display:none}
+}
+
+        /* ═══════════════════════════════════════
+           HEADER (Pure Paw standard)
+        ═══════════════════════════════════════ */
+        .header {
+            width: 100%;
+            background: #fff;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid #f0e8d0;
+        }
+        .header__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            height: 136px;
+            position: relative;
+        }
+        .header__addr {
+            position: absolute;
+            left: 78px;
+            top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__addr i { font-size: 16px; color: #1c1c1c; }
+        .header__hotline {
+            position: absolute;
+            right: 78px; top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__hotline i { font-size: 16px; color: #1c1c1c; }
+        .header__logo {
+            position: absolute;
+            left: 53%; top: 0;
+            transform: translateX(-50%);
+            width: 136px; height: 136px;
+            z-index: 5; overflow: hidden;
+        }
+        .header__logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .header__nav {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 63px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding-right: 160px;
+        }
+        .header__nav-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 22px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600; font-size: 18px; color: #1c1c1c;
+            white-space: nowrap; text-decoration: none;
+            line-height: 1.2; height: 42px;
+            position: relative; z-index: 1;
+            transition: color 0.2s;
+        }
+        .header__nav-item:hover { color: #ffb606; }
+        .header__nav-item--active {
+            border: 2px solid #ffb606;
+            border-radius: 24px;
+        }
+        .header__nav-dot {
+            width: 7px; height: 7px;
+            background: #1c1c1c; border-radius: 50%; flex-shrink: 0;
+        }
+        .header__nav-gap { width: 136px; flex-shrink: 0; pointer-events: none; }
+        .header__icons {
+            position: absolute;
+            right: 60px; bottom: 11px;
+            display: flex; align-items: center;
+            background: #ffb606;
+            border-radius: 24px;
+            padding: 8px 14px;
+            height: 42px;
+            gap: 14px;
+            z-index: 6;
+        }
+        .header__icons i {
+            font-size: 18px;
+            color: #000;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .header__icons i:hover { opacity: 0.6; }
+        .header__hamburger {
+            display: none;
+            position: absolute;
+            right: 20px; top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            z-index: 10;
+        }
+        .header__hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: #1c1c1c;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .header__nav--open { display: flex !important; }
+
+        @media (max-width: 800px) {
+            .header__inner { height: auto; min-height: 70px; }
+            .header__addr, .header__hotline { display: none; }
+            .header__logo {
+                position: relative;
+                left: auto; transform: none;
+                margin: 0 auto;
+                display: block;
+                width: 80px; height: 80px;
+            }
+            .header__hamburger { display: flex; }
+            .header__nav {
+                display: none;
+                position: static;
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px 16px;
+                gap: 0;
+                border-top: 1px solid #f0e8d0;
+            }
+            .header__nav-gap { display: none; }
+            .header__nav-item { font-size: 15px; padding: 10px 0; width: 100%; height: auto; }
+            .header__nav-item--active { border: none; border-left: 3px solid #ffb606; border-radius: 0; padding-left: 12px; }
+            .header__icons { position: static; margin: 12px auto 8px; width: fit-content; }
+        }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__addr">
+            <i class="fa-solid fa-location-dot"></i>
+            Địa chỉ: 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM
+        </div>
+        <div class="header__hotline">
+            <i class="fa-solid fa-phone"></i>
+            Hotline: 090 123 4567
+        </div>
+        <div class="header__logo">
+            <img src="assets/logo.png" alt="Pure Paw Logo">
+        </div>
+        <button class="header__hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="header__nav" id="mainNav">
+            <a class="header__nav-item" href="/">TRANG CHỦ</a>
+            <a class="header__nav-item" href="/gioi-thieu">GIỚI THIỆU</a>
+            <a class="header__nav-item header__nav-item--active" href="/dich-vu">
+                <span class="header__nav-dot"></span>DỊCH VỤ
+            </a>
+            <a class="header__nav-item" href="/san-pham">SẢN PHẨM</a>
+            <div class="header__nav-gap"></div>
+            <a class="header__nav-item" href="/album">ALBUM</a>
+            <a class="header__nav-item" href="/tin-tuc">TIN TỨC</a>
+            <a class="header__nav-item" href="/lien-he">LIÊN HỆ</a>
+        </nav>
+        <div class="header__icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<div class="page-hero">
+  <h1>Thanh <span>Toán</span></h1>
+  <p>Hoàn tất đặt lịch dịch vụ cho thú cưng của bạn</p>
+</div>
+
+<!-- Steps -->
+<div class="steps-wrap">
+  <div class="steps">
+    <div class="step done">
+      <div class="step-num"><svg width="13" height="13"><use href="#ic-check"/></svg></div>
+      <span class="step-label">Thông tin</span>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step active">
+      <div class="step-num">2</div>
+      <span class="step-label">Thanh toán</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <span class="step-label">Xác nhận</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="checkout-wrap">
+
+  <!-- LEFT: Payment methods -->
+  <div>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-head-icon">
+          <svg width="20" height="20" style="color:var(--ink)"><use href="#ic-tag"/></svg>
+        </div>
+        <div class="panel-title">Phương thức thanh toán</div>
+      </div>
+      <div class="panel-body">
+        <div class="method-list">
+
+          <!-- Cash -->
+          <div class="method-card active" id="card-cash" onclick="selectMethod('cash')">
+            <div class="method-top">
+              <div class="method-radio"><div class="method-radio-dot"></div></div>
+              <div class="method-logo cash-logo">
+                <svg width="22" height="22" style="color:var(--cash-green)"><use href="#ic-shield"/></svg>
+              </div>
+              <div class="method-info">
+                <div class="method-name">Thanh toán khi đến</div>
+                <div class="method-desc">Trả trực tiếp tại cửa hàng</div>
+              </div>
+              <div class="method-badge badge-fast">Dễ nhất</div>
+            </div>
+            <div class="payment-detail">
+              <div class="cash-detail">
+                <div class="cash-detail-icon">🏪</div>
+                <div>
+                  <p><strong>Không cần thanh toán trước.</strong> Bạn sẽ thanh toán trực tiếp tại quầy khi đến lịch hẹn. Chúng tôi chấp nhận tiền mặt và tất cả phương thức thanh toán tại chỗ.</p>
+                  <p style="margin-top:8px;font-size:12.5px;color:var(--muted)">📍 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bank Transfer / VietQR -->
+          <div class="method-card" id="card-bank" onclick="selectMethod('bank')">
+            <div class="method-top">
+              <div class="method-radio"><div class="method-radio-dot"></div></div>
+              <div class="method-logo bank-logo" style="font-size:9px;font-weight:800;text-align:center;line-height:1.2">VIET<br>QR</div>
+              <div class="method-info">
+                <div class="method-name">Chuyển khoản ngân hàng</div>
+                <div class="method-desc">VietQR — quét mã mọi ngân hàng</div>
+              </div>
+            </div>
+            <div class="payment-detail">
+              <div class="vietqr-wrap">
+                <!-- QR sẽ được generate bằng VietQR API -->
+                <div class="qr-box">
+                  <img id="vietqrImg" src="" alt="VietQR" style="display:none" onerror="this.style.display='none';document.getElementById('qrPlaceholder').style.display='flex'">
+                  <div id="qrPlaceholder" class="qr-placeholder">
+                    <div style="font-size:2rem">🏦</div>
+                    <div>QR sẽ hiển thị<br>sau khi tải trang</div>
+                  </div>
+                </div>
+                <div style="flex:1">
+                  <div class="bank-details">
+                    <div class="bank-row">
+                      <span class="bank-label">Ngân hàng</span>
+                      <span class="bank-val">Vietcombank (VCB)</span>
+                    </div>
+                    <div class="bank-row">
+                      <span class="bank-label">Số tài khoản</span>
+                      <span class="bank-val">
+                        <span id="bankAccNum">1234567890</span>
+                        <button class="copy-btn" onclick="copyText('1234567890','Số tài khoản')">
+                          <svg width="13" height="13"><use href="#ic-copy"/></svg>
+                        </button>
+                      </span>
+                    </div>
+                    <div class="bank-row">
+                      <span class="bank-label">Chủ tài khoản</span>
+                      <span class="bank-val">PURE PAW PET SHOP</span>
+                    </div>
+                    <div class="bank-row">
+                      <span class="bank-label">Số tiền</span>
+                      <span class="bank-val" style="color:var(--blue)" id="bankAmount">—</span>
+                    </div>
+                    <div class="bank-row">
+                      <span class="bank-label">Nội dung CK</span>
+                      <span class="bank-val" style="font-size:12.5px">
+                        <span id="transferContent">DATLICH SĐT</span>
+                        <button class="copy-btn" onclick="copyTransferContent()">
+                          <svg width="13" height="13"><use href="#ic-copy"/></svg>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="vietqr-note">
+                    <svg width="14" height="14" style="flex-shrink:0;margin-top:2px"><use href="#ic-shield"/></svg>
+                    Quét mã QR bằng app ngân hàng bất kỳ hỗ trợ VietQR. Thông tin tự điền sẵn, không cần nhập tay.
+                  </div>
+                  <div class="vietqr-poweredby">
+                    Powered by <span class="vietqr-badge">VietQR</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MoMo -->
+          <div class="method-card" id="card-momo" onclick="selectMethod('momo')">
+            <div class="method-top">
+              <div class="method-radio"><div class="method-radio-dot"></div></div>
+              <div class="method-logo momo-logo" style="font-weight:900;font-size:13px;letter-spacing:-.02em">MoMo</div>
+              <div class="method-info">
+                <div class="method-name">Ví MoMo</div>
+                <div class="method-desc">Chuyển tiền qua số điện thoại hoặc QR</div>
+              </div>
+              <div class="method-badge badge-pop">Phổ biến</div>
+            </div>
+            <div class="payment-detail">
+              <div class="momo-wrap">
+                <div class="momo-qr-box">
+                  <div class="momo-qr-head">QUÉT QR MOMO</div>
+                  <div class="momo-qr-img">
+                    <img src="/FRONTEND CLIENT/assets/payment/ma_qr.png" alt="MoMo QR" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;color:#AE2070\'>💜</div>'">
+                  </div>
+                </div>
+                <div class="momo-details">
+                  <div class="momo-phone-row">
+                    <div class="momo-phone-label">Số MoMo</div>
+                    <div class="momo-phone-val">
+                      <span>0837 645 555</span>
+                      <button class="copy-btn" onclick="copyText('0837645555','Số MoMo')" style="border-color:rgba(174,32,112,.2)">
+                        <svg width="13" height="13" style="color:var(--momo-pink)"><use href="#ic-copy"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="momo-steps">
+                    <div class="momo-step">
+                      <div class="momo-step-num">1</div>
+                      <span>Mở app <strong>MoMo</strong> → chọn <strong>Chuyển tiền</strong></span>
+                    </div>
+                    <div class="momo-step">
+                      <div class="momo-step-num">2</div>
+                      <span>Nhập số <strong>0837 645 555</strong> hoặc quét QR</span>
+                    </div>
+                    <div class="momo-step">
+                      <div class="momo-step-num">3</div>
+                      <span>Nhập số tiền và nội dung <strong id="momoContent">DATLICH SĐT</strong></span>
+                    </div>
+                    <div class="momo-step">
+                      <div class="momo-step-num">4</div>
+                      <span>Xác nhận thanh toán và chụp màn hình</span>
+                    </div>
+                  </div>
+                  <div class="momo-deeplink">
+                    <a href="https://nhantien.momo.vn/purepaw" id="momoDeeplink" class="btn-momo-open" target="_blank">
+                      <span style="font-size:16px">💜</span>
+                      Mở app MoMo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Order summary -->
+  <div class="summary-panel">
+    <div class="panel">
+      <div class="summary-head">
+        <div class="panel-head-icon" style="background:var(--warm);border:1px solid var(--border)">
+          <svg width="19" height="19" style="color:var(--gold-dark)"><use href="#ic-calendar"/></svg>
+        </div>
+        <div class="panel-title">Thông tin đặt lịch</div>
+      </div>
+
+      <div class="order-rows">
+        <div class="order-row">
+          <span class="order-label"><svg width="14" height="14" style="color:var(--gold-dark)"><use href="#ic-tag"/></svg> Dịch vụ</span>
+          <span class="order-val" id="s-service">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label"><svg width="14" height="14" style="color:var(--gold-dark)"><use href="#ic-user"/></svg> Khách hàng</span>
+          <span class="order-val" id="s-name">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label"><svg width="14" height="14" style="color:var(--gold-dark)"><use href="#ic-phone"/></svg> Điện thoại</span>
+          <span class="order-val" id="s-phone">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label">🐾 Thú cưng</span>
+          <span class="order-val" id="s-pet">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label"><svg width="14" height="14" style="color:var(--gold-dark)"><use href="#ic-calendar"/></svg> Ngày hẹn</span>
+          <span class="order-val" id="s-date">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label"><svg width="14" height="14" style="color:var(--gold-dark)"><use href="#ic-clock"/></svg> Giờ hẹn</span>
+          <span class="order-val" id="s-time">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label">Giá dịch vụ</span>
+          <span class="order-val" id="s-price">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label">Phí đặt lịch</span>
+          <span class="order-val" style="color:var(--green)">Miễn phí</span>
+        </div>
+      </div>
+
+      <div class="order-total-box">
+        <span class="total-label">Tổng cộng</span>
+        <span class="total-val" id="s-total">—</span>
+      </div>
+
+      <div class="discount-note">
+        <svg width="14" height="14" style="flex-shrink:0"><use href="#ic-tag"/></svg>
+        Đặt lịch online — giảm <strong>15%</strong> đã được áp dụng!
+      </div>
+
+      <div class="action-area">
+        <button class="btn-confirm" onclick="confirmPayment()">
+          Xác nhận đặt lịch
+          <svg width="16" height="16"><use href="#ic-arrow-right"/></svg>
+        </button>
+        <button class="btn-back" onclick="history.back()">
+          <svg width="15" height="15"><use href="#ic-arrow-left"/></svg>
+          Quay lại
+        </button>
+        <div class="secure-note">
+          <svg width="13" height="13" style="color:var(--green)"><use href="#ic-shield"/></svg>
+          Thanh toán an toàn & được bảo mật
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end checkout-wrap -->
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successOverlay">
+  <div class="success-modal">
+    <div class="success-circle">
+      <svg width="38" height="38" style="color:white"><use href="#ic-check"/></svg>
+    </div>
+    <h2>Đặt lịch<br>thành công! 🎉</h2>
+    <p>Cảm ơn bạn đã tin tưởng Pure Paw Pet Shop. Chúng tôi sẽ liên hệ xác nhận lịch hẹn trong vòng 30 phút.</p>
+    <div class="booking-ref">
+      Mã đặt lịch của bạn
+      <strong id="bookingRef">—</strong>
+    </div>
+    <div class="success-actions">
+      <button class="btn-home" onclick="window.location.href='/'">
+        <svg width="16" height="16"><use href="#ic-home"/></svg>
+        Về trang chủ
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const BANK_CONFIG = {
+  bankId: 'VCB',          // Vietcombank
+  accountNo: '1234567890',
+  accountName: 'PURE PAW PET SHOP',
+  template: 'compact'     // VietQR template
+};
+
+const MOMO_PHONE = '0837645555';
+
+// ── LOAD BOOKING DATA ────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Try localStorage first; fallback to demo data
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem('bookingData')); } catch(e){}
+
+  if (!d) {
+    // Demo data so page looks real without a form
+    d = {
+      service: 'Dịch vụ Thú Y',
+      name: 'Nguyễn Văn A',
+      phone: '0912345678',
+      petName: 'Mochi',
+      petType: 'dog',
+      date: '2025-04-20',
+      time: '09:00 – 10:00',
+      notes: ''
+    };
+  }
+
+  const price = getPrice(d.service);
+  const discount = Math.round(price * 0.15);
+  const total = price - discount;
+
+  // Populate summary
+  document.getElementById('s-service').textContent = d.service;
+  document.getElementById('s-name').textContent = d.name;
+  document.getElementById('s-phone').textContent = d.phone;
+  document.getElementById('s-pet').textContent = (d.petName || '—') + ' (' + getPetLabel(d.petType) + ')';
+  document.getElementById('s-date').textContent = fmtDate(d.date);
+  document.getElementById('s-time').textContent = d.time || '—';
+  document.getElementById('s-price').textContent = fmtMoney(price);
+  document.getElementById('s-total').textContent = fmtMoney(total);
+
+  // Bank
+  const content = 'DATLICH ' + d.phone;
+  document.getElementById('transferContent').textContent = content;
+  document.getElementById('bankAmount').textContent = fmtMoney(total);
+
+  // MoMo content
+  document.getElementById('momoContent').textContent = content;
+
+  // MoMo deep link — nhantien.momo.vn format
+  const momoUrl = `https://nhantien.momo.vn/${MOMO_PHONE}?amount=${total}&message=${encodeURIComponent(content)}`;
+  document.getElementById('momoDeeplink').href = momoUrl;
+
+  // VietQR — generate QR image via vietqr.io API (free, no auth needed)
+  generateVietQR(total, content);
+});
+
+// ── VietQR API ────────────────────────────────────────────
+function generateVietQR(amount, content) {
+  // VietQR img API: https://img.vietqr.io/image/{bankId}-{accountNo}-{template}.png
+  const base = `https://img.vietqr.io/image/${BANK_CONFIG.bankId}-${BANK_CONFIG.accountNo}-${BANK_CONFIG.template}.png`;
+  const params = new URLSearchParams({
+    amount: amount,
+    addInfo: content,
+    accountName: BANK_CONFIG.accountName
+  });
+  const url = `${base}?${params.toString()}`;
+
+  const img = document.getElementById('vietqrImg');
+  const placeholder = document.getElementById('qrPlaceholder');
+
+  img.onload = () => {
+    img.style.display = 'block';
+    if (placeholder) placeholder.style.display = 'none';
+  };
+  img.onerror = () => {
+    img.style.display = 'none';
+    if (placeholder) {
+      placeholder.style.display = 'flex';
+      placeholder.innerHTML = '<div style="font-size:1.8rem">🏦</div><div style="font-size:11px;color:#8C7A5E;text-align:center">Không tải được QR.<br>Nhập tay số TK bên cạnh.</div>';
+    }
+  };
+  img.src = url;
+}
+
+// ── SELECT METHOD ─────────────────────────────────────────
+let currentMethod = 'cash';
+function selectMethod(m) {
+  currentMethod = m;
+  ['cash','bank','momo'].forEach(id => {
+    document.getElementById('card-' + id).classList.toggle('active', id === m);
+  });
+}
+
+// ── COPY ──────────────────────────────────────────────────
+function copyText(text, label) {
+  navigator.clipboard.writeText(text).then(() => showToast('✓ Đã sao chép ' + label));
+}
+function copyTransferContent() {
+  copyText(document.getElementById('transferContent').textContent, 'nội dung chuyển khoản');
+}
+
+// ── CONFIRM ───────────────────────────────────────────────
+function confirmPayment() {
+  const ref = 'PP' + Date.now().toString().slice(-6);
+  document.getElementById('bookingRef').textContent = ref;
+  document.getElementById('successOverlay').classList.add('open');
+  try { localStorage.removeItem('bookingData'); } catch(e){}
+}
+
+// ── HELPERS ───────────────────────────────────────────────
+function getPrice(svc) {
+  const p = {
+    'Grooming':499000,'Dắt dạo':200000,'Tắm gội':300000,
+    'Huấn luyện':500000,'Cắt móng':100000,'Nhà trẻ':350000,
+    'Gói Basic':499000,'Gói Advanced':899000,
+    'Dịch vụ Thú Y':200000,'Khám tổng quát':200000,
+    'Vaccine 5 bệnh':250000,'Vaccine 3 bệnh':200000
+  };
+  return p[svc] || 200000;
+}
+function getPetLabel(t) {
+  return ({dog:'Chó',cat:'Mèo',other:'Khác'})[t] || t || '—';
+}
+function fmtDate(s) {
+  if (!s) return '—';
+  const d = new Date(s);
+  return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+}
+function fmtMoney(n) {
+  return n.toLocaleString('vi-VN') + 'đ';
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>

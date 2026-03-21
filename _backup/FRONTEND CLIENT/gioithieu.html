@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Tôi - Pure Paw Pet Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFF9F0;
+            color: #333;
+        }
+
+        /* ═══════════════════════════════════════
+           HEADER
+        ═══════════════════════════════════════ */
+        .header {
+            width: 100%;
+            background: #fff;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid #f0e8d0;
+        }
+        .header__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            height: 136px;
+            position: relative;
+        }
+        .header__addr {
+            position: absolute;
+            left: 78px;
+            top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__addr i { font-size: 16px; color: #1c1c1c; }
+        .header__hotline {
+            position: absolute;
+            right: 78px; top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__hotline i { font-size: 16px; color: #1c1c1c; }
+        .header__logo {
+            position: absolute;
+            left: 53%; top: 0;
+            transform: translateX(-50%);
+            width: 136px; height: 136px;
+            z-index: 5; overflow: hidden;
+        }
+        .header__logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .header__nav {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 63px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding-right: 160px;
+        }
+        .header__nav-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 22px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600; font-size: 18px; color: #1c1c1c;
+            white-space: nowrap; text-decoration: none;
+            line-height: 1.2; height: 42px;
+            position: relative; z-index: 1;
+            transition: color 0.2s;
+        }
+        .header__nav-item:hover { color: #ffb606; }
+        .header__nav-item--active {
+            border: 2px solid #ffb606;
+            border-radius: 24px;
+        }
+        .header__nav-dot {
+            width: 7px; height: 7px;
+            background: #1c1c1c; border-radius: 50%; flex-shrink: 0;
+        }
+        .header__nav-gap { width: 136px; flex-shrink: 0; pointer-events: none; }
+        .header__icons {
+            position: absolute;
+            right: 60px; bottom: 11px;
+            display: flex; align-items: center;
+            background: #ffb606;
+            border-radius: 24px;
+            padding: 8px 14px;
+            height: 42px;
+            gap: 14px;
+            z-index: 6;
+        }
+        .header__icons i {
+            font-size: 18px;
+            color: #000;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .header__icons i:hover { opacity: 0.6; }
+        .header__hamburger {
+            display: none;
+            position: absolute;
+            right: 20px; top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            z-index: 10;
+        }
+        .header__hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: #1c1c1c;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .header__nav--open { display: flex !important; }
+
+        @media (max-width: 800px) {
+            .header__inner { height: auto; min-height: 70px; }
+            .header__addr, .header__hotline { display: none; }
+            .header__logo {
+                position: relative;
+                left: auto; transform: none;
+                margin: 0 auto;
+                display: block;
+                width: 80px; height: 80px;
+            }
+            .header__hamburger { display: flex; }
+            .header__nav {
+                display: none;
+                position: static;
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px 16px;
+                gap: 0;
+                border-top: 1px solid #f0e8d0;
+            }
+            .header__nav-gap { display: none; }
+            .header__nav-item { font-size: 15px; padding: 10px 0; width: 100%; height: auto; }
+            .header__nav-item--active { border: none; border-left: 3px solid #ffb606; border-radius: 0; padding-left: 12px; }
+            .header__icons { position: static; margin: 12px auto 8px; width: fit-content; }
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Our Story Section */
+        .story-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .story-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #FDB913;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .story-subtitle {
+            font-size: 1.1rem;
+            color: #000000;
+            margin: 0 auto 0px;
+            line-height: 1.6;
+        }
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .story-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        .story-image:hover {
+            transform: scale(1.03);
+        }
+        .story-text-content { text-align: left; }
+        .story-text-title {
+            font-size: 2rem;
+            color: #FDB913;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .story-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #1c1c1c;
+        }
+
+        /* Values Section */
+        .values-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .values-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #FDB913;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .value-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        .icon-blue { background-color: #4A90E2; }
+        .icon-yellow { background-color: #FDB913; }
+        .icon-orange { background-color: #FF8C42; }
+        .icon-red { background-color: #E74C3C; }
+        .value-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1C1C1C;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .value-detail {
+            font-size: 0.9rem;
+            color: #1c1c1c;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: #FDB913;
+            padding: 60px 40px;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .stats-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #1c1c1c;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1c1c1c;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #1c1c1c 0%, #FDB913 50%, #1c1c1c 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #1c1c1c;
+            font-weight: 500;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .testimonials-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FDB913;
+            margin-bottom: 15px;
+        }
+        .testimonials-subtitle {
+            font-size: 1rem;
+            color: #1c1c1c;
+            margin-bottom: 50px;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: left;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+            border: 3px solid #FDB913;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 0;
+            display: block;
+        }
+        .testimonial-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1c1c1c;
+        }
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #1c1c1c;
+        }
+        .testimonial-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #1c1c1c;
+            font-style: italic;
+        }
+        .testimonial-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #FF8C42;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 0;
+            padding-bottom: 6px;
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .nav-arrows {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #FF8C42;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-arrow:hover {
+            background-color: #FDB913;
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: #FF8C42;
+            transform: scale(1.4);
+        }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Footer */
+        .footer {
+            background: #1C1C1C;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+        .footer-article { padding: 50px 0 30px; }
+        .footer-news { margin-bottom: 30px; }
+        .logo-footer img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .name-footer {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFE002;
+            margin-bottom: 15px;
+        }
+        .info-footer {
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .title-footer {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFE002;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FFE002;
+        }
+        .footer-ul { list-style: none; padding: 0; }
+        .footer-ul li { margin-bottom: 10px; }
+        .footer-ul a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        .footer-ul a:hover { color: #FFE002; padding-left: 10px; }
+        .footer-powered {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .social {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+        .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 182, 6, 0.5);
+        }
+        .wrap-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Scroll to Top */
+        .scrollToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 182, 6, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .scrollToTop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 182, 6, 0.6);
+        }
+        .scrollToTop::before {
+            content: "↑";
+            font-size: 24px;
+            color: #1C1C1C;
+            font-weight: 700;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-on-scroll { opacity: 0; }
+        .animate-on-scroll.animated { animation: fadeInUp 0.8s ease forwards; }
+
+        @media (max-width: 968px) {
+            .story-content { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-section { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .story-title { font-size: 2.5rem; }
+            .values-title { font-size: 2rem; }
+            .values-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__addr">
+            <i class="fa-solid fa-location-dot"></i>
+            Địa chỉ: 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM
+        </div>
+        <div class="header__hotline">
+            <i class="fa-solid fa-phone"></i>
+            Hotline: 090 123 4567
+        </div>
+        <div class="header__logo">
+            <img src="assets/logo.png" alt="Pure Paw Logo">
+        </div>
+        <button class="header__hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="header__nav" id="mainNav">
+            <a class="header__nav-item" href="/">TRANG CHỦ</a>
+            <a class="header__nav-item header__nav-item--active" href="/gioi-thieu">
+                <span class="header__nav-dot"></span>GIỚI THIỆU
+            </a>
+            <a class="header__nav-item" href="/dich-vu">DỊCH VỤ</a>
+            <a class="header__nav-item" href="/san-pham">SẢN PHẨM</a>
+            <div class="header__nav-gap"></div>
+            <a class="header__nav-item" href="/album">ALBUM</a>
+            <a class="header__nav-item" href="/tin-tuc">TIN TỨC</a>
+            <a class="header__nav-item" href="/lien-he">LIÊN HỆ</a>
+        </nav>
+        <div class="header__icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- Our Story Section -->
+    <section class="story-section animate-on-scroll">
+        <h1 class="story-title">Câu Chuyện Của Chúng Tôi</h1>
+        <p class="story-subtitle">
+            Chúng tôi hiểu rằng thú cưng là thành viên quý giá trong gia đình bạn. 
+            Đó là lý do tại sao chúng tôi cung cấp sản phẩm chất lượng cao và dịch vụ chăm sóc chuyên nghiệp, được thiết kế riêng cho nhu cầu của từng thú cưng.
+        </p>
+        <div class="story-content">
+            <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=700&fit=crop"
+                 alt="Pure Paw Pet Shop" class="story-image reveal-left">
+            <div class="story-text-content reveal-right">
+                <h2 class="story-text-title">Đam Mê Với Thú Cưng Và Cam Kết Chất Lượng Hàng Đầu</h2>
+                <p class="story-text">
+                    Pure Paw được thành lập bởi một nhóm người yêu động vật, những người mong muốn mang đến cửa hàng thú cưng với sản phẩm chất lượng và dịch vụ tận tâm. Từ khi bắt đầu, sứ mệnh của chúng tôi rất rõ ràng: cung cấp cho thú cưng những sản phẩm tốt nhất và dịch vụ chăm sóc chuyên nghiệp nhất.
+                    <br><br>
+                    Những gì bắt đầu như một cửa hàng nhỏ với niềm đam mê về chất lượng đã phát triển thành điểm đến tin cậy cho hàng ngàn chủ thú cưng. Với đa dạng sản phẩm từ thức ăn, snacks, đồ chơi, nhà ở, phụ kiện cho đến dịch vụ grooming chuyên nghiệp, chúng tôi cam kết mang đến trải nghiệm mua sắm và chăm sóc tốt nhất cho thú cưng của bạn.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section animate-on-scroll">
+        <h2 class="values-title">Giá Trị Của Chúng Tôi</h2>
+        <div class="values-grid">
+            <div class="value-card reveal reveal-delay-1">
+                <div class="value-icon icon-blue">🛡️</div>
+                <h3 class="value-name">Uy Tín</h3>
+                <div class="value-detail">100% sản phẩm chính hãng cho thú cưng của bạn.</div>
+            </div>
+            <div class="value-card reveal reveal-delay-2">
+                <div class="value-icon icon-yellow">⏰</div>
+                <h3 class="value-name">Giờ Mở Cửa</h3>
+                <div class="value-detail">
+                    Thứ Hai - Thứ Sáu: 8:00 - 18:00<br>
+                    Thứ Bảy: 9:00 - 14:30<br>
+                    Chủ Nhật: 9:00 - 14:00
+                </div>
+            </div>
+            <div class="value-card reveal reveal-delay-3">
+                <div class="value-icon icon-orange">🤝</div>
+                <h3 class="value-name">Tận Tâm</h3>
+                <div class="value-detail">Dịch vụ tận tâm từ đáy lòng chúng tôi.</div>
+            </div>
+            <div class="value-card reveal reveal-delay-4">
+                <div class="value-icon icon-red">❤️</div>
+                <h3 class="value-name">Yêu Thương</h3>
+                <div class="value-detail">Chỉ có thức ăn và dịch vụ tốt nhất.</div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h3 class="stats-title reveal-left">PURE PAW ĐÃ ĐẠT ĐƯỢC THÀNH CÔNG VƯỢT TRỘI</h3>
+            <div class="stats-grid">
+                <div class="stat-card reveal reveal-delay-1">
+                    <div class="stat-number" data-target="8">0</div>
+                    <div class="stat-label">Chi nhánh</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-2">
+                    <div class="stat-number" data-target="4.9">0</div>
+                    <div class="stat-label">Đánh giá trung bình</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-3">
+                    <div class="stat-number" data-target="2000">0</div>
+                    <div class="stat-label">Thú cưng vui vẻ</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-4">
+                    <div class="stat-number" data-target="0">0</div>
+                    <div class="stat-label">Sự cố hoặc tai nạn</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2 class="testimonials-title reveal">Khách Hàng Hài Lòng, Thú Cưng Vui Vẻ.</h2>
+        <p class="testimonials-subtitle reveal">
+            Đọc những chia sẻ chân thành từ những khách hàng đã tin tưởng lựa chọn Pure Paw cho thú cưng của họ.
+        </p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer2.jpg" alt="Nguyễn Minh Anh">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Nguyễn Minh Anh</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Tôi rất hài lòng với chất lượng thức ăn cho mèo tại Pure Paw. Chú mèo của tôi trước đây rất kén ăn, nhưng từ khi dùng sản phẩm ở đây thì ăn rất ngon miệng. Nhân viên tư vấn nhiệt tình và am hiểu sản phẩm."</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer5.jpg" alt="Trần Đức Huy">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Trần Đức Huy</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Dịch vụ grooming tại Pure Paw thật tuyệt vời! Chú chó của tôi sau mỗi lần cắt tỉa lông đều trở về với bộ lông đẹp và mùi hương thơm tho. Giá cả hợp lý, nhân viên chuyên nghiệp và yêu thương thú cưng."</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer3.jpg" alt="Phạm Thu Hà">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Phạm Thu Hà</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Mình mua đồ chơi và phụ kiện cho chó tại Pure Paw, chất lượng rất tốt và giá cả phải chăng. Những món đồ chơi an toàn, không mùi lạ. Chú chó nhà mình rất thích và chơi rất vui."</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer6.jpg" alt="Lê Hoàng Nam">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Lê Hoàng Nam</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Pure Paw có đa dạng sản phẩm snacks cho thú cưng với nguồn gốc rõ ràng. Chú Golden của tôi rất thích các loại bánh thưởng ở đây. Cửa hàng luôn có hàng mới, sản phẩm chất lượng cao."</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer2.jpg" alt="Võ Thanh Tâm">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Võ Thanh Tâm</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Tôi đã mua nhà cho mèo và nhiều phụ kiện tại Pure Paw. Sản phẩm đẹp, chắc chắn và giá tốt. Hai chú mèo nhà tôi rất thích ngôi nhà mới. Sẽ tiếp tục ủng hộ cửa hàng!"</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <img src="./assets/customer4.jpg" alt="Bùi Thị Lan">
+                    </div>
+                    <div>
+                        <div class="testimonial-name">Bùi Thị Lan</div>
+                        <div class="testimonial-role">Chủ thú cưng</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Mình thường xuyên mua snacks và đồ nhai răng cho Poodle tại Pure Paw. Sản phẩm an toàn, có nguồn gốc rõ ràng và chú chó rất thích. Giá cả cạnh tranh, có nhiều chương trình khuyến mãi."</p>
+                <div class="testimonial-icon"><i class="fa-solid fa-quote-right"></i></div>
+            </div>
+        </div>
+
+        <div class="nav-arrows">
+            <button class="nav-arrow">‹</button>
+            <button class="nav-arrow">›</button>
+        </div>
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-article">
+        <div class="wrap-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div class="footer-news">
+                    <a class="logo-footer" href="/"><img src="assets/logo.png" alt="PurePaw Pet Shop"></a>
+                    <div class="name-footer">PUREPAW PET SHOP</div>
+                    <div class="info-footer">
+                        <p>
+                            <strong>"Mọi Thứ Tốt Nhất Cho Người Bạn Bốn Chân"</strong><br><br>
+                            📍 Địa chỉ: 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM<br>
+                            📞 Điện thoại: 090 123 4567<br>
+                            ✉️ Email: support@purepaw.vn<br>
+                            🌐 Website: https://purepaw.vn
+                        </p>
+                    </div>
+                    <ul class="social">
+                        <li><a href="https://www.facebook.com/purepawpetshop" target="_blank">f</a></li>
+                        <li><a href="#">📷</a></li>
+                        <li><a href="#">▶️</a></li>
+                    </ul>
+                </div>
+                <div class="footer-news">
+                    <h4 class="title-footer">DANH MỤC SẢN PHẨM</h4>
+                    <ul class="footer-ul">
+                        <li><a href="/thuc-an">Thức ăn cho thú cưng</a></li>
+                        <li><a href="/do-choi">Đồ chơi & Nhà ở</a></li>
+                        <li><a href="/phu-kien">Phụ kiện thời trang</a></li>
+                        <li><a href="/dich-vu-grooming">Dịch vụ Grooming</a></li>
+                        <li><a href="/san-pham-moi">Sản phẩm mới</a></li>
+                        <li><a href="/khuyen-mai">Khuyến mãi hot</a></li>
+                    </ul>
+                </div>
+                <div class="footer-news">
+                    <h4 class="title-footer">CHÍNH SÁCH & HỖ TRỢ</h4>
+                    <ul class="footer-ul">
+                        <li><a href="/chinh-sach-doi-tra">Chính sách đổi trả</a></li>
+                        <li><a href="/chinh-sach-bao-hanh">Chính sách bảo hành</a></li>
+                        <li><a href="/chinh-sach-giao-hang">Chính sách giao hàng</a></li>
+                        <li><a href="/huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                    <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 40px;">🕐</div>
+                        <div>
+                            <div style="color: #FFE002; font-weight: 700; margin-bottom: 5px;">Giờ Mở Cửa</div>
+                            <span>08:00 - 21:00 (Thứ 2 - Chủ nhật)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-powered">
+        <div class="wrap-content">
+            Bản quyền © <strong>PUREPAW PET SHOP</strong>. Tất cả quyền được bảo lưu. Thiết kế bởi Nina
+        </div>
+    </div>
+</footer>
+
+<div class="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"></div>
+
+<script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mainNav   = document.getElementById('mainNav');
+    hamburger.addEventListener('click', () => mainNav.classList.toggle('header__nav--open'));
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mainNav.contains(e.target))
+            mainNav.classList.remove('header__nav--open');
+    });
+
+    // Scroll to top button
+    window.addEventListener('scroll', function() {
+        document.querySelector('.scrollToTop').style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+    });
+
+    // Counter Animation
+    function animateCounter(element) {
+        const target = parseFloat(element.getAttribute('data-target'));
+        const isDecimal = target % 1 !== 0;
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                element.textContent = isDecimal ? current.toFixed(1) : (target >= 1000 ? Math.floor(current) + '+' : Math.floor(current));
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = isDecimal ? target.toFixed(1) : (target >= 1000 ? target + '+' : target);
+            }
+        };
+        updateCounter();
+    }
+
+    // Intersection Observer cho animate-on-scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                if (entry.target.classList.contains('values-section')) {
+                    entry.target.querySelectorAll('.stat-number').forEach(counter => animateCounter(counter));
+                }
+            }
+        });
+    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+    document.querySelectorAll('.animate-on-scroll').forEach(section => observer.observe(section));
+
+    // Scroll Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+        .forEach(el => revealObserver.observe(el));
+
+    // Testimonial Carousel
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
+    const navArrows = document.querySelectorAll('.nav-arrow');
+    let currentPage = 0;
+
+    function getTestimonialsPerPage() { return window.innerWidth <= 968 ? 1 : 2; }
+    function getTotalPages() { return Math.ceil(testimonialCards.length / getTestimonialsPerPage()); }
+
+    function showTestimonials(pageIndex) {
+        const perPage = getTestimonialsPerPage();
+        const startIndex = pageIndex * perPage;
+        testimonialCards.forEach(card => card.style.display = 'none');
+        for (let i = 0; i < perPage; i++) {
+            if (startIndex + i < testimonialCards.length)
+                testimonialCards[startIndex + i].style.display = 'block';
+        }
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === pageIndex));
+        currentPage = pageIndex;
+    }
+
+    navArrows[1].addEventListener('click', (e) => { e.preventDefault(); currentPage = (currentPage + 1) % getTotalPages(); showTestimonials(currentPage); });
+    navArrows[0].addEventListener('click', (e) => { e.preventDefault(); currentPage = (currentPage - 1 + getTotalPages()) % getTotalPages(); showTestimonials(currentPage); });
+    dots.forEach((dot, i) => { dot.style.cursor = 'pointer'; dot.addEventListener('click', () => showTestimonials(i)); });
+
+    let autoplayInterval = setInterval(() => { currentPage = (currentPage + 1) % getTotalPages(); showTestimonials(currentPage); }, 5000);
+
+    const testimonialSection = document.querySelector('.testimonials-section');
+    testimonialSection.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    testimonialSection.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(() => { currentPage = (currentPage + 1) % getTotalPages(); showTestimonials(currentPage); }, 5000);
+    });
+
+    window.addEventListener('resize', () => { currentPage = 0; showTestimonials(currentPage); });
+    showTestimonials(currentPage);
+</script>
+
+</body>
+</html>

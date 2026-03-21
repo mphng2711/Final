@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Dashboard</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background: #f4f6f9;
+            }
+
+            /* Topbar */
+            .topbar {
+                height: 50px;
+                background: hsl(50, 94%, 45%);
+                color: #fff;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-weight: bold;
+                margin-right: auto;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Layout */
+            .container {
+                display: flex;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                width: 230px;
+                background: #e9ecef;
+                min-height: calc(100vh - 50px);
+            }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+            .sidebar li {
+                padding: 14px 20px;
+                cursor: pointer;
+            }
+
+            .sidebar li:hover,
+            .sidebar .active {
+                background: #fff;
+                font-weight: bold;
+            }
+
+            /* Content */
+            .content {
+                flex: 1;
+                padding: 20px;
+            }
+
+            /* Statistic cards */
+            .stats {
+                display: flex;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+
+            .card {
+                flex: 1;
+                padding: 20px;
+                color: #fff;
+                border-radius: 4px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .card h2 {
+                font-size: 32px;
+                margin-top: 5px;
+            }
+
+            .blue { background: #75adea; }
+            .green { background: #5fde7d; }
+            .yellow { background: #dfc064;}
+
+            /* Chart */
+            .chart-box {
+                background: #fff;
+                padding: 20px;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+        <!-- Topbar -->
+        <header class="topbar">            
+            <div class="logo">
+                <img src="IMAGES/WebLogo.png" style="height: 30px;"> &nbsp;
+                PURE PAW PET HOUSE
+            </div>
+        </header>
+
+        <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li class="active">Dashboard</li>
+                <li>Order Management</li>
+                <li>Product Management</li>
+                <li>Category Management</li>
+            </ul>
+        </aside>
+
+        <!-- Main content -->
+        <main class="content">
+            <!-- Statistic cards -->
+            <div class="stats">
+                <div class="card blue">
+                    <p>Number of customers</p>
+                    <h2>200</h2>
+                </div>
+                <div class="card green">
+                    <p>Total products</p>
+                    <h2>150</h2>
+                </div>
+                <div class="card yellow">
+                    <p>Total orders</p>
+                    <h2>75</h2>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-box">
+                <h3>Order Statistics</h3>
+                <canvas id="orderChart"></canvas>
+            </div>
+        </main>

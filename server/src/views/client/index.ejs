@@ -1,0 +1,448 @@
+
+<style>
+/* ══════════════════════════════════════════════════════
+   TRANG CHỦ — Theme đồng bộ PurePaw
+   ══════════════════════════════════════════════════════ */
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(255,224,2,.12) 0%, rgba(255,182,6,.12) 100%);
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.hero-section h1 {
+    font-size: 52px;
+    color: #1C1C1C;
+    margin-bottom: 20px;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+}
+.hero-section h1::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 5px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    border-radius: 3px;
+}
+.hero-section p {
+    font-size: 20px; color: #555;
+    margin-top: 35px; max-width: 600px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 16px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+.hero-btn-primary {
+    padding: 16px 36px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; border: none; border-radius: 12px;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    text-decoration: none; transition: all .3s;
+    box-shadow: 0 4px 15px rgba(255,182,6,.3);
+}
+.hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,182,6,.4); }
+.hero-btn-secondary {
+    padding: 16px 36px;
+    background: #1C1C1C; color: #FFE002;
+    border: none; border-radius: 12px;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    text-decoration: none; transition: all .3s;
+}
+.hero-btn-secondary:hover { background: #333; transform: translateY(-3px); }
+
+/* Section Title */
+.section-title {
+    text-align: center;
+    font-size: 36px; color: #1C1C1C;
+    margin-bottom: 50px; font-weight: 800;
+    position: relative; display: block;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    border-radius: 3px;
+}
+
+/* Features Section */
+.features-section {
+    background: #fff;
+    padding: 70px 0; margin-bottom: 60px;
+    border-radius: 20px;
+    box-shadow: 0 5px 30px rgba(0,0,0,.06);
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 30px; margin-top: 40px;
+}
+.feature-card {
+    background: #fff; padding: 35px 25px;
+    border-radius: 16px; border: 2px solid #f0f0f0;
+    text-align: center; transition: all .3s ease;
+}
+.feature-card:hover {
+    border-color: #FFE002;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(255,224,2,.15);
+}
+.feature-icon { font-size: 50px; margin-bottom: 20px; }
+.feature-card h3 { font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 12px; }
+.feature-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+/* Services Section */
+.services-section { margin-bottom: 60px; }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 25px; margin-top: 40px;
+}
+.service-card {
+    background: #fff; padding: 35px;
+    border-radius: 16px; border: 2px solid #f0f0f0;
+    transition: all .3s;
+}
+.service-card:hover {
+    border-color: #FFE002;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255,224,2,.15);
+}
+.service-icon { font-size: 42px; margin-bottom: 18px; }
+.service-card h3 { font-size: 20px; font-weight: 700; color: #1C1C1C; margin-bottom: 15px; }
+.service-card ul { list-style: none; padding: 0; }
+.service-card ul li {
+    padding: 8px 0; font-size: 14px; color: #444;
+    border-bottom: 1px solid #f5f5f5; display: flex; align-items: center; gap: 8px;
+}
+.service-card ul li::before { content: "✓"; color: #FFB606; font-weight: 700; }
+.service-card ul li:last-child { border-bottom: none; }
+
+/* Products Section */
+.home-products-section { margin-bottom: 60px; }
+.home-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap: 25px; margin-top: 40px;
+}
+.home-product-card {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    transition: all .3s; display: flex; flex-direction: column;
+}
+.home-product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(255,182,6,.2); }
+.home-product-img {
+    height: 280px; overflow: hidden;
+    background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    border-bottom: 3px solid #FFE002;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.home-product-img img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform .4s;
+}
+.home-product-card:hover .home-product-img img { transform: scale(1.08); }
+.home-product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.home-product-info h3 { font-size: 15px; font-weight: 700; color: #1C1C1C; margin: 0; }
+.home-product-info h3 a { color: inherit; text-decoration: none; }
+.home-product-info h3 a:hover { color: #FFB606; }
+.home-product-price {
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; font-weight: 700; font-size: 15px;
+    padding: 7px 14px; border-radius: 8px; display: inline-block; width: fit-content;
+}
+.home-product-btn {
+    display: block; text-align: center; padding: 11px;
+    background: #1C1C1C; color: #FFE002; border-radius: 8px;
+    text-decoration: none; font-weight: 700; font-size: 14px;
+    transition: all .25s; margin-top: auto;
+}
+.home-product-btn:hover { background: #FFE002; color: #1C1C1C; transform: translateY(-2px); }
+.view-all-wrap { text-align: center; margin-top: 40px; }
+.btn-view-all {
+    padding: 15px 40px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; border-radius: 12px;
+    text-decoration: none; font-weight: 700; font-size: 15px;
+    display: inline-block; transition: all .3s;
+    box-shadow: 0 4px 15px rgba(255,182,6,.3);
+}
+.btn-view-all:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,182,6,.4); }
+
+/* Stats Banner */
+.stats-banner {
+    background: linear-gradient(135deg,#FFE002 0%,#FFB606 100%);
+    padding: 55px 0; margin-bottom: 60px; border-radius: 20px;
+}
+.stats-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap: 30px; text-align: center;
+}
+.stat-item-home .num {
+    font-size: 42px; font-weight: 900; color: #1C1C1C; display: block;
+}
+.stat-item-home .lbl {
+    font-size: 15px; color: #3b3b3b; font-weight: 600; margin-top: 6px; display: block;
+}
+
+/* Testimonials */
+.testi-section { margin-bottom: 60px; }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; margin-top: 40px; }
+.testi-card {
+    background: #fff; padding: 35px 30px;
+    border-radius: 16px; box-shadow: 0 5px 25px rgba(0,0,0,.07);
+    border-left: 4px solid #FFE002; transition: all .3s;
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(0,0,0,.1); }
+.testi-stars { color: #FFB606; font-size: 18px; margin-bottom: 15px; }
+.testi-text { font-size: 15px; color: #444; line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #1C1C1C; flex-shrink: 0;
+}
+.testi-name { font-weight: 700; color: #1C1C1C; font-size: 15px; }
+.testi-role { font-size: 13px; color: #888; }
+
+/* CTA Section */
+.cta-section {
+    background: #1C1C1C; color: #fff;
+    padding: 80px 0; text-align: center; border-radius: 20px;
+    margin-bottom: 60px;
+}
+.cta-section h2 { font-size: 38px; font-weight: 900; margin-bottom: 16px; }
+.cta-section h2 span { color: #FFE002; }
+.cta-section p { font-size: 17px; color: #aaa; margin-bottom: 35px; max-width: 540px; margin-left: auto; margin-right: auto; }
+
+/* Scroll top */
+.scroll-top-btn {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 50px; height: 50px;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    border-radius: 50%; display: none; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 20px; color: #1C1C1C; font-weight: 700;
+    box-shadow: 0 4px 15px rgba(255,182,6,.4);
+    transition: all .3s; z-index: 999; border: none;
+}
+.scroll-top-btn.visible { display: flex; }
+.scroll-top-btn:hover { transform: translateY(-4px); }
+
+@media (max-width: 768px) {
+    .hero-section h1 { font-size: 36px; }
+    .hero-section p { font-size: 16px; }
+    .features-grid, .services-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .home-products-grid { grid-template-columns: repeat(2,1fr); }
+    .stats-banner { padding: 40px 20px; }
+}
+@media (max-width: 480px) {
+    .hero-section { padding: 50px 0; }
+    .home-products-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<%- include('../partials/_banner-slider', { sliderInterval: 4500 }) %>
+
+<!-- Hero CTA dưới slider -->
+<section class="hero-section" style="padding:50px 0;margin-bottom:40px">
+    <div class="wrap-content">
+        <h1>🐾 PURE PAW PET SHOP</h1>
+        <p>Nơi yêu thương — chăm sóc toàn diện cho thú cưng của bạn với đội ngũ chuyên gia tận tâm và sản phẩm chất lượng cao</p>
+        <div class="hero-btns">
+            <a href="/san-pham" class="hero-btn-primary">🛍️ Xem sản phẩm</a>
+            <a href="/grooming" class="hero-btn-secondary">✂️ Đặt lịch Grooming</a>
+        </div>
+    </div>
+</section>
+
+<div class="wrap-content">
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Tại sao chọn Pure Paw?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Chất lượng hàng đầu</h3>
+                <p>Sản phẩm chính hãng từ các thương hiệu uy tín, đảm bảo dinh dưỡng và an toàn cho thú cưng</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍⚕️</div>
+                <h3>Đội ngũ chuyên nghiệp</h3>
+                <p>Groomer và chuyên viên chăm sóc được đào tạo bài bản, yêu thương và tận tâm với thú cưng</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Giao hàng nhanh</h3>
+                <p>Giao hàng tận nơi trong ngày tại TP.HCM, đảm bảo sản phẩm tươi ngon đến tay bạn</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Tư vấn 24/7</h3>
+                <p>Đội ngũ hỗ trợ luôn sẵn sàng tư vấn miễn phí về dinh dưỡng và chăm sóc thú cưng</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">Dịch vụ nổi bật</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <h3>Grooming Spa</h3>
+                <ul>
+                    <li>Tắm gội với sản phẩm cao cấp</li>
+                    <li>Cắt tỉa lông tạo kiểu</li>
+                    <li>Vệ sinh tai, cắt móng</li>
+                    <li>Massage thư giãn</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛍️</div>
+                <h3>Cửa hàng thú cưng</h3>
+                <ul>
+                    <li>Thức ăn cao cấp Royal Canin, laPaw</li>
+                    <li>Phụ kiện đa dạng</li>
+                    <li>Đồ chơi, vòng cổ, dây dắt</li>
+                    <li>Sản phẩm vệ sinh</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Tư vấn sức khỏe</h3>
+                <ul>
+                    <li>Tư vấn dinh dưỡng chuyên sâu</li>
+                    <li>Hỗ trợ chọn thức ăn phù hợp</li>
+                    <li>Giới thiệu bác sĩ thú y uy tín</li>
+                    <li>Chương trình chăm sóc định kỳ</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <% if (featuredProducts && featuredProducts.length) { %>
+    <section class="home-products-section">
+        <h2 class="section-title">Sản phẩm nổi bật</h2>
+        <div class="home-products-grid">
+            <% featuredProducts.slice(0,8).forEach(p => { %>
+            <div class="home-product-card">
+                <div class="home-product-img">
+                    <img src="<%= p.thumbnail %>"
+                         alt="<%= p.name %>"
+                         onerror="this.onerror=null;this.src='https://lapaw.vn/wp-content/uploads/2023/12/pate-meo-lapaw-thit-bo-va-ga-375gr-300x300.jpg'"
+                         loading="lazy">
+                    <% if (p.variants && p.variants[0] && p.variants[0].salePrice) { %>
+                    <span style="position:absolute;top:10px;right:10px;background:#e74c3c;color:#fff;padding:3px 10px;border-radius:15px;font-size:12px;font-weight:700">SALE</span>
+                    <% } %>
+                </div>
+                <div class="home-product-info">
+                    <h3><a href="/san-pham/<%= p.slug %>"><%= p.name %></a></h3>
+                    <% if (p.variants && p.variants[0]) { %>
+                    <span class="home-product-price"><%= (p.variants[0].salePrice || p.variants[0].price).toLocaleString('vi-VN') %>đ</span>
+                    <% } %>
+                    <a href="/san-pham/<%= p.slug %>" class="home-product-btn">Xem chi tiết →</a>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <div class="view-all-wrap">
+            <a href="/san-pham" class="btn-view-all">Xem tất cả sản phẩm →</a>
+        </div>
+    </section>
+    <% } %>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="wrap-content">
+            <div class="stats-grid-home">
+                <div class="stat-item-home">
+                    <span class="num">500+</span>
+                    <span class="lbl">Sản phẩm chất lượng</span>
+                </div>
+                <div class="stat-item-home">
+                    <span class="num">2000+</span>
+                    <span class="lbl">Khách hàng tin dùng</span>
+                </div>
+                <div class="stat-item-home">
+                    <span class="num">5+</span>
+                    <span class="lbl">Năm kinh nghiệm</span>
+                </div>
+                <div class="stat-item-home">
+                    <span class="num">98%</span>
+                    <span class="lbl">Khách hàng hài lòng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="testi-section">
+        <h2 class="section-title">Khách hàng nói gì về chúng tôi?</h2>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"Mèo nhà mình rất thích thức ăn laPaw từ Pure Paw! Shop tư vấn tận tình, giao hàng nhanh. Đã mua nhiều lần và rất hài lòng!"</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">N</div>
+                    <div>
+                        <div class="testi-name">Nguyễn Thị Lan</div>
+                        <div class="testi-role">Chủ của bé mèo Mimi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"Dịch vụ grooming tuyệt vời! Bé chó nhà mình được chăm sóc rất kỹ lưỡng, sạch sẽ thơm tho. Sẽ quay lại thường xuyên!"</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">T</div>
+                    <div>
+                        <div class="testi-name">Trần Văn Bình</div>
+                        <div class="testi-role">Chủ của Golden Retriever Lucky</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"Sản phẩm chất lượng, giá hợp lý. Groomer ở đây rất yêu thương động vật. Bé thỏ nhà mình được chăm sóc cẩn thận lắm!"</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">H</div>
+                    <div>
+                        <div class="testi-name">Hoàng Minh Thu</div>
+                        <div class="testi-role">Chủ của bé thỏ Bông</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Sẵn sàng chăm sóc <span>thú cưng</span>?</h2>
+        <p>Đặt lịch grooming hoặc mua sắm ngay hôm nay để thú cưng của bạn luôn khỏe mạnh và hạnh phúc!</p>
+        <div class="hero-btns">
+            <a href="/san-pham" class="hero-btn-primary">🛍️ Mua sắm ngay</a>
+            <a href="/grooming" style="padding:16px 36px;background:transparent;color:#FFE002;border:2px solid #FFE002;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;transition:all .3s;display:inline-block">✂️ Đặt lịch Spa</a>
+        </div>
+    </section>
+
+</div>
+
+<!-- Scroll to Top -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.pageYOffset > 300);
+});
+</script>

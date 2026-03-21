@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch Vụ Thú Y - PURE PAW PET SHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap&family=Lato:wght@400;600" rel="stylesheet">
+
+    <!-- Inline SVG sprite — no CDN needed -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <symbol id="ic-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+      </symbol>
+      <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.35 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.13 6.13l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/>
+      </symbol>
+      <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </symbol>
+      <symbol id="ic-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/><circle cx="4.5" cy="8" r="2"/>
+      </symbol>
+      <symbol id="ic-stethoscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/>
+      </symbol>
+      <symbol id="ic-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+      </symbol>
+      <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      </symbol>
+      <symbol id="ic-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6"/>
+      </symbol>
+      <symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"/>
+      </symbol>
+      <symbol id="ic-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </symbol>
+      <symbol id="ic-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </symbol>
+      <symbol id="ic-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+      </symbol>
+      <symbol id="ic-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </symbol>
+      <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </symbol>
+      <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </symbol>
+      <symbol id="ic-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 6v4"/><path d="M14 14h-4"/><path d="M14 18h-4"/><path d="M14 8h-4"/><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"/><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/>
+      </symbol>
+      <symbol id="ic-syringe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/>
+      </symbol>
+      <symbol id="ic-microscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+      </symbol>
+      <symbol id="ic-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>
+      </symbol>
+      <symbol id="ic-ambulance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 10H6"/><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-1.923-.641a1 1 0 0 1-.578-.502l-1.539-3.076A1 1 0 0 0 16.382 8H14"/><path d="M8 8v4"/><path d="M9 18h6"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
+      </symbol>
+    </svg>
+
+    <style>
+        :root {
+            --gold: #F5B800;
+            --gold-light: #FFD84D;
+            --gold-dark: #C99000;
+            --cream: #FFFDF5;
+            --warm-white: #FFF8EC;
+            --ink: #1A1209;
+            --ink-soft: #3D3020;
+            --muted: #8C7A5E;
+            --blue: #2C6FAC;
+            --border: rgba(245,184,0,0.22);
+            --shadow-gold: rgba(245,184,0,0.18);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; }
+
+        .ic { display:inline-block; vertical-align:middle; flex-shrink:0; }
+        .ic svg { display:block; }
+
+        /* ── TOPBAR ── */
+        .topbar { background:var(--ink); padding:10px 0; }
+        .topbar-inner { max-width:1200px; margin:0 auto; padding:0 30px; display:flex; justify-content:space-between; align-items:center; }
+        .topbar-item { display:flex; align-items:center; gap:7px; color:rgba(255,255,255,0.65); font-size:12.5px; }
+        .topbar-item a { color:var(--gold); font-weight:600; text-decoration:none; }
+        .topbar-item a:hover { color:var(--gold-light); }
+
+        /* ── NAV ── */
+        .nav { background:var(--cream); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+        .nav-inner { max-width:1200px; margin:0 auto; padding:0 30px; display:flex; align-items:center; justify-content:space-between; height:72px; }
+        .nav-links { display:flex; list-style:none; gap:4px; }
+        .nav-links a { color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500; padding:8px 14px; border-radius:8px; transition:all .2s; display:flex; align-items:center; gap:6px; }
+        .nav-links a:hover { background:var(--warm-white); color:var(--ink); }
+        .nav-links a.active { background:var(--gold); color:var(--ink); }
+        .logo { font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:9px; }
+        .logo-paw { width:38px; height:38px; background:var(--gold); border-radius:50% 50% 50% 12px; display:flex; align-items:center; justify-content:center; }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb-bar { background:var(--warm-white); padding:14px 0; border-bottom:1px solid var(--border); }
+        .breadcrumb-inner { max-width:1200px; margin:0 auto; padding:0 30px; display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); }
+        .breadcrumb-inner a { color:var(--muted); text-decoration:none; transition:color .2s; }
+        .breadcrumb-inner a:hover { color:var(--gold-dark); }
+        .breadcrumb-inner .sep { opacity:.4; }
+        .breadcrumb-inner .cur { color:var(--ink); font-weight:500; }
+
+        /* ── PAGE WRAP ── */
+        .page-wrap { max-width:1200px; margin:0 auto; padding:44px 30px 80px; }
+
+        /* ── HERO ── */
+        .service-hero { display:grid; grid-template-columns:1fr 1fr; gap:52px; margin-bottom:60px; }
+        .gallery { display:flex; flex-direction:column; gap:12px; }
+        .main-img { width:100%; aspect-ratio:4/3; border-radius:16px; overflow:hidden; position:relative; background:linear-gradient(135deg,#d8eeff,#c4daf5); }
+        .main-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+        .main-img:hover img { transform:scale(1.03); }
+        .img-badge { position:absolute; top:14px; left:14px; background:var(--gold); color:var(--ink); font-size:11px; font-weight:700; padding:5px 13px; border-radius:20px; letter-spacing:.06em; text-transform:uppercase; }
+        .thumbs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+        .thumb { aspect-ratio:1; border-radius:10px; overflow:hidden; cursor:pointer; border:2px solid transparent; transition:border-color .2s; background:linear-gradient(135deg,#d8eeff,#c4daf5); display:flex; align-items:center; justify-content:center; }
+        .thumb.active, .thumb:hover { border-color:var(--gold); }
+        .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+
+        .service-info { display:flex; flex-direction:column; gap:22px; }
+        .svc-tag { display:inline-flex; align-items:center; gap:7px; background:var(--warm-white); border:1px solid var(--border); color:var(--muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; padding:6px 14px; border-radius:20px; width:fit-content; }
+        .svc-title { font-family:'Playfair Display',serif; font-size:2.8rem; line-height:1.1; font-weight:900; }
+        .svc-title span { color:var(--gold-dark); }
+        .rating-row { display:flex; align-items:center; gap:12px; }
+        .stars { color:var(--gold); font-size:17px; letter-spacing:2px; }
+        .rating-num { font-weight:700; }
+        .rating-sep { width:1px; height:16px; background:var(--border); }
+        .rating-count { color:var(--muted); font-size:13px; }
+        .price-block { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; }
+        .price-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:700; }
+        .price-value { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--blue); }
+        .price-note { font-size:12px; color:var(--muted); margin-top:3px; }
+        .price-icon { width:52px; height:52px; background:var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:center; }
+        .desc { line-height:1.8; color:var(--ink-soft); font-size:15px; }
+        .cta-row { display:flex; gap:12px; }
+        .btn-book { flex:1; background:var(--ink); color:white; padding:15px 24px; border:none; border-radius:12px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:all .25s; display:flex; align-items:center; justify-content:center; gap:8px; }
+        .btn-book:hover { background:var(--gold-dark); color:var(--ink); transform:translateY(-2px); box-shadow:0 8px 24px var(--shadow-gold); }
+        .btn-call { padding:15px 20px; background:transparent; border:2px solid var(--border); border-radius:12px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:var(--ink-soft); text-decoration:none; display:flex; align-items:center; gap:8px; transition:all .2s; white-space:nowrap; }
+        .btn-call:hover { border-color:var(--gold); color:var(--ink); background:var(--warm-white); }
+
+        /* ── TRUST BAR ── */
+        .trust-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:60px; }
+        .trust-item { background:var(--cream); padding:24px; text-align:center; }
+        .trust-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; line-height:1; }
+        .trust-num span { color:var(--gold-dark); }
+        .trust-label { font-size:12.5px; color:var(--muted); margin-top:6px; font-weight:500; }
+
+        /* ── TABS ── */
+        .tabs-section { margin-bottom:60px; }
+        .tab-nav { display:flex; border-bottom:2px solid var(--border); margin-bottom:36px; }
+        .tab-btn { background:none; border:none; padding:14px 28px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .2s; letter-spacing:.03em; }
+        .tab-btn:hover { color:var(--ink); }
+        .tab-btn.active { color:var(--ink); border-bottom-color:var(--gold); }
+        .tab-pane { display:none; animation:fadeUp .3s ease; }
+        .tab-pane.active { display:block; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+        /* Detail cards */
+        .detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .detail-card { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; padding:24px; }
+        .detail-head { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+        .detail-icon { width:42px; height:42px; background:var(--gold); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .detail-card-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; }
+        .detail-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+        .detail-list li { display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+        .detail-list li::before { content:''; width:5px; height:5px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:7px; }
+        .emergency-bar { margin-top:20px; background:var(--ink); border-radius:14px; padding:26px 32px; display:flex; align-items:center; gap:22px; }
+        .emergency-bar .em-icon { width:52px; height:52px; background:rgba(245,184,0,.15); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .emergency-bar .em-title { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:700; color:var(--gold); margin-bottom:6px; }
+        .emergency-bar .em-desc { font-size:13.5px; color:rgba(255,255,255,.6); line-height:1.6; }
+        .emergency-bar .em-btn { margin-left:auto; background:var(--gold); color:var(--ink); padding:12px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:14px; white-space:nowrap; flex-shrink:0; display:flex; align-items:center; gap:8px; transition:all .2s; }
+        .emergency-bar .em-btn:hover { background:var(--gold-light); }
+
+        /* Pricing */
+        .pricing-wrap { display:grid; grid-template-columns:2fr 1fr; gap:28px; }
+        .pricing-table { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+        .pricing-head { background:var(--ink); color:white; padding:16px 24px; font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; display:flex; align-items:center; gap:10px; }
+        .pricing-row { display:flex; justify-content:space-between; align-items:center; padding:14px 24px; border-bottom:1px solid var(--border); transition:background .15s; }
+        .pricing-row:last-child { border-bottom:none; }
+        .pricing-row:hover { background:#FFF8EC; }
+        .pricing-name { font-size:14px; color:var(--ink-soft); }
+        .pricing-price { font-weight:700; color:var(--blue); font-size:14px; }
+        .pricing-notes { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; padding:24px; }
+        .notes-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+        .note-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); font-size:13px; color:var(--ink-soft); line-height:1.5; }
+        .note-item:last-child { border-bottom:none; }
+        .note-ic { flex-shrink:0; margin-top:1px; }
+
+        /* Reviews */
+        .reviews-layout { display:grid; grid-template-columns:280px 1fr; gap:28px; }
+        .rating-summary { background:var(--ink); border-radius:16px; padding:36px 24px; text-align:center; position:sticky; top:90px; height:fit-content; }
+        .big-score { font-family:'Playfair Display',serif; font-size:5rem; font-weight:900; color:var(--gold); line-height:1; }
+        .review-stars { color:var(--gold); font-size:22px; letter-spacing:3px; margin:10px 0; }
+        .review-total { color:rgba(255,255,255,.5); font-size:13px; }
+        .bars-wrap { margin-top:22px; }
+        .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+        .bar-label { color:rgba(255,255,255,.5); font-size:12px; width:14px; text-align:right; }
+        .bar-track { flex:1; height:6px; background:rgba(255,255,255,.1); border-radius:3px; overflow:hidden; }
+        .bar-fill { height:100%; background:var(--gold); border-radius:3px; }
+        .bar-count { color:rgba(255,255,255,.4); font-size:11px; width:20px; text-align:right; }
+        .reviews-list { display:flex; flex-direction:column; gap:16px; }
+        .review-card { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; padding:24px; transition:all .2s; }
+        .review-card:hover { border-color:var(--gold); box-shadow:0 4px 20px var(--shadow-gold); }
+        .review-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+        .reviewer { display:flex; align-items:center; gap:14px; }
+        .avatar { width:46px; height:46px; background:var(--gold); color:var(--ink); font-family:'Playfair Display',serif; font-weight:900; font-size:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+        .reviewer-name { font-weight:600; font-size:14.5px; }
+        .reviewer-stars { color:var(--gold); font-size:13px; margin-top:3px; }
+        .review-date { font-size:12px; color:var(--muted); }
+        .review-text { font-size:14px; line-height:1.75; color:var(--ink-soft); }
+
+        /* ── RELATED / CAROUSEL ── */
+        .related-section { margin-bottom:40px; }
+        .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+        .section-title { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; }
+        .section-title span { color:var(--gold-dark); }
+        .section-right { display:flex; align-items:center; gap:14px; }
+        .see-all { font-size:13px; color:var(--muted); text-decoration:none; font-weight:500; transition:color .2s; }
+        .see-all:hover { color:var(--gold-dark); }
+        .carousel-btns { display:flex; gap:8px; }
+        .car-btn { width:40px; height:40px; border-radius:50%; border:1.5px solid var(--border); background:var(--warm-white); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; color:var(--ink-soft); }
+        .car-btn:hover:not(:disabled) { background:var(--gold); border-color:var(--gold); color:var(--ink); box-shadow:0 4px 14px var(--shadow-gold); }
+        .car-btn:disabled { opacity:.3; cursor:not-allowed; }
+        .car-btn svg { width:18px; height:18px; }
+        .carousel-viewport { overflow:hidden; border-radius:14px; }
+        .carousel-track { display:flex; gap:20px; transition:transform .45s cubic-bezier(.25,.46,.45,.94); will-change:transform; }
+        .service-card { background:var(--warm-white); border:1px solid var(--border); border-radius:14px; overflow:hidden; cursor:pointer; transition:all .25s; text-decoration:none; display:block; flex:0 0 calc(25% - 15px); min-width:0; }
+        .service-card:hover { border-color:var(--gold); transform:translateY(-4px); box-shadow:0 12px 36px var(--shadow-gold); }
+        .card-img { height:160px; background:linear-gradient(135deg,#E8F2FC,#D0E8FF); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+        .card-img img { width:100%; height:100%; object-fit:cover; display:block; }
+        .card-body { padding:16px 18px 18px; }
+        .card-title { font-weight:600; color:var(--ink); font-size:14.5px; margin-bottom:6px; }
+        .card-link { font-size:12.5px; color:var(--gold-dark); font-weight:600; display:flex; align-items:center; gap:5px; }
+
+        /* ── FOOTER ── */
+        .footer { background:var(--ink); color:white; }
+        .footer-main { max-width:1200px; margin:0 auto; padding:60px 30px 40px; display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; }
+        .footer-logo-row { display:flex; align-items:center; gap:10px; }
+        .footer-logo-paw { width:42px; height:42px; background:var(--gold); border-radius:50% 50% 50% 12px; display:flex; align-items:center; justify-content:center; }
+        .footer-brand { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:white; }
+        .footer-sub { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900; color:var(--gold); margin:12px 0 10px; }
+        .footer-desc { font-size:13.5px; line-height:1.8; color:rgba(255,255,255,.5); margin-bottom:18px; }
+        .footer-contact { display:flex; flex-direction:column; gap:9px; }
+        .contact-item { display:flex; align-items:center; gap:9px; font-size:13px; color:rgba(255,255,255,.6); }
+        .contact-item a { color:var(--gold); font-weight:600; text-decoration:none; }
+        .socials { display:flex; gap:10px; margin-top:18px; }
+        .social-btn { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; text-decoration:none; color:rgba(255,255,255,.7); transition:all .2s; }
+        .social-btn:hover { background:var(--gold); border-color:var(--gold); color:var(--ink); }
+        .footer-col-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,.08); }
+        .footer-links { list-style:none; }
+        .footer-links li { margin-bottom:10px; }
+        .footer-links a { color:rgba(255,255,255,.5); text-decoration:none; font-size:13.5px; transition:all .2s; display:flex; align-items:center; gap:7px; }
+        .footer-links a:hover { color:white; padding-left:4px; }
+        .hours-badge { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:16px; margin-top:22px; }
+        .hours-label { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold); font-weight:700; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+        .hours-time { font-size:20px; font-weight:700; color:white; }
+        .hours-days { font-size:12px; color:rgba(255,255,255,.4); margin-top:2px; }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,.06); padding:20px 30px; text-align:center; font-size:12.5px; color:rgba(255,255,255,.3); max-width:1200px; margin:0 auto; }
+
+        /* ── SCROLL TOP ── */
+        .scroll-top { position:fixed; bottom:30px; right:30px; width:48px; height:48px; background:var(--ink); border:2px solid var(--gold); border-radius:50%; display:none; align-items:center; justify-content:center; cursor:pointer; color:white; z-index:999; transition:all .2s; }
+        .scroll-top:hover { background:var(--gold); color:var(--ink); transform:translateY(-3px); }
+        .scroll-top.show { display:flex; }
+
+        /* ── MODAL ── */
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(26,18,9,.72); backdrop-filter:blur(6px); z-index:1000; align-items:center; justify-content:center; }
+        .modal-overlay.open { display:flex; }
+        .modal { background:var(--cream); border-radius:20px; padding:40px; width:500px; max-width:90vw; max-height:90vh; overflow-y:auto; position:relative; animation:modalIn .3s ease; }
+        @keyframes modalIn { from{opacity:0;transform:scale(.94) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+        .modal-close { position:absolute; top:18px; right:18px; background:var(--warm-white); border:1px solid var(--border); width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:all .2s; }
+        .modal-close:hover { background:var(--gold); color:var(--ink); }
+        .modal-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; margin-bottom:6px; }
+        .modal-sub { font-size:14px; color:var(--muted); margin-bottom:26px; }
+        .form-group { margin-bottom:16px; }
+        .form-label { display:block; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:7px; }
+        .form-input { width:100%; padding:12px 14px; background:var(--warm-white); border:1px solid var(--border); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--ink); outline:none; transition:border-color .2s; }
+        .form-input:focus { border-color:var(--gold); }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .btn-submit { width:100%; padding:15px; background:var(--ink); color:white; border:none; border-radius:12px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; cursor:pointer; margin-top:8px; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:8px; }
+        .btn-submit:hover { background:var(--gold-dark); color:var(--ink); }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:768px){
+            .service-hero{grid-template-columns:1fr;gap:30px}
+            .trust-bar{grid-template-columns:1fr 1fr}
+            .detail-grid{grid-template-columns:1fr}
+            .pricing-wrap{grid-template-columns:1fr}
+            .reviews-layout{grid-template-columns:1fr}
+            .rating-summary{position:static}
+            .footer-main{grid-template-columns:1fr;gap:32px}
+            .feat-grid{grid-template-columns:1fr}
+            .emergency-bar{flex-direction:column;text-align:center}
+            .emergency-bar .em-btn{margin-left:0}
+            .service-card{flex:0 0 calc(50% - 10px)}
+            .nav-inner{flex-wrap:wrap;height:auto;padding:12px 20px;gap:10px}
+            .page-wrap{padding:22px 18px 60px}
+        }
+        @media(max-width:480px){
+            .service-card{flex:0 0 calc(100%)}
+        }
+    
+        /* ═══════════════════════════════════════
+           HEADER (Pure Paw standard)
+        ═══════════════════════════════════════ */
+        .header {
+            width: 100%;
+            background: #fff;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid #f0e8d0;
+        }
+        .header__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            height: 136px;
+            position: relative;
+        }
+        .header__addr {
+            position: absolute;
+            left: 78px;
+            top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__addr i { font-size: 16px; color: #1c1c1c; }
+        .header__hotline {
+            position: absolute;
+            right: 78px; top: 26px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400; font-size: 16px; color: #1c1c1c; line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header__hotline i { font-size: 16px; color: #1c1c1c; }
+        .header__logo {
+            position: absolute;
+            left: 53%; top: 0;
+            transform: translateX(-50%);
+            width: 136px; height: 136px;
+            z-index: 5; overflow: hidden;
+        }
+        .header__logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .header__nav {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 63px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding-right: 160px;
+        }
+        .header__nav-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 22px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600; font-size: 18px; color: #1c1c1c;
+            white-space: nowrap; text-decoration: none;
+            line-height: 1.2; height: 42px;
+            position: relative; z-index: 1;
+            transition: color 0.2s;
+        }
+        .header__nav-item:hover { color: #ffb606; }
+        .header__nav-item--active {
+            border: 2px solid #ffb606;
+            border-radius: 24px;
+        }
+        .header__nav-dot {
+            width: 7px; height: 7px;
+            background: #1c1c1c; border-radius: 50%; flex-shrink: 0;
+        }
+        .header__nav-gap { width: 136px; flex-shrink: 0; pointer-events: none; }
+        .header__icons {
+            position: absolute;
+            right: 60px; bottom: 11px;
+            display: flex; align-items: center;
+            background: #ffb606;
+            border-radius: 24px;
+            padding: 8px 14px;
+            height: 42px;
+            gap: 14px;
+            z-index: 6;
+        }
+        .header__icons i {
+            font-size: 18px;
+            color: #000;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .header__icons i:hover { opacity: 0.6; }
+        .header__hamburger {
+            display: none;
+            position: absolute;
+            right: 20px; top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            z-index: 10;
+        }
+        .header__hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: #1c1c1c;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .header__nav--open { display: flex !important; }
+
+        @media (max-width: 800px) {
+            .header__inner { height: auto; min-height: 70px; }
+            .header__addr, .header__hotline { display: none; }
+            .header__logo {
+                position: relative;
+                left: auto; transform: none;
+                margin: 0 auto;
+                display: block;
+                width: 80px; height: 80px;
+            }
+            .header__hamburger { display: flex; }
+            .header__nav {
+                display: none;
+                position: static;
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px 16px;
+                gap: 0;
+                border-top: 1px solid #f0e8d0;
+            }
+            .header__nav-gap { display: none; }
+            .header__nav-item { font-size: 15px; padding: 10px 0; width: 100%; height: auto; }
+            .header__nav-item--active { border: none; border-left: 3px solid #ffb606; border-radius: 0; padding-left: 12px; }
+            .header__icons { position: static; margin: 12px auto 8px; width: fit-content; }
+        }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__addr">
+            <i class="fa-solid fa-location-dot"></i>
+            Địa chỉ: 669 Quốc lộ 1A, Linh Xuân, TP. Thủ Đức, TP. HCM
+        </div>
+        <div class="header__hotline">
+            <i class="fa-solid fa-phone"></i>
+            Hotline: 090 123 4567
+        </div>
+        <div class="header__logo">
+            <img src="assets/logo.png" alt="Pure Paw Logo">
+        </div>
+        <button class="header__hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="header__nav" id="mainNav">
+            <a class="header__nav-item" href="/">TRANG CHỦ</a>
+            <a class="header__nav-item" href="/gioi-thieu">GIỚI THIỆU</a>
+            <a class="header__nav-item header__nav-item--active" href="/dich-vu">
+                <span class="header__nav-dot"></span>DỊCH VỤ
+            </a>
+            <a class="header__nav-item" href="/san-pham">SẢN PHẨM</a>
+            <div class="header__nav-gap"></div>
+            <a class="header__nav-item" href="/album">ALBUM</a>
+            <a class="header__nav-item" href="/tin-tuc">TIN TỨC</a>
+            <a class="header__nav-item" href="/lien-he">LIÊN HỆ</a>
+        </nav>
+        <div class="header__icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="/">Trang chủ</a>
+    <span class="sep">›</span>
+    <a href="/dich-vu">Dịch vụ</a>
+    <span class="sep">›</span>
+    <span class="cur">Dịch vụ Thú Y</span>
+  </div>
+</div>
+
+<!-- Page -->
+<div class="page-wrap">
+
+  <!-- Hero -->
+  <div class="service-hero">
+    <div class="gallery">
+      <div class="main-img">
+        <img src="/FRONTEND CLIENT/assets/Image-5.png" id="mainImgEl" alt="Dịch Vụ Thú Y" onerror="this.style.display='none'">
+        <div class="img-badge">Dịch vụ cao cấp</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb active" onclick="changeImg(this,'/FRONTEND CLIENT/assets/image-1.jpg')">
+          <img src="/FRONTEND CLIENT/assets/image-1.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="thumb" onclick="changeImg(this,'/FRONTEND CLIENT/assets/image-2.jpg')">
+          <img src="/FRONTEND CLIENT/assets/image-2.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="thumb" onclick="changeImg(this,'/FRONTEND CLIENT/assets/image-3.jpg')">
+          <img src="/FRONTEND CLIENT/assets/image-3.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="thumb" onclick="changeImg(this,'/FRONTEND CLIENT/assets/image-4.jpg')">
+          <img src="/FRONTEND CLIENT/assets/image-4.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <div class="service-info">
+      <div class="svc-tag">
+        <svg width="13" height="13" style="color:var(--muted)"><use href="#ic-stethoscope"/></svg>
+        Dịch vụ y tế
+      </div>
+      <h1 class="svc-title">Dịch Vụ<br><span>Thú Y</span></h1>
+      <div class="rating-row">
+        <div class="stars">★★★★★</div>
+        <span class="rating-num">4.9</span>
+        <div class="rating-sep"></div>
+        <span class="rating-count">215 đánh giá</span>
+      </div>
+      <div class="price-block">
+        <div>
+          <div class="price-label">Giá từ</div>
+          <div class="price-value">200.000đ</div>
+          <div class="price-note">Chưa bao gồm thuốc &amp; vật tư</div>
+        </div>
+        <div class="price-icon">
+          <svg width="26" height="26" style="color:var(--ink)"><use href="#ic-paw"/></svg>
+        </div>
+      </div>
+      <p class="desc">Dịch vụ khám và chăm sóc sức khỏe toàn diện cho thú cưng với đội ngũ bác sĩ thú y giàu kinh nghiệm, trang thiết bị hiện đại và quy trình điều trị chuyên nghiệp.</p>
+      <div class="cta-row">
+        <button class="btn-book" onclick="openModal()">
+          Đặt lịch khám ngay
+          <svg width="16" height="16" style="color:currentColor"><use href="#ic-arrow-right"/></svg>
+        </button>
+        <a href="tel:0837645555" class="btn-call">
+          <svg width="16" height="16" style="color:currentColor"><use href="#ic-phone"/></svg>
+          Tư vấn miễn phí
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-item"><div class="trust-num">10<span>+</span></div><div class="trust-label">Năm kinh nghiệm</div></div>
+    <div class="trust-item"><div class="trust-num">5K<span>+</span></div><div class="trust-label">Thú cưng đã chăm sóc</div></div>
+    <div class="trust-item"><div class="trust-num">15<span>+</span></div><div class="trust-label">Bác sĩ thú y</div></div>
+    <div class="trust-item"><div class="trust-num">24<span>/7</span></div><div class="trust-label">Dịch vụ cấp cứu</div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab(event,'details')">Chi tiết dịch vụ</button>
+      <button class="tab-btn" onclick="showTab(event,'pricing')">Bảng giá</button>
+      <button class="tab-btn" onclick="showTab(event,'reviews')">Đánh giá</button>
+    </div>
+
+    <!-- Details -->
+    <div id="details" class="tab-pane active">
+      <div class="detail-grid">
+        <div class="detail-card">
+          <div class="detail-head">
+            <div class="detail-icon"><svg width="22" height="22" style="color:var(--ink)"><use href="#ic-hospital"/></svg></div>
+            <div class="detail-card-title">Khám Tổng Quát</div>
+          </div>
+          <ul class="detail-list">
+            <li>Kiểm tra thể trạng, cân nặng, nhiệt độ</li>
+            <li>Khám tim mạch, hô hấp</li>
+            <li>Kiểm tra da, lông, móng</li>
+            <li>Khám răng miệng</li>
+            <li>Đánh giá tình trạng sức khỏe tổng thể</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <div class="detail-head">
+            <div class="detail-icon"><svg width="22" height="22" style="color:var(--ink)"><use href="#ic-syringe"/></svg></div>
+            <div class="detail-card-title">Tiêm Phòng Vaccine</div>
+          </div>
+          <ul class="detail-list">
+            <li>Vaccine 5 bệnh (DHPPiL) cho chó</li>
+            <li>Vaccine 3 bệnh (FVRCP) cho mèo</li>
+            <li>Vaccine dại (Rabies)</li>
+            <li>Vaccine phòng bệnh Kennel Cough</li>
+            <li>Tư vấn lịch tiêm theo độ tuổi</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <div class="detail-head">
+            <div class="detail-icon"><svg width="22" height="22" style="color:var(--ink)"><use href="#ic-microscope"/></svg></div>
+            <div class="detail-card-title">Xét Nghiệm Chẩn Đoán</div>
+          </div>
+          <ul class="detail-list">
+            <li>Xét nghiệm máu toàn phần &amp; sinh hóa</li>
+            <li>Xét nghiệm nước tiểu, phân</li>
+            <li>X-quang kỹ thuật số</li>
+            <li>Siêu âm màu Doppler</li>
+            <li>Nội soi dạ dày, đường tiêu hóa</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <div class="detail-head">
+            <div class="detail-icon"><svg width="22" height="22" style="color:var(--ink)"><use href="#ic-scissors"/></svg></div>
+            <div class="detail-card-title">Điều Trị &amp; Phẫu Thuật</div>
+          </div>
+          <ul class="detail-list">
+            <li>Điều trị bệnh lý nội khoa</li>
+            <li>Phẫu thuật triệt sản</li>
+            <li>Phẫu thuật xương khớp</li>
+            <li>Điều trị răng, nha khoa thú y</li>
+            <li>Chăm sóc hậu phẫu tận tình</li>
+          </ul>
+        </div>
+      </div>
+      <div class="emergency-bar">
+        <div class="em-icon">
+          <svg width="28" height="28" style="color:var(--gold)"><use href="#ic-ambulance"/></svg>
+        </div>
+        <div>
+          <div class="em-title">Dịch Vụ Cấp Cứu 24/7</div>
+          <div class="em-desc">Tai nạn · Chấn thương · Ngộ độc · Khó thở · Co giật · Xuất huyết</div>
+        </div>
+        <a href="tel:0837645555" class="em-btn">
+          <svg width="15" height="15" style="color:currentColor"><use href="#ic-phone"/></svg>
+          083 764 5555
+        </a>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="pricing" class="tab-pane">
+      <div class="pricing-wrap">
+        <div class="pricing-table">
+          <div class="pricing-head">Bảng Giá Dịch Vụ</div>
+          <div class="pricing-row"><span class="pricing-name">Khám tổng quát</span><span class="pricing-price">200.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Vaccine 5 bệnh (DHPPiL)</span><span class="pricing-price">250.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Vaccine 3 bệnh (FVRCP)</span><span class="pricing-price">200.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Vaccine dại (Rabies)</span><span class="pricing-price">150.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Xét nghiệm máu toàn phần</span><span class="pricing-price">350.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Xét nghiệm sinh hóa</span><span class="pricing-price">500.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">X-quang (1 vị trí)</span><span class="pricing-price">300.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Siêu âm màu</span><span class="pricing-price">400.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Triệt sản chó cái</span><span class="pricing-price">1.500.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Triệt sản chó đực</span><span class="pricing-price">1.200.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Triệt sản mèo cái</span><span class="pricing-price">1.200.000đ</span></div>
+          <div class="pricing-row"><span class="pricing-name">Triệt sản mèo đực</span><span class="pricing-price">900.000đ</span></div>
+        </div>
+        <div class="pricing-notes">
+          <div class="notes-title">Lưu ý quan trọng</div>
+          <div class="note-item"><span class="note-ic" style="color:#e67e22">⚠</span> Giá chưa bao gồm chi phí thuốc và vật tư y tế</div>
+          <div class="note-item"><span class="note-ic" style="color:green">✓</span> Phẫu thuật bao gồm thuốc mê và chăm sóc hậu phẫu 1 ngày</div>
+          <div class="note-item"><span class="note-ic" style="color:var(--blue)">↺</span> Miễn phí khám lại trong 7 ngày sau điều trị</div>
+          <div class="note-item"><span class="note-ic" style="color:var(--gold-dark)">%</span> Giảm 15% khi đặt lịch online</div>
+          <div class="note-item"><span class="note-ic" style="color:var(--gold-dark)">★</span> Tặng khám miễn phí ngày sinh nhật thú cưng</div>
+          <div class="note-item"><span class="note-ic" style="color:var(--blue)">◎</span> Gói khám định kỳ 6 tháng giảm 20%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div id="reviews" class="tab-pane">
+      <div class="reviews-layout">
+        <div class="rating-summary">
+          <div class="big-score">4.9</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-total">215 đánh giá</div>
+          <div class="bars-wrap">
+            <div class="bar-row"><span class="bar-label">5</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-count">193</span></div>
+            <div class="bar-row"><span class="bar-label">4</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="bar-count">17</span></div>
+            <div class="bar-row"><span class="bar-label">3</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-count">4</span></div>
+            <div class="bar-row"><span class="bar-label">2</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">1</span></div>
+            <div class="bar-row"><span class="bar-label">1</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+          </div>
+        </div>
+        <div class="reviews-list">
+          <div class="review-card">
+            <div class="review-top"><div class="reviewer"><div class="avatar">TH</div><div><div class="reviewer-name">Trần Hồng Nhung</div><div class="reviewer-stars">★★★★★</div></div></div><span class="review-date">2 ngày trước</span></div>
+            <p class="review-text">Bác sĩ rất tận tâm và chu đáo! Chó nhà mình bị viêm da, sau khi khám và điều trị ở đây đã khỏi hẳn. Phòng khám sạch sẽ, trang thiết bị hiện đại. Giá cả hợp lý, mình rất hài lòng!</p>
+          </div>
+          <div class="review-card">
+            <div class="review-top"><div class="reviewer"><div class="avatar">NQ</div><div><div class="reviewer-name">Nguyễn Quốc Anh</div><div class="reviewer-stars">★★★★★</div></div></div><span class="review-date">5 ngày trước</span></div>
+            <p class="review-text">Đưa mèo đi triệt sản ở đây, mọi thứ đều rất tốt. Bác sĩ giải thích rõ ràng từng bước, chăm sóc sau mổ rất chu đáo. Bé hồi phục nhanh chóng. Cảm ơn đội ngũ Pure Paw rất nhiều!</p>
+          </div>
+          <div class="review-card">
+            <div class="review-top"><div class="reviewer"><div class="avatar">PL</div><div><div class="reviewer-name">Phạm Lê Minh</div><div class="reviewer-stars">★★★★★</div></div></div><span class="review-date">1 tuần trước</span></div>
+            <p class="review-text">Lần đầu tiên mình tìm được một phòng khám thú y uy tín như vậy. Chó mình bị ngộ độc, được cấp cứu kịp thời và chăm sóc tận tình. Thật sự rất biết ơn!</p>
+          </div>
+          <div class="review-card">
+            <div class="review-top"><div class="reviewer"><div class="avatar">VT</div><div><div class="reviewer-name">Võ Thị Thanh</div><div class="reviewer-stars">★★★★★</div></div></div><span class="review-date">2 tuần trước</span></div>
+            <p class="review-text">Đội ngũ bác sĩ chuyên môn cao, thiết bị hiện đại. Đưa bé đi tiêm phòng và khám định kỳ đều rất yên tâm. Giá cả minh bạch, không phát sinh thêm chi phí. Rất đáng tin cậy!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Services -->
+  <div class="related-section">
+    <div class="section-head">
+      <h2 class="section-title">Dịch vụ <span>liên quan</span></h2>
+      <div class="section-right">
+        <a href="/dich-vu" class="see-all">Xem tất cả</a>
+        <div class="carousel-btns">
+          <button class="car-btn" id="prevBtn" onclick="slideCarousel(-1)" disabled>
+            <svg width="18" height="18" style="color:currentColor"><use href="#ic-chevron-left"/></svg>
+          </button>
+          <button class="car-btn" id="nextBtn" onclick="slideCarousel(1)">
+            <svg width="18" height="18" style="color:currentColor"><use href="#ic-chevron-right"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carouselTrack">
+        <a href="grooming-detail.html" class="service-card">
+          <div class="card-img"><img src="/FRONTEND CLIENT/assets/grooming_services/image 2.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <div class="card-title">Dịch vụ Cắt tỉa</div>
+            <div class="card-link">Tìm hiểu thêm <svg width="13" height="13" style="color:currentColor"><use href="#ic-arrow-right"/></svg></div>
+          </div>
+        </a>
+        <a href="tam-goi-detail.html" class="service-card">
+          <div class="card-img"><img src="/FRONTEND CLIENT/assets/grooming_services/image 3.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <div class="card-title">Dịch vụ Tắm gội</div>
+            <div class="card-link">Tìm hiểu thêm <svg width="13" height="13" style="color:currentColor"><use href="#ic-arrow-right"/></svg></div>
+          </div>
+        </a>
+        <a href="nha-tre-detail.html" class="service-card">
+          <div class="card-img"><img src="/FRONTEND CLIENT/assets/grooming_services/image 4.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <div class="card-title">Dịch vụ Nhà trẻ</div>
+            <div class="card-link">Tìm hiểu thêm <svg width="13" height="13" style="color:currentColor"><use href="#ic-arrow-right"/></svg></div>
+          </div>
+        </a>
+        <a href="huan-luyen-detail.html" class="service-card">
+          <div class="card-img"><img src="/FRONTEND CLIENT/assets/grooming_services/image 5.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <div class="card-title">Dịch vụ Huấn luyện</div>
+            <div class="card-link">Tìm hiểu thêm <svg width="13" height="13" style="color:currentColor"><use href="#ic-arrow-right"/></svg></div>
+          </div>
+        </a>
+        <a href="dat-dao-detail.html" class="service-card">
+          <div class="card-img"><img src="/FRONTEND CLIENT/assets/grooming_services/image 6.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <div class="card-title">Dịch vụ Dắt dạo</div>
+            <div class="card-link">Tìm hiểu thêm <svg width="13" height="13" style="color:currentColor"><use href="#ic-arrow-right"/></svg></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-main">
+    <div>
+      <div class="footer-logo-row">
+        <div class="footer-logo-paw">
+          <svg width="22" height="22" style="color:var(--ink)"><use href="#ic-paw"/></svg>
+        </div>
+        <span class="footer-brand">PURE PAW</span>
+      </div>
+      <div class="footer-sub">PET SHOP</div>
+      <p class="footer-desc">"Trao Tiếng Nói Cho Những Người Bạn Đặc Biệt Không Thể Nói"</p>
+      <div class="footer-contact">
+        <div class="contact-item">
+          <svg width="14" height="14" style="color:var(--gold);flex-shrink:0"><use href="#ic-map-pin"/></svg>
+          <span>07 Cửu Long, P. Hòa Hưng, TP. HCM</span>
+        </div>
+        <div class="contact-item">
+          <svg width="14" height="14" style="color:var(--gold);flex-shrink:0"><use href="#ic-phone"/></svg>
+          <a href="tel:0837645555">083 764 5555</a>
+        </div>
+        <div class="contact-item">
+          <svg width="14" height="14" style="color:var(--gold);flex-shrink:0"><use href="#ic-mail"/></svg>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6900070f0629191c1b0c19081e470a0604">[email&#160;protected]</a></span>
+        </div>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/purepawpetshop" target="_blank" class="social-btn">
+          <svg width="17" height="17"><use href="#ic-facebook"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+          <svg width="17" height="17"><use href="#ic-instagram"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+          <svg width="17" height="17"><use href="#ic-youtube"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Chính sách</div>
+      <ul class="footer-links">
+        <li><a href="#">Chính sách đặt lịch</a></li>
+        <li><a href="#">Chính sách mua hàng</a></li>
+        <li><a href="#">Chính sách giao hàng</a></li>
+        <li><a href="#">Chính sách thanh toán</a></li>
+      </ul>
+      <div class="hours-badge">
+        <div class="hours-label">
+          <svg width="13" height="13" style="color:var(--gold)"><use href="#ic-clock"/></svg>
+          Giờ mở cửa
+        </div>
+        <div class="hours-time">08:00 – 20:00</div>
+        <div class="hours-days">Thứ 2 – Chủ nhật</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Danh mục</div>
+      <ul class="footer-links">
+        <li><a href="/">Trang chủ</a></li>
+        <li><a href="/gioi-thieu">Giới thiệu</a></li>
+        <li><a href="/dich-vu">Dịch vụ</a></li>
+        <li><a href="/san-pham">Sản phẩm</a></li>
+        <li><a href="/album">Album</a></li>
+        <li><a href="/tin-tuc">Tin tức</a></li>
+        <li><a href="/lien-he">Liên hệ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © <strong>PURE PAW PET SHOP</strong>. All rights reserved. Designed by Nina</div>
+</footer>
+
+<!-- Scroll Top -->
+<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20"><use href="#ic-arrow-up"/></svg>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="16" height="16" style="color:currentColor"><use href="#ic-x"/></svg>
+    </button>
+    <div class="modal-title">Đặt Lịch Khám</div>
+    <p class="modal-sub">Điền thông tin để chúng tôi liên hệ xác nhận lịch hẹn.</p>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Họ và tên</label><input type="text" class="form-input" placeholder="Nguyễn Văn A"></div>
+      <div class="form-group"><label class="form-label">Số điện thoại</label><input type="tel" class="form-input" placeholder="0xx xxx xxxx"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Ngày khám</label><input type="date" class="form-input"></div>
+      <div class="form-group"><label class="form-label">Giờ khám</label>
+        <select class="form-input">
+          <option>08:00 – 09:00</option><option>09:00 – 10:00</option><option>10:00 – 11:00</option>
+          <option>14:00 – 15:00</option><option>15:00 – 16:00</option><option>16:00 – 17:00</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Loại dịch vụ</label>
+      <select class="form-input">
+        <option>Khám tổng quát</option><option>Tiêm phòng vaccine</option><option>Xét nghiệm</option>
+        <option>Siêu âm / X-quang</option><option>Phẫu thuật</option><option>Khác</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Ghi chú (tùy chọn)</label>
+      <textarea class="form-input" rows="3" placeholder="Mô tả triệu chứng hoặc yêu cầu đặc biệt..."></textarea>
+    </div>
+    <button class="btn-submit">
+      Xác nhận đặt lịch
+      <svg width="16" height="16" style="color:currentColor"><use href="#ic-arrow-right"/></svg>
+    </button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Tabs
+  function showTab(e, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Gallery
+  function changeImg(thumb, src) {
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    const el = document.getElementById('mainImgEl');
+    el.style.transition = 'opacity .2s';
+    el.style.opacity = '0';
+    setTimeout(() => { el.src = src; el.style.opacity = '1'; el.style.display = 'block'; }, 200);
+  }
+
+  // Modal
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Carousel
+  let slide = 0;
+  const VISIBLE = 4;
+  function slideCarousel(dir) {
+    const track = document.getElementById('carouselTrack');
+    const cards = track.querySelectorAll('.service-card');
+    const max = cards.length - VISIBLE;
+    slide = Math.max(0, Math.min(slide + dir, max));
+    const w = cards[0].offsetWidth + 20;
+    track.style.transform = `translateX(-${slide * w}px)`;
+    document.getElementById('prevBtn').disabled = slide === 0;
+    document.getElementById('nextBtn').disabled = slide >= max;
+  }
+   window.addEventListener('resize', () => {
+    slide = 0;
+    document.getElementById('carouselTrack').style.transform = 'translateX(0)';
+    document.getElementById('prevBtn').disabled = true;
+    document.getElementById('nextBtn').disabled = false;
+  });
+
+  // Scroll top
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').classList.toggle('show', scrollY > 300);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Order Management</title>
+        <script>
+            function changeColor(selectObj) {
+            // Lấy màu từ option được chọn
+            var color = selectObj.options[selectObj.selectedIndex].style.backgroundColor;
+            // Áp dụng màu cho select
+            selectObj.style.backgroundColor = color;
+            }
+        </script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            body {
+                background: #f5f6f8;
+            }
+
+            /* Topbar */
+            .topbar {
+                height: 50px;
+                background: hsl(50, 94%, 45%);
+                color: #fff;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-weight: bold;
+                margin-right: auto;
+                display: flex;
+                align-items: center;
+            }
+
+            .search-box {
+                padding: 6px 10px;
+                border-radius: 4px;
+                border: none;
+            }
+
+            /* Layout */
+            .container {
+                display: flex;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                width: 230px;
+                background: #e9ecef;
+                min-height: calc(100vh - 50px);
+            }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+            .sidebar li {
+                padding: 14px 20px;
+                cursor: pointer;
+            }
+
+            .sidebar li:hover,
+            .sidebar .active {
+                background: #fff;
+                font-weight: bold;
+            }
+
+            /* Content */
+            .content {
+                flex: 1;
+                padding: 20px;
+            }
+
+            .content h2 {
+                margin-bottom: 15px;
+            }
+
+            /* Table */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: #fff;
+            }
+
+            th, td {
+                padding: 12px;
+                border-bottom: 1px solid #ddd;
+                text-align: left;
+            }
+
+            th {
+                background: #f2f2f2;
+                font-weight: bold;
+            }
+
+            #mySelect {
+                padding: 6px 20px;
+                border-radius: 4px;
+                border: 1px solid #a80d0d;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <!-- Topbar -->
+        <header class="topbar">            
+            <div class="logo">
+                PURE PAW PET HOUSE
+            </div>
+            <input type="text" placeholder="Tìm kiếm" class="search-box">
+        </header>
+
+        <div class="container">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <ul>
+                    <li>
+                        <img src="IMAGES/WebLogo.png" style="height: 120px; vertical-align: middle; margin-left: 25px;">
+                    </li>
+                    <li>Dashboard</li>
+                    <li class="active">Order Management</li>
+                    <li>Product Management</li>
+                    <li>Category Management</li>
+                </ul>
+            </aside>
+
+            <!-- Main content -->
+            <main class="content">
+                <h2>Danh sách đơn hàng</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>C0001</td>
+                            <td>Nguyễn Văn Bình</td>
+                            <td>0973461439</td>
+                            <td>University of Economics and Law</td>
+                            <td>280,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>27/11/2025</td>
+                        </tr>        
+                        <tr>
+                            <td>C0002</td>
+                            <td>Lê Nguyễn Hoài An</td>
+                            <td>0912345678</td>
+                            <td>University of Economics and Law</td>
+                            <td>1,300,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>28/11/2025</td>
+                        </tr>
+                        <tr>
+                            <td>C0003</td>
+                            <td>Trần Thị Mai</td>
+                            <td>0888919196</td>
+                            <td>University of Economics and Law</td>
+                            <td>850,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>28/11/2025</td>
+                        </tr>
+                        <tr>
+                            <td>C0004</td>
+                            <td>Phạm Văn Hùng</td>
+                            <td>0962453776</td>
+                            <td>University of Economics and Law</td>
+                            <td>1,520,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>30/12/2025</td>
+                        </tr>
+                        <tr>
+                            <td>C0005</td>
+                            <td>Nguyễn Thị Lan Anh</td>
+                            <td>0969263117</td>
+                            <td>University of Economics and Law</td>
+                            <td>280,432 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>02/01/2026</td>
+                        </tr>
+                        <tr>
+                            <td>C0006</td>
+                            <td>Nguyễn Thị Mai Phương</td>
+                            <td>0985433276</td>
+                            <td>University of Economics and Law</td>
+                            <td>560,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>05/01/2026</td>
+                        </tr>
+                        <tr>
+                            <td>C0007</td>
+                            <td>Nguyễn Thị Ánh Mai</td>
+                            <td>0925388453</td>
+                            <td>University of Economics and Law</td>
+                            <td>2,050,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>06/01/2026</td>
+                        </tr>
+                        <tr>
+                            <td>C0008</td>
+                            <td>Trần Hoài Phương</td>
+                            <td>0918095430</td>
+                            <td>University of Economics and Law</td>
+                            <td>960,000 VND</td>
+                            <td>
+                                <select id="mySelect" onchange="changeColor(this)">
+                                    <option value="black" style="background-color: antiquewhite;">Pending</option>
+                                    <option value="red" style="background-color: rgba(78, 232, 101, 0.849);">Delivered</option>
+                                    <option value="green" style="background-color: rgb(237, 176, 21);">Shipped</option>
+                                </select>
+                            </td>
+                            <td>08/01/2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+
+    </body>
+</html>

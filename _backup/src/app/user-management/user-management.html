@@ -1,0 +1,125 @@
+<div class="sidebar">
+    <h2>PURE PAW Admin</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Products</a>
+    <a href="#">Orders</a>
+    <a href="#">Bookings</a>
+    <a href="#">Promotions</a>
+    <a href="#">Blog</a>
+    <a href="#">Users</a>
+</div>
+
+<div class="main">
+
+<h1>User Management</h1>
+
+<!-- Dashboard Summary -->
+<div class="card-container">
+    <div class="card">
+        <h3>Total Users</h3>
+        <p>1,245</p>
+    </div>
+    <div class="card">
+        <h3>Active Users</h3>
+        <p>1,120</p>
+    </div>
+    <div class="card">
+        <h3>Admins</h3>
+        <p>3</p>
+    </div>
+    <div class="card">
+        <h3>New This Month</h3>
+        <p>85</p>
+    </div>
+</div>
+
+<!-- Search & Filter -->
+<div class="section">
+    <div class="form-row">
+        <div>
+            <input type="text" placeholder="Search by name or email...">
+        </div>
+        <div>
+            <select>
+                <option>All Roles</option>
+                <option>Admin</option>
+                <option>Editor</option>
+                <option>User</option>
+            </select>
+        </div>
+        <div>
+            <select>
+                <option>All Status</option>
+                <option>Active</option>
+                <option>Inactive</option>
+            </select>
+        </div>
+        <div>
+            <button onclick="openModal()">+ Add User</button>
+        </div>
+    </div>
+</div>
+
+<!-- User Table -->
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nguyen Minh</td>
+                <td>minh@email.com</td>
+                <td class="role-admin">Admin</td>
+                <td class="status-active">Active</td>
+                <td>01/02/2026</td>
+                <td><button>Edit</button></td>
+            </tr>
+            <tr>
+                <td>Tran Linh</td>
+                <td>linh@email.com</td>
+                <td class="role-editor">Editor</td>
+                <td class="status-active">Active</td>
+                <td>15/01/2026</td>
+                <td><button>Edit</button></td>
+            </tr>
+            <tr>
+                <td>Pham Hoa</td>
+                <td>hoa@email.com</td>
+                <td class="role-user">User</td>
+                <td class="status-inactive">Inactive</td>
+                <td>20/12/2025</td>
+                <td><button>Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<!-- Add User Modal -->
+<div class="modal" id="userModal">
+    <div class="modal-content">
+        <h3>Add New User</h3>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email">
+        <select>
+            <option>User</option>
+            <option>Editor</option>
+            <option>Admin</option>
+        </select>
+        <select>
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+        <button>Add User</button>
+        <button onclick="closeModal()" style="background:gray;margin-top:10px;">Cancel</button>
+    </div>
+</div>

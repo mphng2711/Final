@@ -1,0 +1,526 @@
+
+<style>
+/* ══ CHI TIẾT SẢN PHẨM — clone productdetail.html ══ */
+.pdp-breadcrumb {
+    background: #fff; padding: 15px 0; margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.pdp-breadcrumb ul { list-style: none; display: flex; gap: 0; flex-wrap: wrap; }
+.pdp-breadcrumb li { color: #666; font-size: 14px; }
+.pdp-breadcrumb li a { color: #666; text-decoration: none; transition: color .2s; }
+.pdp-breadcrumb li a:hover { color: #FFB606; }
+.pdp-breadcrumb li.active a { color: #1C1C1C; font-weight: 600; }
+.pdp-breadcrumb li + li::before { content: " › "; margin: 0 6px; color: #bbb; }
+
+.pdp-wrap { max-width: 1200px; margin: 30px auto; padding: 0 20px 60px; }
+
+/* Main Detail Card */
+.product-detail {
+    background: #fff; border-radius: 20px; padding: 40px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.1); margin-bottom: 40px;
+}
+.product-detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 50px; margin-bottom: 40px;
+}
+
+/* Images */
+.product-images { display: flex; flex-direction: column; gap: 16px; }
+.main-image {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    border-radius: 16px; overflow: hidden;
+    border: 3px solid #FFE002;
+    display: flex; align-items: center; justify-content: center;
+}
+.main-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.thumbnail-images { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.thumbnail {
+    aspect-ratio: 1; background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    border-radius: 10px; border: 2px solid #e0e0e0;
+    cursor: pointer; transition: all .3s; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.thumbnail:hover, .thumbnail.active { border-color: #FFE002; transform: translateY(-2px); }
+.thumbnail img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Info */
+.product-info h1 { font-size: 26px; color: #1C1C1C; margin-bottom: 18px; font-weight: 700; line-height: 1.3; }
+.pdp-stars { color: #FFE002; font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.pdp-stars span { color: #666; font-size: 14px; }
+
+.product-price { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+.price-current {
+    font-size: 32px; font-weight: 700;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.price-old { font-size: 20px; color: #bbb; text-decoration: line-through; }
+.price-badge {
+    background: #e74c3c; color: #fff;
+    padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 700;
+}
+
+.product-meta {
+    background: #f9f9f9; padding: 20px; border-radius: 12px; margin-bottom: 25px;
+}
+.meta-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid #e8e8e8; font-size: 14px;
+}
+.meta-item:last-child { border-bottom: none; }
+.meta-label { font-weight: 600; color: #666; min-width: 110px; }
+.meta-value { color: #1C1C1C; }
+
+/* Quantity */
+.qty-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.qty-label { font-weight: 600; color: #666; font-size: 14px; }
+.qty-controls { display: flex; align-items: center; border: 2px solid #e0e0e0; border-radius: 10px; overflow: hidden; }
+.qty-btn {
+    width: 40px; height: 40px; background: #f5f5f5; border: none;
+    cursor: pointer; font-size: 18px; font-weight: 700; color: #1C1C1C;
+    transition: background .2s; display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { background: #FFE002; }
+.qty-input {
+    width: 50px; text-align: center; border: none;
+    font-size: 16px; font-weight: 700; outline: none;
+    padding: 0; background: #fff;
+}
+
+/* Variant Selector */
+.variant-section { margin-bottom: 20px; }
+.variant-label { font-weight: 600; color: #666; font-size: 14px; margin-bottom: 10px; display: block; }
+.variant-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.variant-pill {
+    padding: 7px 16px; border: 2px solid #e0e0e0; border-radius: 8px;
+    cursor: pointer; font-size: 14px; transition: all .2s; background: #fff;
+    font-family: inherit;
+}
+.variant-pill:hover, .variant-pill.active { border-color: #FFE002; background: #fffbeb; }
+
+/* Actions */
+.product-actions { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+.btn-buy {
+    flex: 2; background: linear-gradient(135deg,#FFE002,#FFB606);
+    border: none; padding: 16px 24px; border-radius: 12px;
+    color: #1C1C1C; font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: all .3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: inherit;
+}
+.btn-buy:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,182,6,.4); }
+.btn-contact {
+    flex: 1; background: transparent; border: 2px solid #FFE002;
+    padding: 16px 24px; border-radius: 12px;
+    color: #1C1C1C; font-weight: 700; font-size: 15px; cursor: pointer;
+    transition: all .3s; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-contact:hover { background: linear-gradient(135deg,#FFE002,#FFB606); transform: translateY(-2px); }
+
+/* Tabs */
+.product-tabs { margin-top: 40px; }
+.tab-nav { display: flex; gap: 8px; border-bottom: 2px solid #e0e0e0; margin-bottom: 28px; }
+.tab-button {
+    background: transparent; border: none; padding: 14px 24px;
+    color: #888; font-weight: 600; cursor: pointer; font-size: 15px;
+    transition: all .3s; border-bottom: 3px solid transparent; margin-bottom: -2px;
+    font-family: inherit;
+}
+.tab-button.active { color: #1C1C1C; border-bottom-color: #FFE002; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.product-description { line-height: 1.85; color: #555; font-size: 15px; }
+.product-description p { margin-bottom: 14px; }
+
+/* Reviews */
+.reviews-summary {
+    background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    padding: 25px; border-radius: 16px; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 35px; flex-wrap: wrap;
+}
+.rating-score { text-align: center; }
+.rating-number { font-size: 50px; font-weight: 700; color: #FFB606; display: block; }
+.rating-stars-big { font-size: 24px; color: #FFE002; }
+.rating-count { color: #666; margin-top: 5px; font-size: 14px; }
+.rating-bars { flex: 1; min-width: 200px; }
+.rating-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bar-label { min-width: 50px; color: #666; font-size: 13px; }
+.bar-track { flex: 1; height: 8px; background: #e0e0e0; border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(135deg,#FFE002,#FFB606); border-radius: 10px; }
+.bar-count { min-width: 35px; text-align: right; color: #666; font-size: 13px; }
+
+.review-item { padding: 24px; border-bottom: 1px solid #f0f0f0; }
+.review-item:last-child { border-bottom: none; }
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.reviewer-info { display: flex; align-items: center; gap: 12px; }
+.reviewer-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #1C1C1C; font-size: 18px;
+}
+.reviewer-name { font-weight: 600; color: #1C1C1C; }
+.review-date { color: #aaa; font-size: 13px; }
+.review-rating { color: #FFE002; font-size: 15px; }
+.review-content { color: #555; line-height: 1.7; font-size: 14px; }
+
+/* Related Products */
+.related-products { margin-top: 15px; }
+.related-title {
+    font-size: 22px; font-weight: 700; color: #1C1C1C;
+    margin-bottom: 22px; padding-bottom: 12px; border-bottom: 3px solid #FFE002;
+}
+.related-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.related-card {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 5px 16px rgba(0,0,0,.08); transition: all .3s;
+}
+.related-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(255,182,6,.22); }
+.related-card-img {
+    height: 180px; background: linear-gradient(135deg,#fffbeb,#fff9e6);
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 3px solid #FFE002; overflow: hidden;
+}
+.related-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.related-card-info { padding: 14px; }
+.related-card-title {
+    font-size: 14px; font-weight: 600; color: #1C1C1C;
+    margin-bottom: 10px; display: -webkit-box;
+    -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.related-card-title a { color: inherit; text-decoration: none; }
+.related-card-title a:hover { color: #FFB606; }
+.related-card-price {
+    background: linear-gradient(135deg,#FFE002,#FFB606);
+    color: #1C1C1C; font-weight: 700; padding: 6px 12px;
+    border-radius: 8px; display: inline-block; font-size: 14px;
+}
+.related-card-btn {
+    display: block; margin-top: 10px; padding: 8px;
+    background: #1C1C1C; color: #FFE002; border-radius: 8px;
+    text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;
+    transition: all .25s;
+}
+.related-card-btn:hover { background: #FFE002; color: #1C1C1C; }
+
+@media (max-width: 900px) {
+    .product-detail-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 480px) {
+    .product-detail { padding: 20px; }
+    .related-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+</style>
+
+<!-- Breadcrumb -->
+<div class="pdp-breadcrumb">
+    <div class="wrap-content">
+        <ul>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/san-pham">Sản phẩm</a></li>
+            <% if (product.category) { %><li><a href="/san-pham?category=<%= product.category.slug %>"><%= product.category.name %></a></li><% } %>
+            <li class="active"><a href="#"><%= product.name %></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="pdp-wrap">
+    <div class="product-detail">
+        <div class="product-detail-grid">
+            <!-- Images -->
+            <div class="product-images">
+                <div class="main-image" id="mainImgWrap">
+                    <img id="mainImg"
+                         src="<%= product.thumbnail || (product.images && product.images[0]) || '' %>"
+                         alt="<%= product.name %>"
+                         onerror="this.onerror=null;this.src='https://lapaw.vn/wp-content/uploads/2023/12/pate-meo-lapaw-thit-bo-va-ga-375gr-300x300.jpg'">
+                </div>
+                <% if (product.images && product.images.length > 1) { %>
+                <div class="thumbnail-images">
+                    <% product.images.slice(0,4).forEach((img, i) => { %>
+                    <div class="thumbnail <%= i===0 ? 'active' : '' %>" onclick="setMainImg(this, '<%= img %>')">
+                        <img src="<%= img %>" alt="Ảnh <%= i+1 %>"
+                             onerror="this.onerror=null;this.style.display='none'">
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+            </div>
+
+            <!-- Info -->
+            <div class="product-info">
+                <h1><%= product.name %></h1>
+
+                <div class="pdp-stars">
+                    ★★★★★ <span>(4.9 — 18 đánh giá)</span>
+                </div>
+
+                <!-- Price -->
+                <% const activeVariant = product.variants && product.variants[0]; %>
+                <% if (activeVariant) { %>
+                <div class="product-price">
+                    <span class="price-current" id="pdpPrice">
+                        <%= (activeVariant.salePrice || activeVariant.price).toLocaleString('vi-VN') %>đ
+                    </span>
+                    <% if (activeVariant.salePrice && activeVariant.salePrice < activeVariant.price) { %>
+                    <span class="price-old" id="pdpOldPrice"><%= activeVariant.price.toLocaleString('vi-VN') %>đ</span>
+                    <span class="price-badge">
+                        -<%= Math.round((1 - activeVariant.salePrice/activeVariant.price)*100) %>%
+                    </span>
+                    <% } %>
+                </div>
+                <% } %>
+
+                <!-- Variants -->
+                <% if (product.variants && product.variants.length) { %>
+                <div class="variant-section">
+                    <span class="variant-label">Quy cách / Dung lượng:</span>
+                    <div class="variant-pills">
+                        <% product.variants.forEach((v, i) => { %>
+                        <button class="variant-pill <%= i===0 ? 'active' : '' %>"
+                                data-variant-id="<%= v._id %>"
+                                onclick="selectVariant(this, <%= JSON.stringify(v) %>)">
+                            <%= v.name || (v.price.toLocaleString('vi-VN') + 'đ') %>
+                        </button>
+                        <% }) %>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- Meta -->
+                <div class="product-meta">
+                    <% if (product.category) { %>
+                    <div class="meta-item">
+                        <span class="meta-label">Danh mục:</span>
+                        <span class="meta-value"><%= product.category.name %></span>
+                    </div>
+                    <% } %>
+                    <div class="meta-item">
+                        <span class="meta-label">Tình trạng:</span>
+                        <span class="meta-value" style="color:<%= (product.stock > 0) ? '#27ae60' : '#e74c3c' %>; font-weight:600">
+                            <%= (product.stock > 0) ? '✓ Còn hàng' : '✗ Hết hàng' %>
+                        </span>
+                    </div>
+                    <% if (product.brand) { %>
+                    <div class="meta-item">
+                        <span class="meta-label">Thương hiệu:</span>
+                        <span class="meta-value"><%= product.brand %></span>
+                    </div>
+                    <% } %>
+                    <div class="meta-item">
+                        <span class="meta-label">Mã SP:</span>
+                        <span class="meta-value" style="color:#888"><%= product.slug %></span>
+                    </div>
+                </div>
+
+                <!-- Qty -->
+                <div class="qty-wrap">
+                    <span class="qty-label">Số lượng:</span>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                        <input class="qty-input" type="number" id="qtyInput" value="1" min="1" max="99">
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="product-actions">
+                    <% if (currentUser) { %>
+                    <button class="btn-buy" onclick="addToCart('<%= product._id %>')">
+                        🛒 Thêm vào giỏ hàng
+                    </button>
+                    <% } else { %>
+                    <button class="btn-buy" onclick="openAuthPopup()">
+                        🛒 Thêm vào giỏ hàng
+                    </button>
+                    <% } %>
+                    <a href="/lien-he" class="btn-contact">💬 Tư vấn ngay</a>
+                </div>
+
+                <!-- Badges -->
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+                    <span style="background:#f0fff4;color:#27ae60;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid #b7f5c9">🚚 Giao hàng toàn quốc</span>
+                    <span style="background:#fffbeb;color:#d4a017;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid #FFE002">✓ Hàng chính hãng 100%</span>
+                    <span style="background:#fff8f0;color:#e67e22;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid #fcd9b0">↩ Đổi trả trong 7 ngày</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="product-tabs">
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="switchTab(this,'desc')">📋 Mô tả sản phẩm</button>
+                <button class="tab-button" onclick="switchTab(this,'specs')">📊 Thông số kỹ thuật</button>
+                <button class="tab-button" onclick="switchTab(this,'reviews')">⭐ Đánh giá (18)</button>
+            </div>
+
+            <div id="desc" class="tab-content active">
+                <div class="product-description">
+                    <% if (product.description) { %>
+                        <%- product.description %>
+                    <% } else { %>
+                        <p><strong><%= product.name %></strong> là sản phẩm chất lượng cao, phù hợp cho thú cưng ở mọi lứa tuổi. Được sản xuất từ các nguyên liệu tươi ngon, đảm bảo dinh dưỡng đầy đủ và an toàn cho sức khỏe của thú cưng.</p>
+                        <p>Sản phẩm được nhập khẩu chính hãng và phân phối độc quyền bởi Pure Paw Pet Shop — cam kết chất lượng 100%.</p>
+                    <% } %>
+                </div>
+            </div>
+
+            <div id="specs" class="tab-content">
+                <div class="product-meta" style="margin:0">
+                    <% if (product.variants && product.variants.length) { %>
+                    <% product.variants.forEach(v => { %>
+                    <div class="meta-item">
+                        <span class="meta-label"><%= v.name || 'Quy cách' %>:</span>
+                        <span class="meta-value"><%= v.price.toLocaleString('vi-VN') %>đ<%= v.salePrice ? ' → ' + v.salePrice.toLocaleString('vi-VN') + 'đ' : '' %></span>
+                    </div>
+                    <% }) %>
+                    <% } %>
+                    <div class="meta-item"><span class="meta-label">Xuất xứ:</span><span class="meta-value">Việt Nam / Nhập khẩu</span></div>
+                    <div class="meta-item"><span class="meta-label">Bảo quản:</span><span class="meta-value">Nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp</span></div>
+                    <div class="meta-item"><span class="meta-label">Hạn sử dụng:</span><span class="meta-value">Xem trên bao bì sản phẩm</span></div>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <div class="rating-score">
+                        <span class="rating-number">4.9</span>
+                        <div class="rating-stars-big">★★★★★</div>
+                        <div class="rating-count">18 đánh giá</div>
+                    </div>
+                    <div class="rating-bars">
+                        <div class="rating-bar"><span class="bar-label">5 sao</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-count">16</span></div>
+                        <div class="rating-bar"><span class="bar-label">4 sao</span><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-count">2</span></div>
+                        <div class="rating-bar"><span class="bar-label">3 sao</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+                        <div class="rating-bar"><span class="bar-label">2 sao</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+                        <div class="rating-bar"><span class="bar-label">1 sao</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">N</div>
+                            <div>
+                                <div class="reviewer-name">Nguyễn Thị Lan</div>
+                                <div class="review-date">15/03/2026</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <p class="review-content">Sản phẩm rất tốt! Bé mèo nhà mình rất thích, ăn ngon miệng hơn hẳn. Giao hàng nhanh, đóng gói cẩn thận. Sẽ mua tiếp!</p>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">T</div>
+                            <div>
+                                <div class="reviewer-name">Trần Văn Bình</div>
+                                <div class="review-date">10/03/2026</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <p class="review-content">Chất lượng đúng như mô tả, hàng chính hãng 100%. Bé chó nhà mình ăn khỏe, lông mượt hơn. Pure Paw tư vấn rất nhiệt tình!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <% if (relatedProducts && relatedProducts.length) { %>
+    <div class="related-products">
+        <h2 class="related-title">Sản phẩm liên quan</h2>
+        <div class="related-grid">
+            <% relatedProducts.slice(0,4).forEach(rp => { %>
+            <div class="related-card">
+                <div class="related-card-img">
+                    <img src="<%= rp.thumbnail %>" alt="<%= rp.name %>"
+                         onerror="this.onerror=null;this.src='https://lapaw.vn/wp-content/uploads/2023/12/pate-meo-lapaw-thit-bo-va-ga-375gr-300x300.jpg'">
+                </div>
+                <div class="related-card-info">
+                    <div class="related-card-title"><a href="/san-pham/<%= rp.slug %>"><%= rp.name %></a></div>
+                    <% if (rp.variants && rp.variants[0]) { %>
+                    <span class="related-card-price"><%= (rp.variants[0].salePrice || rp.variants[0].price).toLocaleString('vi-VN') %>đ</span>
+                    <% } %>
+                    <a href="/san-pham/<%= rp.slug %>" class="related-card-btn">Xem chi tiết →</a>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<script>
+function switchTab(btn, tabId) {
+    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+function setMainImg(thumb, src) {
+    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    document.getElementById('mainImg').src = src;
+}
+function changeQty(delta) {
+    const input = document.getElementById('qtyInput');
+    const val = parseInt(input.value) + delta;
+    if (val >= 1 && val <= 99) input.value = val;
+}
+
+// ── Variant tracking ──────────────────────────────────────
+// Lấy variantId từ data sản phẩm (mặc định = variant đầu tiên)
+var _selectedVariantId = (function() {
+    var first = document.querySelector('[data-variant-id]');
+    return first ? first.getAttribute('data-variant-id') : null;
+})();
+
+function selectVariant(btn, variant) {
+    document.querySelectorAll('.variant-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    // Lưu variantId đang được chọn
+    _selectedVariantId = variant._id || (variant.id);
+    // Cập nhật giá hiển thị
+    const price = variant.salePrice || variant.price;
+    const priceEl = document.getElementById('pdpPrice');
+    if (priceEl) priceEl.textContent = price.toLocaleString('vi-VN') + 'đ';
+    const oldEl = document.getElementById('pdpOldPrice');
+    if (oldEl && variant.salePrice) oldEl.textContent = variant.price.toLocaleString('vi-VN') + 'đ';
+}
+
+async function addToCart(productId) {
+    if (!_selectedVariantId) {
+        showToast('❌ Vui lòng chọn phân loại sản phẩm', true);
+        return;
+    }
+    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+    try {
+        const res = await fetch('/gio-hang/them', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            // Gửi đầy đủ cả productId VÀ variantId
+            body: JSON.stringify({ productId, variantId: _selectedVariantId, quantity: qty })
+        });
+        const data = await res.json();
+        if (data.success) {
+            const badge = document.getElementById('cartCount');
+            if (badge) { badge.textContent = data.cartCount || ''; badge.style.display = data.cartCount ? '' : 'none'; }
+            showToast('✅ ' + (data.message || 'Đã thêm vào giỏ hàng!'));
+        } else {
+            showToast('❌ ' + (data.message || 'Lỗi thêm vào giỏ'), true);
+        }
+    } catch (e) {
+        showToast('❌ Không thể kết nối server', true);
+    }
+}
+function showToast(msg, isErr) {
+    const t = document.createElement('div');
+    t.style.cssText = `position:fixed;bottom:30px;right:30px;background:${isErr?'#e74c3c':'#27ae60'};color:#fff;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,.2);transition:opacity .3s`;
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),300); }, 2800);
+}
+</script>

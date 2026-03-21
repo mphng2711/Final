@@ -1,0 +1,69 @@
+<% locals.activePage = 'coupons' %>
+
+<div class="page-header" style="display:flex;justify-content:space-between;align-items:center">
+  <h1>🎫 Quản lý mã giảm giá (<%= coupons.length %>)</h1>
+  <a href="/admin/coupon/them-moi" class="btn btn-primary">+ Thêm mã</a>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <form method="GET" style="display:flex;gap:12px;align-items:flex-end">
+    <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TRẠNG THÁI</label>
+    <select name="status" class="form-control">
+      <option value="">Tất cả</option>
+      <option value="active" <%= query.status==='active'?'selected':'' %>>Đang hoạt động</option>
+      <option value="inactive" <%= query.status==='inactive'?'selected':'' %>>Đã tắt</option>
+    </select></div>
+    <button type="submit" class="btn btn-primary">🔍</button>
+    <a href="/admin/coupon" class="btn btn-secondary">Xóa lọc</a>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>Mã</th><th>Loại giảm</th><th>Giá trị</th><th>Đã dùng</th><th>Hiệu lực</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    <% if (coupons.length) { %>
+    <% coupons.forEach(c => {
+      const isExpired = c.endDate < now;
+      const isExhausted = c.usedCount >= c.usageLimit;
+      const isValid = c.isActive && !isExpired && !isExhausted;
+    %>
+    <tr>
+      <td>
+        <strong style="font-size:15px;color:#FFB606;letter-spacing:1px"><%= c.code %></strong>
+        <% if (c.description) { %><br><span style="font-size:12px;color:#999"><%= c.description.substring(0,40) %></span><% } %>
+      </td>
+      <td><span class="badge badge-info"><%= c.discountType === 'percentage' ? 'Phần trăm' : 'Số tiền cố định' %></span></td>
+      <td style="font-weight:700;color:#28a745">
+        <%= c.discountType === 'percentage' ? c.discountValue+'%' : c.discountValue.toLocaleString('vi-VN')+'₫' %>
+        <% if (c.minOrderAmount) { %><br><span style="font-size:11px;color:#999">Đơn tối thiểu: <%= c.minOrderAmount.toLocaleString('vi-VN') %>₫</span><% } %>
+      </td>
+      <td style="text-align:center"><%= c.usedCount %>/<%= c.usageLimit %></td>
+      <td style="font-size:12px">
+        <span><%= new Date(c.startDate).toLocaleDateString('vi-VN') %></span><br>
+        <span style="color:#999">→ <%= new Date(c.endDate).toLocaleDateString('vi-VN') %></span>
+        <% if (isExpired) { %><br><span style="color:#dc3545;font-weight:600">⌛ Hết hạn</span><% } %>
+      </td>
+      <td>
+        <span class="badge <%= isValid ? 'badge-success' : 'badge-danger' %>">
+          <%= isValid ? '✅ Hợp lệ' : (isExpired ? '⌛ Hết hạn' : isExhausted ? '🔒 Hết lượt' : '⛔ Đã tắt') %>
+        </span>
+      </td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap">
+        <form action="/admin/coupon/<%= c._id %>/toggle?_method=PATCH" method="POST" style="display:inline">
+          <button type="submit" class="btn btn-secondary btn-sm"><%= c.isActive ? '⛔ Tắt' : '✅ Mở' %></button>
+        </form>
+        <a href="/admin/coupon/<%= c._id %>/sua" class="btn btn-secondary btn-sm">✏️</a>
+        <form action="/admin/coupon/<%= c._id %>?_method=DELETE" method="POST"
+              onsubmit="return confirm('Xóa mã '+'<%= c.code %>'+' này?')" style="display:inline">
+          <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+    <% } else { %>
+    <tr><td colspan="7" style="text-align:center;padding:35px;color:#999">Chưa có mã giảm giá nào</td></tr>
+    <% } %>
+    </tbody>
+  </table>
+</div>

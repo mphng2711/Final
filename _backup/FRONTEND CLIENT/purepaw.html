@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - VSA PET CLINIC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1C1C1C;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* Header Styles */
+        .header-top {
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            padding: 12px 0;
+            color: white;
+        }
+
+        .wrap-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1C1C1C;
+            font-size: 14px;
+        }
+
+        .info-item i {
+            font-size: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Styles */
+        .main-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #1C1C1C;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #FFB606;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FFE002;
+        }
+
+        .search-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: #1C1C1C;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: #FFB606;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #FFB606;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255, 224, 2, 0.1) 0%, rgba(255, 182, 6, 0.1) 100%);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            color: #1C1C1C;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-section h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #FFE002;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            color: #666;
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: white;
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-radius: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1C1C1C;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #FFE002;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            border-color: #FFE002;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            color: #1C1C1C;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: white;
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-radius: 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #FFE002;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 224, 2, 0.2);
+        }
+
+        .service-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            color: #1C1C1C;
+            margin-bottom: 15px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #FFE002;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            padding: 60px 0;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 36px;
+            color: #1C1C1C;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .contact-item h4 {
+            font-size: 18px;
+            color: #1C1C1C;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .contact-item a {
+            color: #FFB606;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: #1C1C1C;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #FFE002;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FFE002;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+
+        /* Auth Popup Styles */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup-container {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideUp 0.4s ease;
+            border: 1px solid #f0f0f0;
+            margin: 20px;
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-header h2 {
+            color: #1C1C1C;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .popup-header p {
+            color: #3B3B3B;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(28, 28, 28, 0.2);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(28, 28, 28, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .popup-body {
+            padding: 40px 30px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            background: transparent;
+            color: #1C1C1C;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #FFE002;
+            color: #1C1C1C;
+            border-color: #FFE002;
+        }
+
+        .tab-btn:hover:not(.active) {
+            border-color: #FFB606;
+            color: #FFB606;
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #1C1C1C;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            color: #1C1C1C;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #FFE002;
+            background: #ffffff;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #FFB606;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #FFE002;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%);
+            border: none;
+            border-radius: 10px;
+            color: #1C1C1C;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 224, 2, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 182, 6, 0.4);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: #1C1C1C;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .social-btn:hover {
+            border-color: #FFE002;
+            background: #fffbeb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 224, 2, 0.2);
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: #FFB606;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            color: #FFE002;
+        }
+
+        .paw-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-btn {
+            background: #FFE002;
+            border: 2px solid #FFB606;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #1C1C1C;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .auth-btn:hover {
+            background: #FFB606;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 182, 6, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-section h1 {
+                font-size: 36px;
+            }
+
+            .hero-section p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .features-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .popup-container {
+                margin: 10px;
+            }
+
+            .popup-body {
+                padding: 30px 20px;
+            }
+
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="wrap-content">
+                <div class="header-info">
+                    <div class="info-item">
+                        <i>📍</i>
+                        <span>Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP.HCM</span>
+                    </div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <div class="info-item">
+                            <i>📞</i>
+                            <span>Hotline: <strong>083 764 5555</strong></span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">f</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <div class="wrap-content">
+                <div class="nav-container">
+                    <div style="display: flex; align-items: center; gap: 40px;">
+                        <div class="logo">
+                            <strong style="font-size: 24px; color: #FFB606;">🐾 VSA</strong>
+                        </div>
+                        <ul class="nav-menu">
+                            <li><a href="#" class="active">Trang chủ</a></li>
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">Dịch vụ</a></li>
+                            <li><a href="#">Sản phẩm</a></li>
+                            <li><a href="#">Album</a></li>
+                            <li><a href="#">Tin tức</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <span class="search-icon">🔍</span>
+                        <div class="auth-buttons">
+                            <button class="auth-btn" onclick="openAuthPopup('login')">Đăng nhập</button>
+                            <button class="auth-btn" onclick="openAuthPopup('signup')">Đăng ký</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="wrap-content">
+            <a href="#">Trang chủ</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="wrap-content">
+                <h1>VSA PET CLINIC</h1>
+                <p>🐾 Trao Tiếng Nói Cho Những Người Bạn Đặc Biệt Không Thể Nói 🐾</p>
+            </div>
+        </section>
+
+        <div class="wrap-content">
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2 class="section-title">Tại sao chọn VSA Pet Clinic?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💉</div>
+                        <h3>Chăm sóc toàn diện</h3>
+                        <p>Dịch vụ khám chữa bệnh, xét nghiệm, phẫu thuật chuyên nghiệp với đội ngũ bác sĩ giàu kinh nghiệm</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍⚕️</div>
+                        <h3>Đội ngũ chuyên nghiệp</h3>
+                        <p>Bác sĩ thú y tận tâm, yêu thương động vật, luôn đặt sức khỏe thú cưng lên hàng đầu</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏥</div>
+                        <h3>Trang thiết bị hiện đại</h3>
+                        <p>Máy xét nghiệm, siêu âm, X-quang và các thiết bị y tế tiên tiến nhất</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏡</div>
+                        <h3>Môi trường thân thiện</h3>
+                        <p>Không gian sạch sẽ, thoải mái, giúp thú cưng cảm thấy an toàn và dễ chịu</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services-section">
+                <h2 class="section-title">Dịch vụ nổi bật</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💉</div>
+                        <h3>Khám & Điều trị</h3>
+                        <ul>
+                            <li>Khám tổng quát định kỳ</li>
+                            <li>Điều trị các bệnh da liễu</li>
+                            <li>Bệnh tiêu hóa, hô hấp</li>
+                            <li>Bệnh tim mạch, tiết niệu</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏥</div>
+                        <h3>Phẫu thuật</h3>
+                        <ul>
+                            <li>Phẫu thuật triệt sản</li>
+                            <li>Phẫu thuật chỉnh hình</li>
+                            <li>Phẫu thuật cắt bỏ khối u</li>
+                            <li>Phẫu thuật cấp cứu</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧪</div>
+                        <h3>Xét nghiệm</h3>
+                        <ul>
+                            <li>Xét nghiệm máu</li>
+                            <li>Xét nghiệm nước tiểu</li>
+                            <li>Siêu âm 4D</li>
+                            <li>Chụp X-quang kỹ thuật số</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛁</div>
+                        <h3>Spa & Làm đẹp</h3>
+                        <ul>
+                            <li>Tắm gội chuyên sâu</li>
+                            <li>Cắt tỉa lông tạo kiểu</li>
+                            <li>Vệ sinh răng miệng</li>
+                            <li>Cắt móng, massage thư giãn</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✂️</div>
+                        <h3>Triệt sản</h3>
+                        <ul>
+                            <li>Triệt sản an toàn</li>
+                            <li>Chăm sóc hậu phẫu tận tâm</li>
+                            <li>Tái khám miễn phí</li>
+                            <li>Tư vấn chế độ dinh dưỡng</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🆘</div>
+                        <h3>Cấp cứu 24/7</h3>
+                        <ul>
+                            <li>Dịch vụ cấp cứu 24/7</li>
+                            <li>Đội ngũ trực ca liên tục</li>
+                            <li>Xử lý nhanh các ca khẩn cấp</li>
+                            <li>Hỗ trợ tận nơi khi cần</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <h2>Liên hệ với chúng tôi</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📍 Địa chỉ</h4>
+                        <p>07 Cửu Long, P. Hòa Hưng<br>TP. Hồ Chí Minh</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📞 Hotline</h4>
+                        <p><a href="tel:0837645555">083 764 5555</a><br>(Hỗ trợ 24/7)</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>🌐 Website</h4>
+                        <p><a href="#">vsapetclinic.com</a><br>vsapetclinic@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>🕒 Giờ làm việc</h4>
+                        <p>Thứ 2 - Chủ Nhật<br>08:00 - 20:00<br><strong>Cấp cứu 24/7</strong></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrap-content">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VSA PET CLINIC</h3>
+                    <p style="margin-bottom: 15px;">Trao Tiếng Nói Cho Những Người Bạn Đặc Biệt Không Thể Nói</p>
+                    <p><strong>Địa chỉ:</strong> 07 Cửu Long, Phường Hòa Hưng, TP. Hồ Chí Minh</p>
+                    <p><strong>Điện thoại:</strong> 083 764 5555</p>
+                    <p><strong>Email:</strong> vsapetclinic@gmail.com</p>
+                    <p><strong>Website:</strong> vsapetclinic.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Chính sách công ty</h3>
+                    <ul>
+                        <li><a href="#">Chính sách đặt lịch</a></li>
+                        <li><a href="#">Chính sách mua hàng</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách thanh toán</a></li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <p><strong>⏰ Giờ mở cửa</strong></p>
+                        <p>08:00 - 20:00 (Thứ 2 - Chủ Nhật)</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Danh mục</h3>
+                    <ul>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="#">Album</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © <strong>VSA PET CLINIC</strong>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        ↑
+    </div>
+
+    <!-- Auth Popup -->
+    <div class="auth-overlay" id="authOverlay" onclick="closeAuthPopupOnOverlay(event)">
+        <div class="popup-container">
+            <div class="popup-header">
+                <div class="paw-icon">🐾</div>
+                <h2>Chào mừng trở lại!</h2>
+                <p>Đăng nhập để trải nghiệm dịch vụ tốt nhất cho thú cưng</p>
+                <button class="close-btn" onclick="closeAuthPopup()">×</button>
+            </div>
+
+            <div class="popup-body">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchAuthTab('login')">Đăng Nhập</button>
+                    <button class="tab-btn" onclick="switchAuthTab('signup')">Đăng Ký</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="form-content active">
+                    <form onsubmit="handleLogin(event)">
+                        <div class="input-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" placeholder="Nhập email của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="loginPassword">Mật khẩu</label>
+                            <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#" onclick="handleForgotPassword(event)">Quên mật khẩu?</a>
+                        </div>
+                        <button type="submit" class="submit-btn">Đăng Nhập</button>
+                    </form>
+
+                    <div class="divider">
+                        <span>Hoặc đăng nhập với</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button class="social-btn" onclick="loginWithGoogle()">
+                            Google
+                        </button>
+                        <button class="social-btn" onclick="loginWithFacebook()">
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signupForm" class="form-content">
+                    <form onsubmit="handleSignup(event)">
+                        <div class="input-group">
+                            <label for="signupName">Họ và tên</label>
+                            <input type="text" id="signupName" placeholder="Nhập họ tên của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" placeholder="Nhập email của bạn" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupPassword">Mật khẩu</label>
+                            <input type="password" id="signupPassword" placeholder="Tạo mật khẩu (tối thiểu 8 ký tự)" required minlength="8">
+                        </div>
+                        <div class="input-group">
+                            <label for="signupConfirmPassword">Xác nhận mật khẩu</label>
+                            <input type="password" id="signupConfirmPassword" placeholder="Nhập lại mật khẩu" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Đăng Ký</button>
+                    </form>
+
+                    <div class="divider">
+                        <span>Hoặc đăng ký với</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button class="social-btn" onclick="loginWithGoogle()">
+                            Google
+                        </button>
+                        <button class="social-btn" onclick="loginWithFacebook()">
+                            Facebook
+                        </button>
+                    </div>
+
+                    <div class="terms">
+                        Bằng việc đăng ký, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của chúng tôi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll to top functionality
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Auth popup functions
+        function openAuthPopup(tab = 'login') {
+            document.getElementById('authOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            switchAuthTab(tab);
+        }
+
+        function closeAuthPopup() {
+            document.getElementById('authOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeAuthPopupOnOverlay(event) {
+            if (event.target === document.getElementById('authOverlay')) {
+                closeAuthPopup();
+            }
+        }
+
+        function switchAuthTab(tab) {
+            const loginTab = document.querySelector('.tab-btn:first-child');
+            const signupTab = document.querySelector('.tab-btn:last-child');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            } else {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Đăng nhập với:', { email, password });
+            alert('Đăng nhập thành công!');
+            closeAuthPopup();
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Mật khẩu phải có ít nhất 8 ký tự!');
+                return;
+            }
+
+            console.log('Đăng ký với:', { name, email, password });
+            alert('Đăng ký thành công!');
+            closeAuthPopup();
+        }
+
+        function loginWithGoogle() {
+            console.log('Đăng nhập với Google');
+            alert('Chức năng đăng nhập Google!');
+        }
+
+        function loginWithFacebook() {
+            console.log('Đăng nhập với Facebook');
+            alert('Chức năng đăng nhập Facebook!');
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const email = prompt('Vui lòng nhập email của bạn:');
+            if (email) {
+                alert(`Link reset mật khẩu đã được gửi đến ${email}`);
+            }
+        }
+
+        // Close popup on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAuthPopup();
+            }
+        });
+    </script>
+</body>
+</html>

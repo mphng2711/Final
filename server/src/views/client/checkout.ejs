@@ -1,0 +1,344 @@
+<style>
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 370px;
+    gap: 28px;
+    padding: 40px 0;
+  }
+
+  .checkout-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 7px;
+    color: #333;
+  }
+
+  .form-input,
+  .form-select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border .2s;
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #FFE002;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .payment-opt {
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .2s;
+  }
+
+  .payment-opt:hover,
+  .payment-opt.selected {
+    border-color: #FFB606;
+    background: #fffbeb;
+  }
+
+  .payment-opt input {
+    display: none;
+  }
+
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+  }
+
+  .order-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFB606;
+  }
+
+  .place-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #FFE002, #FFB606);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #1C1C1C;
+    transition: all .2s;
+  }
+
+  .place-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 182, 6, .3);
+  }
+
+  .coupon-wrap {
+    display: flex;
+    gap: 10px;
+  }
+
+  .coupon-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .coupon-btn {
+    padding: 10px 18px;
+    background: #1C1C1C;
+    color: #FFE002;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  @media(max-width: 768px) {
+    .checkout-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .payment-options {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="wrap-content checkout-grid">
+  <!-- LEFT: Thông tin giao hàng + Thanh toán -->
+  <div>
+    <form action="/thanh-toan" method="POST" id="checkoutForm">
+      <input type="hidden" name="couponId" id="couponIdInput">
+
+      <!-- Thông tin giao hàng -->
+      <div class="checkout-card">
+        <h2 style="font-size:18px;margin-bottom:18px;color:#1C1C1C">📍 Thông tin giao hàng</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Họ và tên *</label>
+            <input type="text" name="fullName" class="form-input" required
+              value="<%= user && user.fullName ? user.fullName : '' %>">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Số điện thoại *</label>
+            <input type="tel" name="phone" class="form-input" required
+              value="<%= user && user.phone ? user.phone : '' %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Địa chỉ (Số nhà, đường) *</label>
+          <input type="text" name="street" class="form-input" required
+            value="<%= user && user.address && user.address.street ? user.address.street : '' %>">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phường/Xã *</label>
+            <input type="text" name="ward" class="form-input" required
+              value="<%= user && user.address && user.address.ward ? user.address.ward : '' %>">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quận/Huyện *</label>
+            <input type="text" name="district" class="form-input" required
+              value="<%= user && user.address && user.address.district ? user.address.district : '' %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tỉnh/Thành phố *</label>
+          <input type="text" name="city" class="form-input" required
+            value="<%= user && user.address && user.address.city ? user.address.city : '' %>">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ghi chú thêm</label>
+          <textarea name="note" class="form-input" rows="2" placeholder="Hướng dẫn giao hàng, ghi chú..."></textarea>
+        </div>
+      </div>
+
+      <!-- Phương thức thanh toán -->
+      <div class="checkout-card">
+        <h2 style="font-size:18px;margin-bottom:18px;color:#1C1C1C">💳 Phương thức thanh toán</h2>
+        <div class="payment-options">
+          <label class="payment-opt selected" id="opt-cod">
+            <input type="radio" name="paymentMethod" value="cod" checked onchange="selectPayment('cod')">
+            <span>🚚</span><span>Thanh toán khi nhận hàng (COD)</span>
+          </label>
+          <label class="payment-opt" id="opt-bank_transfer">
+            <input type="radio" name="paymentMethod" value="bank_transfer" onchange="selectPayment('bank_transfer')">
+            <span>🏦</span><span>Chuyển khoản ngân hàng</span>
+          </label>
+          <label class="payment-opt" id="opt-momo">
+            <input type="radio" name="paymentMethod" value="momo" onchange="selectPayment('momo')">
+            <span>📱</span><span>Ví MoMo</span>
+          </label>
+          <label class="payment-opt" id="opt-zalopay">
+            <input type="radio" name="paymentMethod" value="zalopay" onchange="selectPayment('zalopay')">
+            <span>💙</span><span>ZaloPay</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="place-btn" style="margin-top:5px">
+        🎉 Đặt hàng ngay → <span id="placeTotal">
+          <%= total.toLocaleString('vi-VN') %>₫
+        </span>
+      </button>
+    </form>
+  </div>
+
+  <!-- RIGHT: Tóm tắt đơn hàng -->
+  <div>
+    <div class="checkout-card" style="position:sticky;top:85px">
+      <h2 style="font-size:18px;margin-bottom:18px;color:#1C1C1C">🧾 Đơn hàng của bạn</h2>
+
+      <!-- Danh sách sản phẩm -->
+      <% cart.items.forEach(item=> { %>
+        <div class="order-item">
+          <div>
+            <p style="font-weight:600;font-size:13px">
+              <%= item.product ? item.product.name : 'SP' %>
+            </p>
+            <p style="color:#999;font-size:12px">x<%= item.quantity %>
+            </p>
+          </div>
+          <span style="font-weight:600;color:#555">
+            <%= (item.price * item.quantity).toLocaleString('vi-VN') %>₫
+          </span>
+        </div>
+        <% }) %>
+
+          <!-- Coupon -->
+          <div style="margin:15px 0">
+            <p style="font-weight:600;font-size:13px;margin-bottom:8px;color:#333">🎫 Mã giảm giá</p>
+            <div class="coupon-wrap">
+              <input type="text" id="couponCode" class="coupon-input" placeholder="Nhập mã coupon...">
+              <button type="button" class="coupon-btn" onclick="applyCoupon()">Áp dụng</button>
+            </div>
+            <p id="couponMsg" style="font-size:13px;margin-top:8px;display:none"></p>
+          </div>
+
+          <!-- Tổng -->
+          <div style="border-top:2px solid #f0f0f0;padding-top:12px">
+            <div class="order-item"><span>Tạm tính</span><span>
+                <%= subtotal.toLocaleString('vi-VN') %>₫
+              </span></div>
+            <div class="order-item">
+              <span>Phí vận chuyển</span>
+              <span id="shippingDisplay">
+                <%= shippingFee===0 ? 'Miễn phí 🎉' : shippingFee.toLocaleString('vi-VN') + '₫' %>
+              </span>
+            </div>
+            <div class="order-item" id="discountRow" style="display:none;color:#28a745">
+              <span>Giảm giá</span>
+              <span id="discountDisplay">-0₫</span>
+            </div>
+            <div class="order-total">
+              <span>Tổng cộng</span>
+              <span id="totalDisplay">
+                <%= total.toLocaleString('vi-VN') %>₫
+              </span>
+            </div>
+          </div>
+
+          <p style="font-size:11px;color:#999;margin-top:10px;text-align:center">🔒 Thông tin của bạn được bảo mật 100%
+          </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const BASE_SUBTOTAL = <%= subtotal %>;
+  const BASE_SHIPPING = <%= shippingFee %>;
+  let appliedDiscount = 0;
+
+  function selectPayment(id) {
+    document.querySelectorAll('.payment-opt').forEach(el => el.classList.remove('selected'));
+    document.getElementById('opt-' + id).classList.add('selected');
+  }
+
+  function updateTotal() {
+    const total = BASE_SUBTOTAL + BASE_SHIPPING - appliedDiscount;
+    document.getElementById('totalDisplay').textContent = total.toLocaleString('vi-VN') + '₫';
+    document.getElementById('placeTotal').textContent = total.toLocaleString('vi-VN') + '₫';
+  }
+
+  async function applyCoupon() {
+    const code = document.getElementById('couponCode').value.trim();
+    if (!code) return;
+    const msg = document.getElementById('couponMsg');
+    msg.style.display = 'block';
+    msg.style.color = '#999';
+    msg.textContent = 'Đang kiểm tra...';
+
+    try {
+      const res = await fetch('/thanh-toan/kiem-tra-coupon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ couponCode: code, subtotal: BASE_SUBTOTAL }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        appliedDiscount = data.discountAmount;
+        document.getElementById('couponIdInput').value = data.couponId;
+        document.getElementById('discountRow').style.display = 'flex';
+        document.getElementById('discountDisplay').textContent = '-' + appliedDiscount.toLocaleString('vi-VN') + '₫';
+        msg.style.color = '#28a745';
+        msg.textContent = '✅ ' + data.message;
+        updateTotal();
+      } else {
+        msg.style.color = '#dc3545';
+        msg.textContent = '❌ ' + data.message;
+      }
+    } catch {
+      msg.style.color = '#dc3545';
+      msg.textContent = 'Lỗi kết nối, vui lòng thử lại';
+    }
+  }
+</script>

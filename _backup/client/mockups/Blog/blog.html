@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - VSA PET CLINIC</title>
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="wrap-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div class="info-header">
+                        <i>📍</i>
+                        <span>Địa chỉ: 07 Cửu Long, P. Hòa Hưng, TP. Hồ Chí Minh</span>
+                    </div>
+                    <div class="info-header">
+                        <i>📞</i>
+                        <span>Hotline: <a href="tel:0837645555">083 764 5555</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="menu">
+        <div class="wrap-content">
+            <ul class="ulmn">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                <li><a href="/dich-vu">Dịch vụ</a></li>
+                <li><a href="/san-pham">Sản phẩm</a></li>
+            </ul>
+
+            <div class="col-logo">
+                <a class="logo-header" href="/">
+                    <img src="" alt="VSA PET CLINIC" style="height: 80px; background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%); padding: 10px; border-radius: 10px;">
+                </a>
+            </div>
+
+            <ul class="ulmn">
+                <li><a href="/album">Album</a></li>
+                <li><a href="/tin-tuc" class="active">Tin tức</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+                <li>
+                    <div class="search-res">
+                        <p class="icon-search">
+                            🔍
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="menu-res">
+        <div class="menu-bar-res">
+            <div id="hamburger">
+                <span></span>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <strong style="font-size: 18px; color: #1C1C1C;">VSA PET CLINIC</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadCrumbs">
+        <div class="wrap-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/"><span>Trang chủ</span></a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="/tin-tuc"><span>Tin tức</span></a>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section>
+        <div class="wrap-content" style="margin: 30px auto;">
+            <!-- Page Title -->
+            <div class="title-detail">
+                <h1>Tin tức</h1>
+                <!-- Filter removed for blog -->
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid-product" id="blog-container">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #FFE002; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="margin-top: 15px; color: #666;">Đang tải bài viết từ Dev.to...</p>
+                </div>
+            </div>
+
+            <!-- Load More Button Container -->
+            <div id="load-more-container" style="text-align: center; margin-bottom: 40px; display: none;">
+                <button id="load-more-btn" class="btn-neo-load">Xem thêm bài viết</button>
+            </div>
+
+            <!-- Pagination (Hidden for now as we load from API) -->
+            <nav style="display: none; justify-content: center;" id="pagination">
+                <ul class="pagination">
+                    <!-- Pagination will be handled by JS if needed -->
+                </ul>
+            </nav>
+
+            <style>
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-article">
+            <div class="wrap-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                    <!-- Company Info -->
+                    <div class="footer-news">
+                        <a class="logo-footer" href="/">
+                            <img src="" alt="VSA PET CLINIC" style="background: linear-gradient(135deg, #FFE002 0%, #FFB606 100%); padding: 15px; border-radius: 10px;">
+                        </a>
+                        <div class="name-footer">VSA PET CLINIC</div>
+                        <div class="info-footer">
+                            <p>
+                                <strong>"Trao Tiếng Nói Cho Những Người Bạn Đặc Biệt Không Thể Nói"</strong><br><br>
+                                📍 Địa chỉ: 07 Cửu Long, Phường Hòa Hưng, TP. Hồ Chí Minh<br>
+                                📞 Điện thoại: 083 764 5555<br>
+                                ✉️ Email: vsapetclinic@gmail.com<br>
+                                🌐 Website: http://vsapetclinic.com/
+                            </p>
+                        </div>
+                        <ul class="social">
+                            <li><a href="https://www.facebook.com/vsapetclinic" target="_blank">f</a></li>
+                            <li><a href="#">📱</a></li>
+                            <li><a href="#">▶️</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Policies -->
+                    <div class="footer-news">
+                        <h4 class="title-footer">CHÍNH SÁCH CÔNG TY</h4>
+                        <ul class="footer-ul">
+                            <li><a href="/chinh-sach-dat-lich">Chính sách đặt lịch</a></li>
+                            <li><a href="/chinh-sach-mua-hang">Chính sách mua hàng</a></li>
+                            <li><a href="/chinh-sach-giao-hang">Chính sách giao hàng</a></li>
+                            <li><a href="/chinh-sach-thanh-toan">Chính sách thanh toán</a></li>
+                        </ul>
+                        <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 40px;">🕐</div>
+                            <div>
+                                <div style="color: #FFE002; font-weight: 700; margin-bottom: 5px;">Giờ Mở Cửa</div>
+                                <span>08:00 - 20:00 (Mon - Sun)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="footer-news">
+                        <h4 class="title-footer">DANH MỤC</h4>
+                        <ul class="footer-ul">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                            <li><a href="/dich-vu">Dịch vụ</a></li>
+                            <li><a href="/san-pham">Sản phẩm</a></li>
+                            <li><a href="/album">Album</a></li>
+                            <li><a href="/tin-tuc">Tin tức</a></li>
+                            <li><a href="/lien-he">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-powered">
+            <div class="wrap-content">
+                <div>
+                    Copyright © <strong>VSA PET CLINIC</strong>. All rights reserved. Designed by Nina
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scrollToTop"></div>
+
+    <script src="blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<% locals.activePage = 'users' %>
+
+<div class="page-header">
+    <h1>👥 Quản lý người dùng (<%= total %>)</h1>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+    <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TÌM KIẾM</label>
+        <input type="text" name="search" class="form-control" placeholder="Tên, email..." value="<%= query.search||'' %>" style="width:200px"></div>
+        <div><label style="display:block;font-size:12px;font-weight:600;color:#666;margin-bottom:4px">TRẠNG THÁI</label>
+        <select name="status" class="form-control">
+            <option value="">Tất cả</option>
+            <option value="active" <%= query.status==='active'?'selected':'' %>>Hoạt động</option>
+            <option value="inactive" <%= query.status==='inactive'?'selected':'' %>>Vô hiệu</option>
+        </select></div>
+        <button type="submit" class="btn btn-primary">🔍</button>
+        <a href="/admin/nguoi-dung" class="btn btn-secondary">Xóa lọc</a>
+    </form>
+</div>
+
+<div class="card">
+    <table>
+        <thead><tr><th>Họ tên</th><th>Email</th><th>Số ĐT</th><th>Trạng thái</th><th>Ngày đăng ký</th><th>Thao tác</th></tr></thead>
+        <tbody>
+        <% if (users.length) { %>
+        <% users.forEach(u => { %>
+        <tr>
+            <td><strong style="font-size:14px">👤 <%= u.fullName %></strong></td>
+            <td style="font-size:13px;color:#666"><%= u.email %></td>
+            <td style="font-size:13px;color:#666"><%= u.phone || '—' %></td>
+            <td><span class="badge <%= u.isActive?'badge-success':'badge-danger' %>"><%= u.isActive?'Hoạt động':'Vô hiệu' %></span></td>
+            <td style="font-size:13px;color:#666"><%= new Date(u.createdAt).toLocaleDateString('vi-VN') %></td>
+            <td>
+                <form action="/admin/nguoi-dung/<%= u._id %>/toggle?_method=PATCH" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn-sm" style="background:<%= u.isActive?'#dc3545':'#28a745' %>;color:#fff">
+                        <%= u.isActive?'🚫 Vô hiệu':'✅ Kích hoạt' %>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr><td colspan="6" style="text-align:center;padding:35px;color:#999">Không có người dùng nào</td></tr>
+        <% } %>
+        </tbody>
+    </table>
+    <% if (totalPages > 1) { %>
+    <div class="pagination">
+        <% if (page > 1) { %><a href="?page=<%= page-1 %>">← Trước</a><% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %><% if(i===page){%><span class="current"><%= i %></span><%}else{%><a href="?page=<%= i %>"><%= i %></a><%}%><% } %>
+        <% if (page < totalPages) { %><a href="?page=<%= page+1 %>">Tiếp →</a><% } %>
+    </div>
+    <% } %>
+</div>

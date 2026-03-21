@@ -1,0 +1,154 @@
+<div class="sidebar">
+    <h2>PURE PAW Admin</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Products</a>
+    <a href="#">Orders</a>
+    <a href="#">Bookings</a>
+    <a href="#">Promotions</a>
+</div>
+
+<div class="main">
+
+    <h1>Promotion Management</h1>
+
+    <!-- Dashboard Cards -->
+    <div class="card-container">
+        <div class="card">
+            <h3>Active Promotions</h3>
+            <p>5</p>
+        </div>
+        <div class="card">
+            <h3>Total Usage</h3>
+            <p>324</p>
+        </div>
+        <div class="card">
+            <h3>Revenue from Promo</h3>
+            <p>45,600,000đ</p>
+        </div>
+        <div class="card">
+            <h3>Conversion Rate</h3>
+            <p>18%</p>
+        </div>
+    </div>
+
+    <!-- Create Promotion -->
+    <div class="section">
+        <h2>Create New Promotion</h2>
+
+        <div class="form-row">
+            <div>
+                <label>Promotion Name</label>
+                <input type="text" placeholder="Summer Paw Sale">
+            </div>
+            <div>
+                <label>Promo Code</label>
+                <input type="text" placeholder="SUMMER10">
+            </div>
+        </div>
+
+        <label>Description</label>
+        <textarea rows="3"></textarea>
+
+        <div class="form-row">
+            <div>
+                <label>Discount Type</label>
+                <select>
+                    <option>Percentage (%)</option>
+                    <option>Fixed Amount</option>
+                    <option>Free Shipping</option>
+                    <option>Combo Bundle</option>
+                </select>
+            </div>
+            <div>
+                <label>Discount Value</label>
+                <input type="number" placeholder="10">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label>Apply To</label>
+                <select>
+                    <option>All Products</option>
+                    <option>Specific Category</option>
+                    <option>Spa Services</option>
+                    <option>Both</option>
+                </select>
+            </div>
+            <div>
+                <label>Minimum Order Value</label>
+                <input type="number" placeholder="500000">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label>Start Date</label>
+                <input type="date">
+            </div>
+            <div>
+                <label>End Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <label>Usage Limit</label>
+        <input type="number" placeholder="100">
+
+        <button>Create Promotion</button>
+    </div>
+
+    <!-- Promotion List -->
+    <div class="section">
+        <h2>Promotion List</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <th>Usage</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Summer Paw</td>
+                    <td>SUMMER10</td>
+                    <td>10%</td>
+                    <td>120</td>
+                    <td class="status-active">Active</td>
+                    <td><button>Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Spa Weekend</td>
+                    <td>SPA50</td>
+                    <td>-50.000đ</td>
+                    <td>40</td>
+                    <td class="status-draft">Draft</td>
+                    <td><button>Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Pet New Year</td>
+                    <td>NEWYEAR20</td>
+                    <td>20%</td>
+                    <td>200</td>
+                    <td class="status-expired">Expired</td>
+                    <td><button>Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Promotion Analytics -->
+    <div class="section">
+        <h2>Promotion Analytics</h2>
+        <p><strong>Total Orders Using Promo:</strong> 324</p>
+        <p><strong>Average Order Value:</strong> 850,000đ</p>
+        <p><strong>Repeat Customer Rate:</strong> 32%</p>
+        <p><strong>Top Applied Service:</strong> Spa Grooming</p>
+    </div>
+
+</div>
