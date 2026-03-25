@@ -123,3 +123,34 @@ export const logout = (req: Request, res: Response) => {
   req.flash('success', 'Đã đăng xuất thành công');
   res.redirect('/dang-nhap');
 };
+// GET /quen-mat-khau
+export const getForgotPassword = (req: Request, res: Response) => {
+  res.render('auth/forgot-password');
+};
+
+// POST /quen-mat-khau
+export const postForgotPassword = catchAsync(async (req: Request, res: Response) => {
+  const { email, newPassword, confirmPassword } = req.body;
+
+  if (newPassword !== confirmPassword) {
+    req.flash('error', 'Mật khẩu xác nhận không khớp!');
+    return res.redirect('/quen-mat-khau');
+  }
+
+  if (newPassword.length < 6) {
+    req.flash('error', 'Mật khẩu phải có ít nhất 6 ký tự!');
+    return res.redirect('/quen-mat-khau');
+  }
+
+  const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
+  if (!user) {
+    req.flash('error', 'Email này chưa được đăng ký tài khoản!');
+    return res.redirect('/quen-mat-khau');
+  }
+
+  const hashed = await bcrypt.hash(newPassword, 10);
+  await User.findByIdAndUpdate(user._id, { password: hashed });
+
+  req.flash('success', 'Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.');
+  return res.redirect('/dang-nhap');
+});
